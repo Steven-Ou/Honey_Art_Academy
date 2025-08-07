@@ -18,6 +18,9 @@ export default function Header(){
                 </Link>
                 <nav>
                     <Link></Link>
+                    <Link></Link>
+                    <Link></Link>
+                    <Link></Link>
                 </nav>
             </div>
         </div>
