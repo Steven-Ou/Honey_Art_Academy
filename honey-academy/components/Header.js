@@ -18,7 +18,7 @@ export default function Header(){
                 </Link>
                 <nav>
                     <Link href="#about" className="text-gray-600 hover:text-amber-600 transition">About Us</Link>
-                    <Link></Link>
+                    <Link href="#programs" className="text-gray-600 hover:text-amber-600 transition">Programs</Link>
                     <Link></Link>
                     <Link></Link>
                 </nav>
