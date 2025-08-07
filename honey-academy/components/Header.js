@@ -22,6 +22,9 @@ export default function Header(){
                     <Link></Link>
                     <Link></Link>
                 </nav>
+                <Link>
+                    Enroll Now
+                </Link>
             </div>
         </div>
     </header>
