@@ -14,6 +14,7 @@ export default function Header(){
             <div>
                 <Link>
                     <FontAwesomeIcon/>
+                    Honey Academy
                 </Link>
             </div>
         </div>
