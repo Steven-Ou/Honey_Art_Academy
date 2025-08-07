@@ -17,7 +17,7 @@ export default function Header(){
                     Honey Academy
                 </Link>
                 <nav>
-                    <Link></Link>
+                    <Link href="#about" className="text-gray-600 hover:text-amber-600 transition">About Us</Link>
                     <Link></Link>
                     <Link></Link>
                     <Link></Link>
