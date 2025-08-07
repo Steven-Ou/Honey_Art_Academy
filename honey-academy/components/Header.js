@@ -26,7 +26,7 @@ export default function Header(){
                     Enroll Now
                 </Link>
                 <button>
-                    
+                    <FontAwesomeIcon/>
                 </button>
             </div>
         </div>
