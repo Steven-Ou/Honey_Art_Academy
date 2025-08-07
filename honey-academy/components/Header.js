@@ -8,4 +8,7 @@ import { faGraduationCap, faBars, faTimes } from '@fortawesome/free-solid-svg-ic
 export default function Header(){
   const [isOpen ,setIsOpen] = useState(false);
 
+  return(
+    
+  )
 }
