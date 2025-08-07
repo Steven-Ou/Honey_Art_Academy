@@ -26,7 +26,7 @@ export default function Header(){
                     Enroll Now
                 </Link>
                 <button>
-                    <FontAwesomeIcon/>
+                    <FontAwesomeIcon icon={isOpen ? faTimes : faBars} />
                 </button>
             </div>
         </div>
