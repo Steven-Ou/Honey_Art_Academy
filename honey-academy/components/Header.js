@@ -12,7 +12,7 @@ export default function Header(){
     <header>
         <div>
             <div>
-                <Link>
+                <Link href="/" className="text-2xl font-bold text-amber-600">
                     <FontAwesomeIcon/>
                     Honey Academy
                 </Link>
