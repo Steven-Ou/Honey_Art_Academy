@@ -13,7 +13,7 @@ export default function Header(){
         <div>
             <div>
                 <Link>
-                    
+                    <FontAwesomeIcon/>
                 </Link>
             </div>
         </div>
