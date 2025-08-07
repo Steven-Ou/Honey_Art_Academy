@@ -20,7 +20,7 @@ export default function Header(){
                     <Link href="#about" className="text-gray-600 hover:text-amber-600 transition">About Us</Link>
                     <Link href="#programs" className="text-gray-600 hover:text-amber-600 transition">Programs</Link>
                     <Link href="#testimonials" className="text-gray-600 hover:text-amber-600 transition">Testimonials</Link>
-                    <Link></Link>
+                    <Link href="#contact" className="text-gray-600 hover:text-amber-600 transition">Contact</Link>
                 </nav>
                 <Link>
                     Enroll Now
