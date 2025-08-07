@@ -17,7 +17,7 @@ export default function Header(){
                     Honey Academy
                 </Link>
                 <nav>
-                    
+                    <Link></Link>
                 </nav>
             </div>
         </div>
