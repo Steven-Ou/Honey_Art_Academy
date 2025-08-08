@@ -16,7 +16,7 @@ export default function Header(){
                     <FontAwesomeIcon icon={faGraduationCap} className="mr-2" />
                     Honey Academy
                 </Link>
-                <nav>
+                <nav className="hidden md:flex items-center space-x-8">
                     <Link href="#about" className="text-gray-600 hover:text-amber-600 transition">About Us</Link>
                     <Link href="#programs" className="text-gray-600 hover:text-amber-600 transition">Programs</Link>
                     <Link href="#testimonials" className="text-gray-600 hover:text-amber-600 transition">Testimonials</Link>
