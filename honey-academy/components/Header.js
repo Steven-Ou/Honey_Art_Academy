@@ -32,7 +32,7 @@ export default function Header(){
         </div>
         {/* Mobile Menu */}
         {isOpen && (
-            <div>
+            <div className="md:hidden px-6 pb-4">
                 <Link></Link>
                 <Link></Link>
                 <Link></Link>
