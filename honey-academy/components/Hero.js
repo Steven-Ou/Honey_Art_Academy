@@ -5,7 +5,7 @@ export default function Hero(){
         <section>
             <div>
                 <h1></h1>
-                
+                <p></p>
             </div>  
         </section>
     )
