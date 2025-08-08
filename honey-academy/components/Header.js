@@ -22,7 +22,7 @@ export default function Header(){
                     <Link href="#testimonials" className="text-gray-600 hover:text-amber-600 transition">Testimonials</Link>
                     <Link href="#contact" className="text-gray-600 hover:text-amber-600 transition">Contact</Link>
                 </nav>
-                <Link>
+                <Link href="#contact" className="hidden md:inline-block bg-amber-500 text-white font-semibold px-6 py-2 rounded-full cta-button hover:bg-amber-600">
                     Enroll Now
                 </Link>
                 <button>
