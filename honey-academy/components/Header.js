@@ -38,6 +38,7 @@ export default function Header(){
                 <Link href="#testimonials" className="block py-2 text-gray-600 hover:text-amber-600" onClick={() => setIsOpen(false)}>Testimonials</Link>
                 <Link href="#contact" className="block py-2 text-gray-600 hover:text-amber-600" onClick={() => setIsOpen(false)}>Contact</Link>
                 <Link href="#contact" className="block mt-4 bg-amber-500 text-white text-center font-semibold px-6 py-2 rounded-full cta-button hover:bg-amber-600" onClick={() => setIsOpen(false)}>
+                    Enroll Now
                 </Link>
             </div>
         )}
