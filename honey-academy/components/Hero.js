@@ -7,6 +7,9 @@ export default function Hero(){
                 <h1></h1>
                 <p></p>
             </div>  
+            <Link>
+            
+            </Link>
         </section>
     )
 }
