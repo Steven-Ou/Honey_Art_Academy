@@ -9,7 +9,7 @@ export default function Header(){
   const [isOpen ,setIsOpen] = useState(false);
 
   return(
-    <header>
+    <header className="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
         <div>
             <div>
                 <Link href="/" className="text-2xl font-bold text-amber-600">
