@@ -25,7 +25,7 @@ export default function Header(){
                 <Link href="#contact" className="hidden md:inline-block bg-amber-500 text-white font-semibold px-6 py-2 rounded-full cta-button hover:bg-amber-600">
                     Enroll Now
                 </Link>
-                <button>
+                <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-2xl text-amber-600">
                     <FontAwesomeIcon icon={isOpen ? faTimes : faBars} />
                 </button>
             </div>
