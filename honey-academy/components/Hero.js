@@ -8,7 +8,7 @@ export default function Hero(){
                 <p></p>
             </div>  
             <Link>
-            
+                Explore Our Programs
             </Link>
         </section>
     )
