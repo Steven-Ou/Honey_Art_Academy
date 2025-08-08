@@ -33,7 +33,7 @@ export default function Header(){
         {/* Mobile Menu */}
         {isOpen && (
             <div className="md:hidden px-6 pb-4">
-                <Link></Link>
+                <Link href="#about" className="block py-2 text-gray-600 hover:text-amber-600" onClick={() => setIsOpen(false)}>About Us</Link>
                 <Link></Link>
                 <Link></Link>
                 <Link></Link>
