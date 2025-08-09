@@ -6,7 +6,10 @@ export default function About(){
             <div className="flex flex-col md:flex-row items-center gap-12">
                 <div className="md:w-1/2">
                     <Image
-                    
+                        src="https://placehold.co/600x400/FFD54F/333333?text=Our+Team" 
+                        alt="Honey Academy Team" 
+
+
                     />
                 </div>
                 <div>
