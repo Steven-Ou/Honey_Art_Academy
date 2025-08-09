@@ -10,6 +10,7 @@ const TestimonialCard = ({ text, name, role, imgSrc }) => (
         width={50}
         height={50}
         className="w-12 h-12 rounded-full mr-4"
+        unoptimized={true}
       />
       <div>
         <p className="font-bold">{name}</p>
