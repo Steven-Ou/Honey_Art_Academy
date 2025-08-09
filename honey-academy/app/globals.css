@@ -3,16 +3,17 @@
 @tailwind utilities;
 
 .hero-bg {
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://placehold.co/1600x900/FFF8E1/333333?text=Happy+Students');
-    background-size: cover;
-    background-position: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://placehold.co/1600x900/FFF8E1/333333?text=Happy+Students");
+  background-size: cover;
+  background-position: center;
 }
 
 .cta-button {
-    transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
