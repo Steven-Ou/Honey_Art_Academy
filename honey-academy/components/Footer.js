@@ -1,42 +1,29 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFacebookF,
-  faInstagram,
-  faYoutube,
-} from "@fortawesome/free-brands-svg-icons";
-import Link from "next/link";
+import "./globals.css";
+import { Inter } from "next/font/google";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
-export default function Footer() {
+// This config is needed for Font Awesome to work correctly with server components
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+config.autoAddCss = false;
+
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata = {
+  title: "Honey Academy - Flushing After School, Dance, Art & Music",
+  description:
+    "Honey Academy offers top-tier after-school, dance, art, and music programs in Flushing, NY. Nurturing tomorrow's leaders and artists.",
+};
+
+export default function RootLayout({ children }) {
   return (
-    <footer className="bg-amber-200">
-      <div className="container mx-auto px-6 py-8">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-amber-800">
-            &copy; {new Date().getFullYear()} Honey Academy. All Rights
-            Reserved.
-          </p>
-          <div className="flex space-x-4 mt-4 md:mt-0">
-            <Link
-              href="#"
-              className="text-amber-700 hover:text-amber-900 text-xl"
-            >
-              <FontAwesomeIcon icon={faFacebookF} />
-            </Link>
-            <Link
-              href="#"
-              className="text-amber-700 hover:text-amber-900 text-xl"
-            >
-              <FontAwesomeIcon icon={faInstagram} />
-            </Link>
-            <Link
-              href="#"
-              className="text-amber-700 hover:text-amber-900 text-xl"
-            >
-              <FontAwesomeIcon icon={faYoutube} />
-            </Link>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <html lang="en" className="scroll-smooth">
+      <body className={`${inter.className} bg-amber-50 text-gray-800`}>
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </body>
+    </html>
   );
 }
