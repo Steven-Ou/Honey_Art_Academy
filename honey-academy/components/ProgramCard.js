@@ -14,6 +14,7 @@ export default function ProgramCard({ imgSrc, title, description, link }) {
         width={400}
         height={300}
         className="w-full h-48 object-cover"
+        unoptimized={true}
       />
       <div className="p-6">
         <h3 className="text-xl font-bold mb-2">{title}</h3>
