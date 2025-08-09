@@ -21,7 +21,7 @@ const Logo = () =>(
             <circle cx="28" cy="25" r="1.5" fill="#B91C1C"/>
             <circle cx="25" cy="28" r="1.5" fill="#B91C1C"/>
         </g>
-        <text x="50" y="30" fontFamily="Inter, sans-serif" fontSize="24" fontWeight="bold" fill="#D97706">
+        <text x="50" y="30" fontFamily="Inter, sans-serif" fontSize="24" fontWeight="bold" fill="#d90606ff">
             Honey Academy
         </text>
     </svg>
