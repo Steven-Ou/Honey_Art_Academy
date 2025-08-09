@@ -6,7 +6,7 @@ import{FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faGraduationCap, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const Logo = () =>(
-    <svg width="200" height="40" viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="240" height="40" viewBox="0 0 240 40" fill="none" xmlns="http://www.w3.org/2000/svg">
         <text x="0" y="30" fontFamily="Inter, sans-serif" fontSize="24" fontWeight="bold" fill="#D97706">
             Honey Academy
         </text>
