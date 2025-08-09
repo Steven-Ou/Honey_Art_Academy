@@ -10,9 +10,8 @@ export default function About(){
                     />
                 </div>
                 <div>
-                    <h2>
-                        
-                    </h2>
+                    <h2></h2>
+                    <p></p>
                 </div>
             </div>
         </section>
