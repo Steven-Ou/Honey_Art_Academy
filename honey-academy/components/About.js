@@ -21,7 +21,7 @@ export default function About(){
                     />
                 </div>
                 <div className="md:w-1/2">
-                    <h2></h2>
+                    <h2 className="text-3xl font-bold mb-4 text-amber-700">Fostering Excellence For Over 8 Years</h2>
                     <p></p>
                     <p></p>
                     <div>
