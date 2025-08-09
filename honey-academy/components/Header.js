@@ -3,11 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faGraduationCap,
-  faBars,
-  faTimes,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const Logo = () => (
   <svg
@@ -40,18 +36,20 @@ const Logo = () => (
       <circle cx="28" cy="25" r="1.5" fill="#B91C1C" />
       <circle cx="25" cy="28" r="1.5" fill="#B91C1C" />
     </g>
+    {/* Text */}
     <text
       x="50"
       y="30"
       fontFamily="Inter, sans-serif"
       fontSize="24"
       fontWeight="bold"
-      fill="#d90606ff"
+      fill="#D97706"
     >
       Honey Academy
     </text>
   </svg>
 );
+
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
