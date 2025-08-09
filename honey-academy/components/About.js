@@ -5,13 +5,12 @@ export default function About(){
         <section id="about" className="mb-24 scroll-mt-20 relative">
             <div className="flex flex-col md:flex-row items-center gap-12">
                 <div className="md:w-1/2">
-                    <Image
-                        src="https://placehold.co/600x400/FFD54F/333333?text=Honey+Academy" 
-                        alt="Honey Academy" 
-                        width = {600}
-                        height={400}
+                    <Image 
+                        src="https://placehold.co/600x400/FFD54F/333333?text=Our+Vibrant+Community" 
+                        alt="Honey Academy Community" 
+                        width={600} 
+                        height={400} 
                         className="rounded-lg shadow-xl"
-                        unoptimized
                     />
                 </div>
                 <div>
