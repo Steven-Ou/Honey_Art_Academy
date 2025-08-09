@@ -25,7 +25,7 @@ export default function About(){
                     <p className="mb-4">Honey Academy is more than just an after-school. We are a vibrant community with two campuses spanning 10,000 sq ft, dedicated to providing the finest academic and creative education.</p>
                     <p className="mb-6">With over thirty experienced and licensed instructors, we are passionate about giving your child the head-start they deserve. Our specialized classes prepare students for academic success, build self-confidence, and enrich their souls.</p>
                     <div className="flex space-x-8">
-                        <div>
+                        <div className="text-center">
                             <div>
                                 <p></p>
                                 <p></p>
