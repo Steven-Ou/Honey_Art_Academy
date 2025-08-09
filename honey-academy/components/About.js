@@ -22,7 +22,7 @@ export default function About(){
                 </div>
                 <div className="md:w-1/2">
                     <h2 className="text-3xl font-bold mb-4 text-amber-700">Fostering Excellence For Over 8 Years</h2>
-                    <p></p>
+                    <p className="mb-4">Honey Academy is more than just an after-school. We are a vibrant community with two campuses spanning 10,000 sq ft, dedicated to providing the finest academic and creative education.</p>
                     <p></p>
                     <div>
                         <div>
