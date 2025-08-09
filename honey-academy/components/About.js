@@ -4,7 +4,7 @@ export default function About(){
     return(
         <section id="about" className="mb-24 scroll-mt-20">
             <div className="flex flex-col md:flex-row items-center gap-12">
-                <div>
+                <div className="md:w-1/2">
                     <Image
                     
                     />
