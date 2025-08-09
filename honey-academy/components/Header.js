@@ -33,23 +33,23 @@ export default function Header(){
     <header className="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-                <Link href="/">
-                    <Logo/>
-                </Link>
-                <nav className="hidden md:flex items-center space-x-8">
-                    <Link href="#about" className="text-gray-600 hover:text-amber-600 transition">About Us</Link>
-                    <Link href="#programs" className="text-gray-600 hover:text-amber-600 transition">Programs</Link>
-                    <Link href="#testimonials" className="text-gray-600 hover:text-amber-600 transition">Testimonials</Link>
-                    <Link href="#contact" className="text-gray-600 hover:text-amber-600 transition">Contact</Link>
-                </nav>
-                <Link href="#contact" className="hidden md:inline-block bg-amber-500 text-white font-semibold px-6 py-2 rounded-full cta-button hover:bg-amber-600">
-                    Enroll Now
-                </Link>
-                <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-2xl text-amber-600">
-                    <FontAwesomeIcon icon={isOpen ? faTimes : faBars} />
-                </button>
-            </div>
+            <Link href="/">
+                <Logo/>
+            </Link>
+            <nav className="hidden md:flex items-center space-x-8">
+                <Link href="#about" className="text-gray-600 hover:text-amber-600 transition">About Us</Link>
+                <Link href="#programs" className="text-gray-600 hover:text-amber-600 transition">Programs</Link>
+                <Link href="#testimonials" className="text-gray-600 hover:text-amber-600 transition">Testimonials</Link>
+                <Link href="#contact" className="text-gray-600 hover:text-amber-600 transition">Contact</Link>
+            </nav>
+            <Link href="#contact" className="hidden md:inline-block bg-amber-500 text-white font-semibold px-6 py-2 rounded-full cta-button hover:bg-amber-600">
+                Enroll Now
+            </Link>
+            <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-2xl text-amber-600">
+                <FontAwesomeIcon icon={isOpen ? faTimes : faBars} />
+            </button>
         </div>
+    </div>
         {/* Mobile Menu */}
         {isOpen && (
             <div className="md:hidden px-6 pb-4">
