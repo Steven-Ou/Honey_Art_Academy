@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function About(){
     return(
-        <section>
+        <section id="about" className="mb-24 scroll-mt-20">
             <div>
                 <div>
                     <Image
