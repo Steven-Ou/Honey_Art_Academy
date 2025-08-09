@@ -16,13 +16,13 @@ export default function About(){
                     <div>
                         <div>
                             <div>
-
+                                <p></p>
                             </div>
                             <div>
 
                             </div>
                             <div>
-                                
+
                             </div>
                         </div>
                     </div>
