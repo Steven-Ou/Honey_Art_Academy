@@ -12,6 +12,7 @@ export default function About(){
                 <div>
                     <h2></h2>
                     <p></p>
+                    <p></p>
                 </div>
             </div>
         </section>
