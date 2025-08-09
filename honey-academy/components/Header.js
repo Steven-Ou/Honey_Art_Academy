@@ -8,7 +8,7 @@ import { faGraduationCap, faBars, faTimes } from '@fortawesome/free-solid-svg-ic
 const Logo = () =>(
     <svg>
         <text>
-            
+            Honey Academy
         </text>
     </svg>
 );
