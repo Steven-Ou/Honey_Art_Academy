@@ -19,9 +19,8 @@ export default function Header(){
     <header className="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="text-2xl font-bold text-amber-600">
-                    <FontAwesomeIcon icon={faGraduationCap} className="mr-2" />
-                    Honey Academy
+                <Link href="/">
+                    <Logo/>
                 </Link>
                 <nav className="hidden md:flex items-center space-x-8">
                     <Link href="#about" className="text-gray-600 hover:text-amber-600 transition">About Us</Link>
