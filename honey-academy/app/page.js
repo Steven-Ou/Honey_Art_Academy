@@ -5,10 +5,6 @@ import Testimonials from "../components/Testimonials";
 import Contact from "../components/Contact";
 
 export default function Home() {
-  // In the App Router, components are Server Components by default.
-  // This means we could fetch data directly here if we needed to.
-  // For now, the components manage their own content.
-
   return (
     <>
       <Hero />
