@@ -13,6 +13,11 @@ export default function About(){
                     <h2></h2>
                     <p></p>
                     <p></p>
+                    <div>
+                        <div>
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
