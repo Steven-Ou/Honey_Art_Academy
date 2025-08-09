@@ -20,7 +20,7 @@ export default function About(){
                         className="rounded-lg shadow-xl"
                     />
                 </div>
-                <div>
+                <div className="md:w-1/2">
                     <h2></h2>
                     <p></p>
                     <p></p>
