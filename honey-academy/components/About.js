@@ -36,6 +36,7 @@ export default function About() {
             width={600}
             height={400}
             className="rounded-lg shadow-xl"
+            unoptimized
           />
         </div>
         <div className="md:w-1/2">
