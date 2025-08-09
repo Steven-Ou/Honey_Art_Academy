@@ -13,6 +13,7 @@ export default function Home() {
     <>
       <Hero />
       <div className="container mx-auto px-6 py-16">
+      <About/>
       {/*  
         <About/>
         <Programs />
