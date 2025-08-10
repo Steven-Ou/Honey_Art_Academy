@@ -29,7 +29,7 @@ export default function Hero() {
           <div className="absolute grid grid-cols-2 grid-rows-2 gap-4 w-full h-full p-8 z-10">
             <div className="relative rounded-lg overflow-hidden shadow-lg">
               <Image
-                src="https://images.unsplash.com/photo-1518778650392-411a7536e9d1?q=80&w=400"
+                src="https://images.unsplash.com/photo-1596495759344-9c9e8a72a1e0"
                 alt="child painting"
                 fill
                 style={{ objectFit: "cover" }}
@@ -37,7 +37,7 @@ export default function Hero() {
             </div>
             <div className="relative rounded-lg overflow-hidden shadow-lg">
               <Image
-                src="https://images.unsplash.com/photo-1587613864193-506de782789d?q=80&w=400"
+                src="https://images.unsplash.com/photo-1541829076463-b26522135431"
                 alt="children in class"
                 fill
                 style={{ objectFit: "cover" }}
@@ -45,8 +45,8 @@ export default function Hero() {
             </div>
             <div className="relative rounded-lg overflow-hidden shadow-lg col-span-2">
               <Image
-                src="https://images.unsplash.com/photo-1509306253193-2a59c5d01248?q=80&w=800"
-                alt="child playing piano"
+                src="https://images.unsplash.com/photo-1511379938547-c1f69419868d"
+                alt="child playing music"
                 fill
                 style={{ objectFit: "cover" }}
               />
