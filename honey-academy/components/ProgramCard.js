@@ -7,13 +7,14 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 export default function ProgramCard({ imgSrc, title, description, link }) {
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+    <div className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 flex flex-col w-full max-w-sm">
       <div className="w-full h-48 relative">
         <Image
           src={imgSrc}
           alt={`${title} Program`}
           fill
           style={{ objectFit: "cover" }}
+          unoptimized={true}
         />
       </div>
       <div className="p-6 flex-grow flex flex-col">
