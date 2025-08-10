@@ -12,19 +12,18 @@ export default function ProgramCard({ imgSrc, title, description, link }) {
         <Image
           src={imgSrc}
           alt={`${title} Program`}
-          layout="fill"
-          objectFit="cover"
-          unoptimized={true}
+          fill
+          style={{ objectFit: "cover" }}
         />
       </div>
       <div className="p-6 flex-grow flex flex-col">
-        <h3 className="text-xl font-bold mb-2">{title}</h3>
+        <h3 className="text-xl font-bold mb-2 text-gray-800">{title}</h3>
         <p className="text-gray-600 mb-4 flex-grow">{description}</p>
         <Link
           href={link}
-          className="font-semibold text-amber-600 hover:text-amber-700 mt-auto"
+          className="font-semibold text-primary hover:text-primary-dark mt-auto"
         >
-          Learn More <FontAwesomeIcon icon={faArrowRight} className="ml-1" />
+          Read More <FontAwesomeIcon icon={faArrowRight} className="ml-1" />
         </Link>
       </div>
     </div>
