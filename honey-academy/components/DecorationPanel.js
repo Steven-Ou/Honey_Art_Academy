@@ -5,6 +5,13 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const themes = [
   {
+    name: "Maroon",
+    primary: "#B91C1C",
+    "primary-dark": "#991B1B",
+    "primary-light": "#FEE2E2",
+    bg: "#FEF2F2",
+  },
+  {
     name: "Amber",
     primary: "#F59E0B",
     "primary-dark": "#D97706",
@@ -53,6 +60,8 @@ export default function DecorationPanel({ isOpen, onClose }) {
       const parsedTheme = JSON.parse(savedTheme);
       setActiveTheme(parsedTheme);
       applyTheme(parsedTheme);
+    } else {
+      applyTheme(themes[0]); // Apply default theme on first load
     }
     if (savedBg) {
       setBackground(savedBg);
