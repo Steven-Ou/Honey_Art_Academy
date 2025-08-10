@@ -10,7 +10,7 @@ export default function About() {
         <div className="flex flex-col md:flex-row items-center gap-12">
           <div className="md:w-1/2">
             <Image
-              src="https://images.unsplash.com/photo-1579548122213-584f33ceecf1?q=80&w=600"
+              src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4"
               alt="Children learning at Honey Academy"
               width={600}
               height={400}
