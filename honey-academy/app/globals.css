@@ -3,16 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --color-primary: #F59E0B;
-  --color-primary-dark: #D97706;
-  --color-primary-light: #FEF3C7;
-  --color-bg-base: #FFFBEB;
+  --color-primary: #f59e0b;
+  --color-primary-dark: #d97706;
+  --color-primary-light: #fef3c7;
+  --color-bg-base: #fffbeb;
   --background-image: none;
 }
 
 body {
-    background-color: var(--color-bg-base);
-    background-image: var(--background-image);
+  background-color: var(--color-bg-base);
+  background-image: var(--background-image);
 }
 
 .hero-bg {
@@ -48,25 +48,25 @@ body {
 }
 
 .bg-primary-light {
-    background-color: var(--color-primary-light);
+  background-color: var(--color-primary-light);
 }
 
 .bg-base {
-    background-color: var(--color-bg-base);
+  background-color: var(--color-bg-base);
 }
 
 .hover\:text-primary-dark:hover {
-    color: var(--color-primary-dark);
+  color: var(--color-primary-dark);
 }
 
 .hover\:bg-primary-dark:hover {
-    background-color: var(--color-primary-dark);
+  background-color: var(--color-primary-dark);
 }
 
 .ring-primary {
-    --tw-ring-color: var(--color-primary);
+  --tw-ring-color: var(--color-primary);
 }
 
 .border-primary-dark {
-    border-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
 }
