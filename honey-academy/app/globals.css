@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --color-primary: #f59e0b;
-  --color-primary-dark: #d97706;
-  --color-primary-light: #fef3c7;
-  --color-bg-base: #fffbeb;
+  --color-primary: #b91c1c; /* Maroon Red */
+  --color-primary-dark: #991b1b; /* Darker Maroon Red */
+  --color-primary-light: #fee2e2; /* Light Red */
+  --color-bg-base: #fef2f2; /* Very Light Red/Pink */
   --background-image: none;
 }
 
