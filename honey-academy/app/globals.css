@@ -4,7 +4,7 @@
 
 .hero-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("https://placehold.co/1600x900/FFF8E1/333333?text=Happy+Students");
+    url("https://images.unsplash.com/photo-1546410531-bb4ac68ab60b?q=80&w=2070&auto=format&fit=crop");
   background-size: cover;
   background-position: center;
 }
