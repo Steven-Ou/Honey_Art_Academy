@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-primary: #F59E0B;
+  --color-primary-dark: #D97706;
+  --color-primary-light: #FEF3C7;
+  --color-bg-base: #FFFBEB;
+  --background-image: none;
+}
+
+body {
+    background-color: var(--color-bg-base);
+    background-image: var(--background-image);
+}
+
 .hero-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("https://images.unsplash.com/photo-1546410531-bb4ac68ab60b?q=80&w=2070&auto=format&fit=crop");
@@ -16,4 +29,44 @@
 .cta-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-primary-dark {
+  color: var(--color-primary-dark);
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-primary-dark {
+  background-color: var(--color-primary-dark);
+}
+
+.bg-primary-light {
+    background-color: var(--color-primary-light);
+}
+
+.bg-base {
+    background-color: var(--color-bg-base);
+}
+
+.hover\:text-primary-dark:hover {
+    color: var(--color-primary-dark);
+}
+
+.hover\:bg-primary-dark:hover {
+    background-color: var(--color-primary-dark);
+}
+
+.ring-primary {
+    --tw-ring-color: var(--color-primary);
+}
+
+.border-primary-dark {
+    border-color: var(--color-primary-dark);
 }
