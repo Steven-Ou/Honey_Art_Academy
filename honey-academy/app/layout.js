@@ -1,54 +1,29 @@
-// steven-ou/honey_art_academy/Honey_Art_Academy-3b08cfc3f42b337480a330f9b0097aaca9ef5160/honey-academy/app/layout.js
-
-"use client";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import { Inter, Lora } from "next/font/google";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import { useEffect } from "react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
-// Font Awesome Config
-import { config } from "@fortawesome/fontawesome-svg-core";
-import "@fortawesome/fontawesome-svg-core/styles.css";
-config.autoAddCss = false;
+const inter = Inter({ subsets: ["latin"] });
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
-
-const lora = Lora({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-lora",
-});
+export const metadata = {
+  title: "Honey Art Academy - Nurturing Creative Souls",
+  description:
+    "A vibrant community dedicated to providing the finest academic and creative education in dance, art, and music.",
+};
 
 export default function RootLayout({ children }) {
-  useEffect(() => {
-    // This effect now only handles the optional background pattern
-    const savedBg = localStorage.getItem("background");
-    if (savedBg) {
-      document.documentElement.style.setProperty(
-        "--background-image",
-        savedBg === "none" ? "none" : `url(${savedBg})`
-      );
-    }
-  }, []);
-
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en">
       <head>
-        <title>
-          Honey Art Academy - Flushing After School, Dance, Art & Music
-        </title>
-        <meta
-          name="description"
-          content="Honey Academy offers top-tier after-school, dance, art, and music programs in Flushing, NY. Nurturing tomorrow's leaders and artists."
+        {/* Font Awesome for Icons */}
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         />
       </head>
-      <body className={`${inter.variable} ${lora.variable} text-base`}>
+      <body className={inter.className}>
         <Header />
-        <main>{children}</main>
+        {children}
         <Footer />
       </body>
     </html>
