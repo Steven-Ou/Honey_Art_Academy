@@ -1,4 +1,10 @@
 "use client";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faMapMarkerAlt,
+  faPhone,
+  faEnvelope,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function Contact() {
   const handleSubmit = async (event) => {
@@ -19,7 +25,48 @@ export default function Contact() {
             Have questions? We'd love to hear from you.
           </p>
         </div>
-        <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-xl p-8">
+        <div className="max-w-6xl mx-auto bg-white rounded-lg shadow-xl p-8 lg:p-12 grid lg:grid-cols-2 gap-12">
+          {/* Contact Info Column */}
+          <div className="flex flex-col justify-center">
+            <h3 className="text-2xl font-bold text-primary-dark mb-6">
+              Contact Information
+            </h3>
+            <div className="space-y-4 text-lg">
+              <p className="flex items-start">
+                <FontAwesomeIcon
+                  icon={faMapMarkerAlt}
+                  className="text-primary mt-1 mr-4 w-5"
+                />
+                <span>
+                  123 Art Lane,
+                  <br />
+                  Flushing, NY 11354
+                </span>
+              </p>
+              <p className="flex items-center">
+                <FontAwesomeIcon
+                  icon={faPhone}
+                  className="text-primary mr-4 w-5"
+                />
+                <a href="tel:555-123-4567" className="hover:text-primary">
+                  (555) 123-4567
+                </a>
+              </p>
+              <p className="flex items-center">
+                <FontAwesomeIcon
+                  icon={faEnvelope}
+                  className="text-primary mr-4 w-5"
+                />
+                <a
+                  href="mailto:info@honeyart.com"
+                  className="hover:text-primary"
+                >
+                  info@honeyart.com
+                </a>
+              </p>
+            </div>
+          </div>
+          {/* Form Column */}
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <input
@@ -55,7 +102,7 @@ export default function Contact() {
                 className="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
               ></textarea>
             </div>
-            <div className="text-center">
+            <div className="text-right">
               <button
                 type="submit"
                 className="bg-primary text-white font-bold py-3 px-12 rounded-full cta-button hover:bg-primary-dark"
