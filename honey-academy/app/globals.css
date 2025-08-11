@@ -2,14 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  /* The background image can be removed if you prefer a solid color background from the body class */
-  background-image: url("https://www.transparenttextures.com/patterns/subtle-zebra-3d.png");
-}
-
 @layer base {
+  html {
+    @apply scroll-smooth;
+  }
   body {
+    /* Sets the default background, text color, and font for the whole site */
     @apply bg-white text-text-base font-inter;
+    background-image: url("https://www.transparenttextures.com/patterns/subtle-zebra-3d.png");
   }
 
   h1,
@@ -22,25 +22,19 @@ body {
   }
 }
 
+/* Reusable utility classes */
 .section-padding {
   @apply py-20 sm:py-28;
 }
 
 .cta-button {
-  transition: all 0.3s ease;
+  @apply transition-all duration-300 ease-in-out;
   box-shadow: 0 2px 8px rgba(163, 42, 42, 0.2);
 }
 
 .cta-button:hover {
-  transform: translateY(-2px);
+  @apply -translate-y-0.5;
   box-shadow: 0 4px 15px rgba(163, 42, 42, 0.3);
-}
-
-.hero-bg {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-    url("https://images.unsplash.com/photo-1546410531-bb4ac68ab60b?q=80&w=2070&auto=format&fit=crop");
-  background-size: cover;
-  background-position: center;
 }
 
 .hero-bg {
