@@ -1,4 +1,4 @@
-/* steven-ou/honey_art_academy/Honey_Art_Academy-b30d0db627a43b328427977d4914901b7229c657/honey-academy/app/globals.css */
+/* steven-ou/honey_art_academy/Honey_Art_Academy-3b08cfc3f42b337480a330f9b0097aaca9ef5160/honey-academy/app/globals.css */
 
 @tailwind base;
 @tailwind components;
@@ -27,6 +27,16 @@
   h6 {
     @apply font-lora;
   }
+
+  /* Classes for scroll animations */
+  .animated-section {
+    @apply opacity-0 translate-y-8;
+    transition: opacity 0.8s ease-out, transform 0.6s ease-out;
+  }
+
+  .animated-section.is-visible {
+    @apply opacity-100 translate-y-0;
+  }
 }
 
 /* Reusable utility classes */
@@ -40,8 +50,8 @@
 }
 
 .cta-button:hover {
-  @apply -translate-y-0.5;
-  box-shadow: 0 4px 15px rgba(163, 42, 42, 0.3);
+  @apply -translate-y-1;
+  box-shadow: 0 4px 15px rgba(163, 42, 42, 0.4);
 }
 
 .hero-bg {

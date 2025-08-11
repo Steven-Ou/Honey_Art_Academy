@@ -1,4 +1,4 @@
-// steven-ou/honey_art_academy/Honey_Art_Academy-b30d0db627a43b328427977d4914901b7229c657/honey-academy/app/layout.js
+// steven-ou/honey_art_academy/Honey_Art_Academy-3b08cfc3f42b337480a330f9b0097aaca9ef5160/honey-academy/app/layout.js
 
 "use client";
 import "./globals.css";
@@ -25,7 +25,7 @@ const lora = Lora({
 
 export default function RootLayout({ children }) {
   useEffect(() => {
-    // Apply saved background pattern
+    // This effect handles applying the saved background pattern
     const savedBg = localStorage.getItem("background");
     if (savedBg) {
       document.documentElement.style.setProperty(
@@ -46,7 +46,7 @@ export default function RootLayout({ children }) {
       },
       {
         rootMargin: "0px",
-        threshold: 0.1,
+        threshold: 0.1, // Trigger when 10% of the element is visible
       }
     );
 
@@ -55,6 +55,7 @@ export default function RootLayout({ children }) {
       observer.observe(section);
     });
 
+    // Cleanup observer on component unmount
     return () => {
       sections.forEach((section) => {
         if (observer && observer.unobserve) {
