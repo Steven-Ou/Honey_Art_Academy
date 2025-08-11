@@ -1,5 +1,4 @@
-// steven-ou/honey_art_academy/Honey_Art_Academy-3b08cfc3f42b337480a330f9b0097aaca9ef5160/honey-academy/components/About.js
-
+// steven-ou/honey_art_academy/Honey_Art_Academy-76e377b972348cda8e18ea36254ffbc08265972d/honey-academy/components/About.js
 import Image from "next/image";
 
 export default function About() {
@@ -12,7 +11,7 @@ export default function About() {
             alt="Children learning at Honey Academy"
             width={600}
             height={400}
-            className="rounded-lg shadow-2xl"
+            className="rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
           />
         </div>
         <div className="lg:w-1/2 text-center lg:text-left">
@@ -28,21 +27,21 @@ export default function About() {
             With over thirty experienced and licensed instructors, we are
             passionate about giving your child the head-start they deserve.
           </p>
-          {/* Redesigned Stats Section */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-            <div className="bg-white p-4 rounded-lg shadow-md transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">
+            {/* Card-like stats inspired by ig-checker */}
+            <div className="bg-white p-6 rounded-lg shadow-lg transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl border-t-4 border-primary">
               <p className="text-4xl lg:text-5xl font-bold text-primary">30+</p>
-              <p className="text-gray-600 font-medium">Instructors</p>
+              <p className="text-gray-600 font-medium mt-2">Instructors</p>
             </div>
-            <div className="bg-white p-4 rounded-lg shadow-md transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">
+            <div className="bg-white p-6 rounded-lg shadow-lg transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl border-t-4 border-primary">
               <p className="text-4xl lg:text-5xl font-bold text-primary">
                 500+
               </p>
-              <p className="text-gray-600 font-medium">Happy Students</p>
+              <p className="text-gray-600 font-medium mt-2">Happy Students</p>
             </div>
-            <div className="bg-white p-4 rounded-lg shadow-md transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">
+            <div className="bg-white p-6 rounded-lg shadow-lg transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl border-t-4 border-primary">
               <p className="text-4xl lg:text-5xl font-bold text-primary">10k</p>
-              <p className="text-gray-600 font-medium">Sq. Ft. Campus</p>
+              <p className="text-gray-600 font-medium mt-2">Sq. Ft. Campus</p>
             </div>
           </div>
         </div>
