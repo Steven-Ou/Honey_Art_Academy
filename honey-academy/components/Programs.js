@@ -12,7 +12,9 @@ export default function Programs({ programs }) {
           inspire your child.
         </p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+      {/* This is the line to change: from a flex column to a responsive grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {programs.map((p) => (
           <ProgramCard key={p.title} {...p} />
         ))}
