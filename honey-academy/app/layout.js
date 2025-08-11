@@ -25,7 +25,7 @@ const lora = Lora({
 
 export default function RootLayout({ children }) {
   useEffect(() => {
-    // This effect handles applying the saved background pattern
+    // This effect now only handles the optional background pattern
     const savedBg = localStorage.getItem("background");
     if (savedBg) {
       document.documentElement.style.setProperty(
@@ -33,36 +33,6 @@ export default function RootLayout({ children }) {
         savedBg === "none" ? "none" : `url(${savedBg})`
       );
     }
-
-    // Intersection Observer for scroll animations
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        rootMargin: "0px",
-        threshold: 0.1, // Trigger when 10% of the element is visible
-      }
-    );
-
-    const sections = document.querySelectorAll(".animated-section");
-    sections.forEach((section) => {
-      observer.observe(section);
-    });
-
-    // Cleanup observer on component unmount
-    return () => {
-      sections.forEach((section) => {
-        if (observer && observer.unobserve) {
-          observer.unobserve(section);
-        }
-      });
-    };
   }, []);
 
   return (

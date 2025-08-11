@@ -1,3 +1,5 @@
+// steven-ou/honey_art_academy/Honey_Art_Academy-3b08cfc3f42b337480a330f9b0097aaca9ef5160/honey-academy/app/page.js
+
 import Hero from "../components/Hero";
 import About from "../components/About";
 import Programs from "../components/Programs";
@@ -13,19 +15,11 @@ export default async function Home() {
     <>
       <Hero />
       <div className="container mx-auto px-6">
-        <div className="animated-section">
-          <About />
-        </div>
-        <div className="animated-section">
-          <Programs programs={programs} />
-        </div>
+        <About />
+        <Programs programs={programs} />
       </div>
-      <div className="animated-section">
-        <Testimonials testimonials={testimonials} />
-      </div>
-      <div className="animated-section">
-        <Contact />
-      </div>
+      <Testimonials testimonials={testimonials} />
+      <Contact />
     </>
   );
 }
