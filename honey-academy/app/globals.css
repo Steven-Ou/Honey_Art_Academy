@@ -37,12 +37,35 @@
   box-shadow: 0 6px 20px rgba(163, 42, 42, 0.3);
 }
 
-/* HERO SECTION FIX & REDESIGN */
 .hero-bg {
-  @apply relative flex items-center justify-center min-h-screen text-white;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("https://images.unsplash.com/photo-1546410531-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop");
+  background-image: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed; /* Creates a nice parallax effect */
+}
+
+.section-padding {
+  padding: 4rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 6rem 1.5rem;
+  }
+}
+
+.cta-button {
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.1);
+}
+
+.program-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.program-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.15);
 }
