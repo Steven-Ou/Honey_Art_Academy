@@ -6,7 +6,6 @@ const config = {
   ],
   theme: {
     extend: {
-      // PASTE THIS WHOLE 'extend' BLOCK IN
       fontFamily: {
         sans: ["Inter", "sans-serif"],
       },
