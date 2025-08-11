@@ -26,20 +26,21 @@ export default function About() {
             With over thirty experienced and licensed instructors, we are
             passionate about giving your child the head-start they deserve.
           </p>
-          <div className="grid grid-cols-3 gap-4 text-center">
-            <div>
+          {/* Redesigned Stats Section */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+            <div className="bg-primary-light/50 p-4 rounded-lg">
               <p className="text-4xl lg:text-5xl font-bold text-primary">30+</p>
-              <p className="text-gray-600">Instructors</p>
+              <p className="text-gray-600 font-medium">Instructors</p>
             </div>
-            <div>
+            <div className="bg-primary-light/50 p-4 rounded-lg">
               <p className="text-4xl lg:text-5xl font-bold text-primary">
                 500+
               </p>
-              <p className="text-gray-600">Happy Students</p>
+              <p className="text-gray-600 font-medium">Happy Students</p>
             </div>
-            <div>
+            <div className="bg-primary-light/50 p-4 rounded-lg">
               <p className="text-4xl lg:text-5xl font-bold text-primary">10k</p>
-              <p className="text-gray-600">Sq. Ft. Campus</p>
+              <p className="text-gray-600 font-medium">Sq. Ft. Campus</p>
             </div>
           </div>
         </div>
