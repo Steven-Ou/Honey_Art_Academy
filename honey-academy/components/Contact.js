@@ -1,5 +1,4 @@
-// steven-ou/honey_art_academy/Honey_Art_Academy-b30d0db627a43b328427977d4914901b7229c657/honey-academy/components/Contact.js
-
+// steven-ou/honey_art_academy/Honey_Art_Academy-76e377b972348cda8e18ea36254ffbc08265972d/honey-academy/components/Contact.js
 "use client";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,16 +14,15 @@ export default function Contact() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // In a real app, you'd handle form submission here (e.g., send to an API)
     setSubmitted(true);
     setTimeout(() => {
       event.target.reset();
       setSubmitted(false);
-    }, 4000); // Reset form after 4 seconds
+    }, 4000);
   };
 
   const address = "123 Art Lane, Flushing, NY 11354";
-  const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  const googleMapsUrl = `https://maps.google.com/?q=${encodeURIComponent(
     address
   )}`;
 
@@ -40,13 +38,13 @@ export default function Contact() {
             Have questions? We'd love to hear from you.
           </p>
         </div>
-        <div className="max-w-6xl mx-auto bg-white rounded-lg shadow-xl p-8 lg:p-12 grid lg:grid-cols-2 gap-12">
+        <div className="max-w-6xl mx-auto bg-white rounded-xl shadow-xl p-8 lg:p-12 grid lg:grid-cols-2 gap-12">
           {/* Contact Info Column */}
           <div className="flex flex-col justify-center">
             <h3 className="text-2xl font-bold text-primary-dark mb-6">
               Contact Information
             </h3>
-            <div className="space-y-4 text-lg">
+            <div className="space-y-6 text-lg">
               <a
                 href={googleMapsUrl}
                 target="_blank"
@@ -55,7 +53,7 @@ export default function Contact() {
               >
                 <FontAwesomeIcon
                   icon={faMapMarkerAlt}
-                  className="text-primary mt-1 mr-4 w-5 group-hover:animate-bounce"
+                  className="text-primary mt-1 mr-4 w-5 h-5 group-hover:animate-bounce"
                 />
                 <span className="group-hover:underline">
                   123 Art Lane,
@@ -63,36 +61,35 @@ export default function Contact() {
                   Flushing, NY 11354
                 </span>
               </a>
-              <p className="flex items-center">
+              <a
+                href="tel:555-123-4567"
+                className="flex items-center hover:text-primary group"
+              >
                 <FontAwesomeIcon
                   icon={faPhone}
-                  className="text-primary mr-4 w-5"
+                  className="text-primary mr-4 w-5 h-5"
                 />
-                <a href="tel:555-123-4567" className="hover:text-primary">
-                  (555) 123-4567
-                </a>
-              </p>
-              <p className="flex items-center">
+                <span className="group-hover:underline">(555) 123-4567</span>
+              </a>
+              <a
+                href="mailto:info@honeyart.com"
+                className="flex items-center hover:text-primary group"
+              >
                 <FontAwesomeIcon
                   icon={faEnvelope}
-                  className="text-primary mr-4 w-5"
+                  className="text-primary mr-4 w-5 h-5"
                 />
-                <a
-                  href="mailto:info@honeyart.com"
-                  className="hover:text-primary"
-                >
-                  info@honeyart.com
-                </a>
-              </p>
+                <span className="group-hover:underline">info@honeyart.com</span>
+              </a>
             </div>
           </div>
           {/* Form Column */}
           <form onSubmit={handleSubmit}>
             {submitted ? (
-              <div className="flex flex-col items-center justify-center h-full bg-green-50 text-green-700 rounded-lg p-8 text-center">
+              <div className="flex flex-col items-center justify-center h-full bg-green-50 text-green-800 rounded-lg p-8 text-center transition-all duration-500">
                 <FontAwesomeIcon
                   icon={faCheckCircle}
-                  className="text-5xl mb-4"
+                  className="text-5xl mb-4 text-green-500"
                 />
                 <h3 className="text-2xl font-bold">Thank You!</h3>
                 <p>
@@ -108,14 +105,14 @@ export default function Contact() {
                     name="name"
                     placeholder="Your Name"
                     required
-                    className="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full p-3 bg-gray-50 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   />
                   <input
                     type="email"
                     name="email"
                     placeholder="Your Email"
                     required
-                    className="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full p-3 bg-gray-50 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   />
                 </div>
                 <div className="mb-6">
@@ -124,7 +121,7 @@ export default function Contact() {
                     name="subject"
                     placeholder="Subject"
                     required
-                    className="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full p-3 bg-gray-50 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   />
                 </div>
                 <div className="mb-6">
@@ -133,7 +130,7 @@ export default function Contact() {
                     placeholder="Your Message"
                     rows="5"
                     required
-                    className="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full p-3 bg-gray-50 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   ></textarea>
                 </div>
                 <div className="text-right">
