@@ -6,13 +6,13 @@ export default function About() {
     <section id="about" className="section-padding bg-white">
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-          <div className="lg:w-1/2 relative h-80 rounded-xl shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
+          <div className="lg:w-1/2 relative h-80 w-full rounded-xl shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
+            {/* Using a local image from the 'public' folder */}
             <Image
-              src="https://placehold.co/600x400/FFFBEB/D97706?text=Our+Studio"
+              src="/images.png"
               alt="Honey Art Academy Studio"
               fill
               className="object-cover"
-              unoptimized
             />
           </div>
           <div className="lg:w-1/2 text-center lg:text-left">
@@ -21,12 +21,12 @@ export default function About() {
             </h2>
             <p className="mb-4 text-lg text-gray-700">
               Honey Art Academy is more than just an after-school program. We
-              are a vibrant community with two campuses spanning 10,000 sq ft,
-              dedicated to providing the finest academic and creative education.
+              are a vibrant community dedicated to providing the finest academic
+              and creative education.
             </p>
             <p className="mb-8 text-lg text-gray-700">
-              With over thirty experienced and licensed instructors, we are
-              passionate about giving your child the head-start they deserve.
+              With over thirty experienced instructors, we are passionate about
+              giving your child the head-start they deserve.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
               <div className="bg-primary-light p-6 rounded-lg shadow-lg transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl border-t-4 border-primary">
