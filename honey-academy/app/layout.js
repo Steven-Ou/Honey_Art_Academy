@@ -1,3 +1,5 @@
+// steven-ou/honey_art_academy/Honey_Art_Academy-b30d0db627a43b328427977d4914901b7229c657/honey-academy/app/layout.js
+
 "use client";
 import "./globals.css";
 import { Inter, Lora } from "next/font/google";
@@ -23,7 +25,7 @@ const lora = Lora({
 
 export default function RootLayout({ children }) {
   useEffect(() => {
-    // This effect now only handles the optional background pattern
+    // Apply saved background pattern
     const savedBg = localStorage.getItem("background");
     if (savedBg) {
       document.documentElement.style.setProperty(
@@ -31,6 +33,35 @@ export default function RootLayout({ children }) {
         savedBg === "none" ? "none" : `url(${savedBg})`
       );
     }
+
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        rootMargin: "0px",
+        threshold: 0.1,
+      }
+    );
+
+    const sections = document.querySelectorAll(".animated-section");
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+
+    return () => {
+      sections.forEach((section) => {
+        if (observer && observer.unobserve) {
+          observer.unobserve(section);
+        }
+      });
+    };
   }, []);
 
   return (
