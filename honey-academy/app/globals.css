@@ -1,15 +1,22 @@
+/* steven-ou/honey_art_academy/Honey_Art_Academy-b30d0db627a43b328427977d4914901b7229c657/honey-academy/app/globals.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* Define a variable for the background image, which can be changed by JS */
+    --background-image: url("https://www.transparenttextures.com/patterns/subtle-zebra-3d.png");
+  }
+
   html {
     @apply scroll-smooth;
   }
   body {
     /* Sets the default background, text color, and font for the whole site */
     @apply bg-white text-text-base font-inter;
-    background-image: url("https://www.transparenttextures.com/patterns/subtle-zebra-3d.png");
+    background-image: var(--background-image);
   }
 
   h1,
@@ -19,6 +26,16 @@
   h5,
   h6 {
     @apply font-lora;
+  }
+
+  /* Animate sections on scroll */
+  .animated-section {
+    @apply opacity-0 translate-y-8;
+    transition: opacity 0.8s ease-out, transform 0.6s ease-out;
+  }
+
+  .animated-section.is-visible {
+    @apply opacity-100 translate-y-0;
   }
 }
 
@@ -39,7 +56,7 @@
 
 .hero-bg {
   background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-    url("https://images.unsplash.com/photo-1546410531-bb4ac68ab60b?q=80&w=2070&auto=format&fit=crop");
+    url("https://images.unsplash.com/photo-1546410531-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop");
   background-size: cover;
   background-position: center;
 }
