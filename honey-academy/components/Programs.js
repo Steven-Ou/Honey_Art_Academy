@@ -2,14 +2,22 @@ import ProgramCard from "./ProgramCard";
 
 export default function Programs({ programs }) {
   return (
-    <section id="programs" className="mb-24 scroll-mt-20">
-      <h2 className="text-3xl font-bold text-center mb-12 text-primary-dark">
-        Our Diverse Programs
-      </h2>
-      <div className="flex flex-col items-center gap-8">
-        {programs.map((p) => (
-          <ProgramCard key={p.title} {...p} />
-        ))}
+    <section id="programs" className="section-padding scroll-mt-20">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-primary-dark">
+            Our Diverse Programs
+          </h2>
+          <p className="text-lg mt-4 text-gray-600 max-w-2xl mx-auto">
+            We offer a wide range of activities designed to enrich, educate, and
+            inspire your child.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {programs.map((p) => (
+            <ProgramCard key={p.title} {...p} />
+          ))}
+        </div>
       </div>
     </section>
   );
