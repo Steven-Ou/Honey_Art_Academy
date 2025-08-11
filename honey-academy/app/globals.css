@@ -2,34 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  /* A more refined and cohesive color palette */
-  --color-primary: #a32a2a; /* A deeper, more elegant maroon */
-  --color-primary-dark: #822121;
-  --color-primary-light: #fbebeb;
-  --color-secondary: #f3f4f6; /* A soft, neutral gray */
-  --color-text-base: #1f2937; /* A darker, more readable text color */
-  --color-text-muted: #6b7280;
-  --background-image: url("https://www.transparenttextures.com/patterns/subtle-zebra-3d.png");
-}
-
 body {
-  background-color: #ffffff;
-  background-image: var(--background-image);
-  color: var(--color-text-base);
-  font-family: var(--font-inter), sans-serif;
+  /* The background image can be removed if you prefer a solid color background from the body class */
+  background-image: url("https://www.transparenttextures.com/patterns/subtle-zebra-3d.png");
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-lora), serif;
+@layer base {
+  body {
+    @apply bg-white text-text-base font-inter;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-lora;
+  }
 }
 
-/* A more subtle and modern button style */
+.section-padding {
+  @apply py-20 sm:py-28;
+}
+
 .cta-button {
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(163, 42, 42, 0.2);
@@ -40,31 +36,11 @@ h6 {
   box-shadow: 0 4px 15px rgba(163, 42, 42, 0.3);
 }
 
-.section-padding {
-  @apply py-20 sm:py-28;
-}
-
-/* Tailwind CSS utility classes using our new variables */
-.text-primary {
-  color: var(--color-primary);
-}
-.bg-primary {
-  background-color: var(--color-primary);
-}
-.bg-primary-light {
-  background-color: var(--color-primary-light);
-}
-.bg-secondary {
-  background-color: var(--color-secondary);
-}
-.hover\:text-primary-dark:hover {
-  color: var(--color-primary-dark);
-}
-.hover\:bg-primary-dark:hover {
-  background-color: var(--color-primary-dark);
-}
-.ring-primary {
-  --tw-ring-color: var(--color-primary);
+.hero-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    url("https://images.unsplash.com/photo-1546410531-bb4ac68ab60b?q=80&w=2070&auto=format&fit=crop");
+  background-size: cover;
+  background-position: center;
 }
 
 .hero-bg {
