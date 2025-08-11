@@ -12,12 +12,11 @@ export default async function Home() {
   return (
     <>
       <Hero />
-      {/* This container div is essential for centering the content */}
       <div className="container mx-auto px-6">
         <About />
         <Programs programs={programs} />
-        <Testimonials testimonials={testimonials} />
       </div>
+      <Testimonials testimonials={testimonials} />
       <Contact />
     </>
   );
