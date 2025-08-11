@@ -6,13 +6,12 @@ export default function About() {
     <section id="about" className="section-padding bg-white">
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-          <div className="lg:w-1/2">
+          <div className="lg:w-1/2 relative h-80 rounded-xl shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
             <Image
-              src="https://images.unsplash.com/photo-1542044896530-05d85be9b115?q=80&w=2070&auto=format&fit=crop"
-              alt="Children learning at Honey Academy"
-              width={600}
-              height={400}
-              className="rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+              src="https://placehold.co/600x400/FFFBEB/D97706?text=Our+Studio"
+              alt="Honey Art Academy Studio"
+              fill
+              className="object-cover"
             />
           </div>
           <div className="lg:w-1/2 text-center lg:text-left">
