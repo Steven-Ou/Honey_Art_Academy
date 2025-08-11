@@ -13,8 +13,8 @@ export default function Programs({ programs }) {
         </p>
       </div>
 
-      {/* This flex container creates a single, horizontally-scrollable row */}
-      <div className="flex flex-row gap-8 overflow-x-auto pb-4 -mx-6 px-6">
+      {/* This is the corrected responsive grid layout */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {programs.map((p) => (
           <ProgramCard key={p.title} {...p} />
         ))}
