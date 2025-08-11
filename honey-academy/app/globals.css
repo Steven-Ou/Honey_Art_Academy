@@ -6,67 +6,57 @@
   --color-primary: #b91c1c; /* Maroon Red */
   --color-primary-dark: #991b1b; /* Darker Maroon Red */
   --color-primary-light: #fee2e2; /* Light Red */
-  --color-bg-base: #fef2f2; /* Very Light Red/Pink */
+  --color-bg-base: #fefcfc; /* Whiter, cleaner background */
+  --color-text-base: #374151; /* Dark Gray for text */
   --background-image: none;
 }
 
 body {
   background-color: var(--color-bg-base);
   background-image: var(--background-image);
+  color: var(--color-text-base);
+  font-family: var(--font-inter), sans-serif;
 }
 
-.hero-bg {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("https://images.unsplash.com/photo-1546410531-bb4ac68ab60b?q=80&w=2070&auto=format&fit=crop");
-  background-size: cover;
-  background-position: center;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-lora), serif;
 }
 
 .cta-button {
   transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(185, 28, 28, 0.2);
 }
 
 .cta-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(185, 28, 28, 0.3);
+}
+
+/* Custom Component classes */
+.section-padding {
+  @apply py-16 sm:py-24;
 }
 
 .text-primary {
   color: var(--color-primary);
 }
-
-.text-primary-dark {
-  color: var(--color-primary-dark);
-}
-
 .bg-primary {
   background-color: var(--color-primary);
 }
-
-.bg-primary-dark {
-  background-color: var(--color-primary-dark);
-}
-
 .bg-primary-light {
   background-color: var(--color-primary-light);
 }
-
-.bg-base {
-  background-color: var(--color-bg-base);
-}
-
 .hover\:text-primary-dark:hover {
   color: var(--color-primary-dark);
 }
-
 .hover\:bg-primary-dark:hover {
   background-color: var(--color-primary-dark);
 }
-
 .ring-primary {
   --tw-ring-color: var(--color-primary);
-}
-
-.border-primary-dark {
-  border-color: var(--color-primary-dark);
 }
