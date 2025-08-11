@@ -1,47 +1,52 @@
-// steven-ou/honey_art_academy/Honey_Art_Academy-76e377b972348cda8e18ea36254ffbc08265972d/honey-academy/components/About.js
+import React from "react";
 import Image from "next/image";
 
 export default function About() {
   return (
-    <section id="about" className="section-padding scroll-mt-20">
-      <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-        <div className="lg:w-1/2">
-          <Image
-            src="https://picsum.photos/seed/about/600/400"
-            alt="Children learning at Honey Academy"
-            width={600}
-            height={400}
-            className="rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
-          />
-        </div>
-        <div className="lg:w-1/2 text-center lg:text-left">
-          <h2 className="text-4xl font-bold text-primary-dark mb-6">
-            Fostering Excellence For 8+ Years
-          </h2>
-          <p className="mb-4 text-lg text-gray-700">
-            Honey Academy is more than just an after-school program. We are a
-            vibrant community with two campuses spanning 10,000 sq ft, dedicated
-            to providing the finest academic and creative education.
-          </p>
-          <p className="mb-8 text-lg text-gray-700">
-            With over thirty experienced and licensed instructors, we are
-            passionate about giving your child the head-start they deserve.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-            {/* Card-like stats inspired by ig-checker */}
-            <div className="bg-white p-6 rounded-lg shadow-lg transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl border-t-4 border-primary">
-              <p className="text-4xl lg:text-5xl font-bold text-primary">30+</p>
-              <p className="text-gray-600 font-medium mt-2">Instructors</p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-lg transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl border-t-4 border-primary">
-              <p className="text-4xl lg:text-5xl font-bold text-primary">
-                500+
-              </p>
-              <p className="text-gray-600 font-medium mt-2">Happy Students</p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-lg transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl border-t-4 border-primary">
-              <p className="text-4xl lg:text-5xl font-bold text-primary">10k</p>
-              <p className="text-gray-600 font-medium mt-2">Sq. Ft. Campus</p>
+    <section id="about" className="section-padding bg-white">
+      <div className="container mx-auto px-6">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+          <div className="lg:w-1/2">
+            <Image
+              src="https://images.unsplash.com/photo-1542044896530-05d85be9b115?q=80&w=2070&auto=format&fit=crop"
+              alt="Children learning at Honey Academy"
+              width={600}
+              height={400}
+              className="rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div className="lg:w-1/2 text-center lg:text-left">
+            <h2 className="text-4xl font-bold text-primary-dark mb-6">
+              Fostering Excellence For 8+ Years
+            </h2>
+            <p className="mb-4 text-lg text-gray-700">
+              Honey Art Academy is more than just an after-school program. We
+              are a vibrant community with two campuses spanning 10,000 sq ft,
+              dedicated to providing the finest academic and creative education.
+            </p>
+            <p className="mb-8 text-lg text-gray-700">
+              With over thirty experienced and licensed instructors, we are
+              passionate about giving your child the head-start they deserve.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+              <div className="bg-primary-light p-6 rounded-lg shadow-lg transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl border-t-4 border-primary">
+                <p className="text-4xl lg:text-5xl font-bold text-primary-dark">
+                  30+
+                </p>
+                <p className="text-gray-600 font-medium mt-2">Instructors</p>
+              </div>
+              <div className="bg-primary-light p-6 rounded-lg shadow-lg transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl border-t-4 border-primary">
+                <p className="text-4xl lg:text-5xl font-bold text-primary-dark">
+                  500+
+                </p>
+                <p className="text-gray-600 font-medium mt-2">Happy Students</p>
+              </div>
+              <div className="bg-primary-light p-6 rounded-lg shadow-lg transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl border-t-4 border-primary">
+                <p className="text-4xl lg:text-5xl font-bold text-primary-dark">
+                  10k
+                </p>
+                <p className="text-gray-600 font-medium mt-2">Sq. Ft. Campus</p>
+              </div>
             </div>
           </div>
         </div>
