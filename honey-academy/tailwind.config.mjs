@@ -1,26 +1,27 @@
 /** @type {import('tailwindcss').Config} */
 const config = {
-  content: ["./app/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   theme: {
     extend: {
+      // PASTE THIS WHOLE 'extend' BLOCK IN
+      fontFamily: {
+        sans: ["Inter", "sans-serif"],
+      },
       colors: {
         primary: {
-          light: "#fbebeb",
-          DEFAULT: "#a32a2a",
-          dark: "#822121",
+          light: "#FFFBEB", // A light, creamy yellow
+          DEFAULT: "#FBBF24", // A vibrant, honey-like amber
+          dark: "#D97706", // A deeper, richer amber
         },
-        secondary: "#f3f4f6",
-        text: {
-          base: "#1f2937",
-          muted: "#6b7280",
-        },
-      },
-      fontFamily: {
-        inter: ["var(--font-inter)", "sans-serif"],
-        lora: ["var(--font-lora)", "serif"],
+        secondary: "#1F2937", // A dark slate gray for text
+        accent: "#3B82F6", // A friendly blue for highlights
       },
     },
   },
   plugins: [],
 };
+
 export default config;
