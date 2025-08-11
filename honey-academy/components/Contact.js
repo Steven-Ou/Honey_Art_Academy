@@ -19,7 +19,7 @@ export default function Contact() {
             Have questions? We'd love to hear from you.
           </p>
         </div>
-        <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8">
+        <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-xl p-8">
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <input
