@@ -60,3 +60,9 @@ h6 {
 .ring-primary {
   --tw-ring-color: var(--color-primary);
 }
+.hero-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("https://images.unsplash.com/photo-1546410531-bb4ac68ab60b?q=80&w=2070&auto=format&fit=crop");
+  background-size: cover;
+  background-position: center;
+}
