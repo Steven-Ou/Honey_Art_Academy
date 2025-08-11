@@ -9,65 +9,70 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function Footer() {
-  const navLinks = [
-    { name: "About", href: "#about" },
-    { name: "Programs", href: "#programs" },
-    { name: "Testimonials", href: "#testimonials" },
-    { name: "Contact", href: "#contact" },
-  ];
-
   return (
     <footer className="bg-primary-dark text-white">
       <div className="container mx-auto px-6 py-12">
-        <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+        <div className="grid md:grid-cols-3 gap-8 text-center md:text-left">
           {/* Logo and Copyright */}
-          <div className="mb-8 md:mb-0">
+          <div className="flex flex-col items-center md:items-start">
             <Image
               src="/images.png"
               alt="Honey Art Academy Logo"
               width={150}
               height={37}
-              className="brightness-0 invert mb-4 mx-auto md:mx-0"
+              className="brightness-0 invert mb-4"
             />
-            <p className="text-white/80">
-              &copy; {new Date().getFullYear()} Honey Art Academy. All Rights
-              Reserved.
+            <p className="text-sm text-white/70">
+              &copy; {new Date().getFullYear()} Honey Art Academy. <br /> All
+              Rights Reserved.
             </p>
           </div>
 
           {/* Footer Navigation */}
-          <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-8 md:mb-0">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="text-white/80 hover:text-white transition-colors"
-              >
-                {link.name}
+          <div>
+            <h3 className="font-bold text-lg mb-4">Quick Links</h3>
+            <nav className="flex flex-col space-y-2">
+              <Link href="#about" className="text-white/80 hover:text-white">
+                About
               </Link>
-            ))}
-          </nav>
+              <Link href="#programs" className="text-white/80 hover:text-white">
+                Programs
+              </Link>
+              <Link
+                href="#testimonials"
+                className="text-white/80 hover:text-white"
+              >
+                Testimonials
+              </Link>
+              <Link href="#contact" className="text-white/80 hover:text-white">
+                Contact
+              </Link>
+            </nav>
+          </div>
 
           {/* Social Icons */}
-          <div className="flex space-x-6">
-            <Link
-              href="#"
-              className="text-white/80 hover:text-white text-2xl transition-colors"
-            >
-              <FontAwesomeIcon icon={faFacebookF} />
-            </Link>
-            <Link
-              href="#"
-              className="text-white/80 hover:text-white text-2xl transition-colors"
-            >
-              <FontAwesomeIcon icon={faInstagram} />
-            </Link>
-            <Link
-              href="#"
-              className="text-white/80 hover:text-white text-2xl transition-colors"
-            >
-              <FontAwesomeIcon icon={faYoutube} />
-            </Link>
+          <div>
+            <h3 className="font-bold text-lg mb-4">Follow Us</h3>
+            <div className="flex justify-center md:justify-start space-x-6">
+              <Link
+                href="#"
+                className="text-white/80 hover:text-white text-2xl"
+              >
+                <FontAwesomeIcon icon={faFacebookF} />
+              </Link>
+              <Link
+                href="#"
+                className="text-white/80 hover:text-white text-2xl"
+              >
+                <FontAwesomeIcon icon={faInstagram} />
+              </Link>
+              <Link
+                href="#"
+                className="text-white/80 hover:text-white text-2xl"
+              >
+                <FontAwesomeIcon icon={faYoutube} />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
