@@ -1,51 +1,42 @@
-// steven-ou/honey_art_academy/Honey_Art_Academy-3b08cfc3f42b337480a330f9b0097aaca9ef5160/honey-academy/components/Testimonials.js
+import React from "react";
 
-import Image from "next/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faQuoteLeft } from "@fortawesome/free-solid-svg-icons";
-
-const TestimonialCard = ({ text, name, role, imgSrc }) => (
-  <div className="bg-white p-8 rounded-lg shadow-lg relative transform hover:-translate-y-1 transition-transform duration-300">
-    <FontAwesomeIcon
-      icon={faQuoteLeft}
-      className="absolute top-6 left-6 text-5xl text-primary/10"
-    />
-    <p className="text-text-muted mb-6 text-lg italic relative z-10">
-      "{text}"
-    </p>
-    <div className="flex items-center relative z-10">
-      <Image
-        src={imgSrc}
-        alt={name}
-        width={50}
-        height={50}
-        className="w-12 h-12 rounded-full mr-4 object-cover"
-        unoptimized={true} // <-- FIX APPLIED HERE
-      />
-      <div>
-        <p className="font-bold text-gray-800">{name}</p>
-        <p className="text-sm text-text-muted">{role}</p>
-      </div>
-    </div>
-  </div>
-);
-
-export default function Testimonials({ testimonials }) {
+export default function Testimonials() {
   return (
-    <section
-      id="testimonials"
-      className="section-padding scroll-mt-20 bg-secondary"
-    >
+    <section id="testimonials" className="section-padding bg-white">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-primary-dark">
-            What Parents Are Saying
+            What Parents Say
           </h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {testimonials.map((t) => (
-            <TestimonialCard key={t.name} {...t} />
-          ))}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 text-center">
+          {/* Testimonial 1 */}
+          <div className="bg-primary-light p-8 rounded-lg shadow-lg">
+            <i className="fas fa-quote-left text-primary text-3xl mb-4"></i>
+            <p className="text-gray-600 mb-6">
+              "My daughter's confidence has soared since joining the dance
+              program. The teachers are fantastic!"
+            </p>
+            <p className="font-bold text-secondary">- Sarah L.</p>
+          </div>
+          {/* Testimonial 2 */}
+          <div className="bg-primary-light p-8 rounded-lg shadow-lg">
+            <i className="fas fa-quote-left text-primary text-3xl mb-4"></i>
+            <p className="text-gray-600 mb-6">
+              "A wonderful, nurturing environment. The art classes have unlocked
+              a passion in my son we never knew he had."
+            </p>
+            <p className="font-bold text-secondary">- Michael B.</p>
+          </div>
+          {/* Testimonial 3 */}
+          <div className="bg-primary-light p-8 rounded-lg shadow-lg">
+            <i className="fas fa-quote-left text-primary text-3xl mb-4"></i>
+            <p className="text-gray-600 mb-6">
+              "The best after-school program in Flushing. The staff truly cares
+              about each and every student."
+            </p>
+            <p className="font-bold text-secondary">- Jessica W.</p>
+          </div>
         </div>
       </div>
     </section>
