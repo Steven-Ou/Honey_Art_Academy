@@ -12,12 +12,13 @@ export default async function Home() {
   return (
     <>
       <Hero />
-      <div className="container mx-auto px-6 py-16">
+      {/* This container div fixes the main layout issue */}
+      <div className="container mx-auto px-6">
         <About />
         <Programs programs={programs} />
         <Testimonials testimonials={testimonials} />
-        <Contact />
       </div>
+      <Contact />
     </>
   );
 }
