@@ -7,18 +7,20 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 export default function ProgramCard({ imgSrc, title, description, link }) {
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 flex flex-col w-full max-w-sm">
-      <div className="w-full h-48 relative">
+    <div className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 flex flex-col group">
+      {/* Set a specific aspect ratio for the image container */}
+      <div className="aspect-video relative overflow-hidden">
         <Image
           src={imgSrc}
           alt={`${title} Program`}
           fill
-          style={{ objectFit: "cover" }}
+          className="object-cover group-hover:scale-105 transition-transform duration-300"
+          // We can remove unoptimized if we add the placeholder host to next.config.js
           unoptimized={true}
         />
       </div>
       <div className="p-6 flex-grow flex flex-col">
-        <h3 className="text-xl font-bold mb-2 text-gray-800">{title}</h3>
+        <h3 className="text-xl font-bold mb-2 text-primary-dark">{title}</h3>
         <p className="text-gray-600 mb-4 flex-grow">{description}</p>
         <Link
           href={link}
