@@ -1,5 +1,3 @@
-// steven-ou/honey_art_academy/Honey_Art_Academy-b30d0db627a43b328427977d4914901b7229c657/honey-academy/app/page.js
-
 import Hero from "../components/Hero";
 import About from "../components/About";
 import Programs from "../components/Programs";
