@@ -12,6 +12,7 @@ export default function About() {
               alt="Honey Art Academy Studio"
               fill
               className="object-cover"
+              unoptimized
             />
           </div>
           <div className="lg:w-1/2 text-center lg:text-left">
