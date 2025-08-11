@@ -7,8 +7,8 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 export default function ProgramCard({ imgSrc, title, description, link }) {
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 flex flex-col group">
-      {/* The image is now explicitly sized, which is more stable */}
+    // Added w-80 (for width) and flex-shrink-0 (to prevent squishing)
+    <div className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 flex flex-col group w-80 flex-shrink-0">
       <Image
         src={imgSrc}
         alt={`${title} Program`}
