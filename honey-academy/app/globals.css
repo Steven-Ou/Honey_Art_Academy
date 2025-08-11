@@ -5,20 +5,12 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    /* Define a variable for the background image, which can be changed by JS */
-    --background-image: url("https://www.transparenttextures.com/patterns/subtle-zebra-3d.png");
-  }
-
   html {
     @apply scroll-smooth;
   }
   body {
-    /* Sets the default background, text color, and font for the whole site */
-    @apply bg-white text-text-base font-inter;
-    background-image: var(--background-image);
+    @apply bg-secondary text-text-base font-inter;
   }
-
   h1,
   h2,
   h3,
@@ -27,36 +19,30 @@
   h6 {
     @apply font-lora;
   }
-
-  /* Classes for scroll animations */
-  .animated-section {
-    @apply opacity-0 translate-y-8;
-    transition: opacity 0.8s ease-out, transform 0.6s ease-out;
-  }
-
-  .animated-section.is-visible {
-    @apply opacity-100 translate-y-0;
-  }
 }
 
-/* Reusable utility classes */
+/* Reusable utility classes for a cleaner look */
 .section-padding {
   @apply py-20 sm:py-28;
 }
 
+/* Enhanced Button Style */
 .cta-button {
-  @apply transition-all duration-300 ease-in-out;
-  box-shadow: 0 2px 8px rgba(163, 42, 42, 0.2);
+  @apply transition-all duration-300 ease-in-out transform;
+  box-shadow: 0 4px 12px rgba(163, 42, 42, 0.2);
 }
 
 .cta-button:hover {
   @apply -translate-y-1;
-  box-shadow: 0 4px 15px rgba(163, 42, 42, 0.4);
+  box-shadow: 0 6px 20px rgba(163, 42, 42, 0.3);
 }
 
+/* HERO SECTION FIX & REDESIGN */
 .hero-bg {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+  @apply relative flex items-center justify-center min-h-screen text-white;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("https://images.unsplash.com/photo-1546410531-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop");
   background-size: cover;
   background-position: center;
+  background-attachment: fixed; /* Creates a nice parallax effect */
 }

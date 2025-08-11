@@ -8,11 +8,11 @@ export default function About() {
       <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
         <div className="lg:w-1/2">
           <Image
-            src="https://picsum.photos/seed/classroom/600/400"
+            src="https://picsum.photos/seed/about/600/400"
             alt="Children learning at Honey Academy"
             width={600}
             height={400}
-            className="rounded-lg shadow-xl"
+            className="rounded-lg shadow-2xl"
           />
         </div>
         <div className="lg:w-1/2 text-center lg:text-left">
@@ -30,17 +30,17 @@ export default function About() {
           </p>
           {/* Redesigned Stats Section */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-            <div className="bg-primary-light/50 p-4 rounded-lg">
+            <div className="bg-white p-4 rounded-lg shadow-md transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">
               <p className="text-4xl lg:text-5xl font-bold text-primary">30+</p>
               <p className="text-gray-600 font-medium">Instructors</p>
             </div>
-            <div className="bg-primary-light/50 p-4 rounded-lg">
+            <div className="bg-white p-4 rounded-lg shadow-md transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">
               <p className="text-4xl lg:text-5xl font-bold text-primary">
                 500+
               </p>
               <p className="text-gray-600 font-medium">Happy Students</p>
             </div>
-            <div className="bg-primary-light/50 p-4 rounded-lg">
+            <div className="bg-white p-4 rounded-lg shadow-md transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">
               <p className="text-4xl lg:text-5xl font-bold text-primary">10k</p>
               <p className="text-gray-600 font-medium">Sq. Ft. Campus</p>
             </div>
