@@ -8,7 +8,7 @@ export default function About() {
       <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
         <div className="lg:w-1/2">
           <Image
-            src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4"
+            src="https://picsum.photos/seed/classroom/600/400"
             alt="Children learning at Honey Academy"
             width={600}
             height={400}
