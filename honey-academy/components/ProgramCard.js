@@ -1,4 +1,4 @@
-// steven-ou/honey_art_academy/Honey_Art_Academy-b30d0db627a43b328427977d4914901b7229c657/honey-academy/components/ProgramCard.js
+// steven-ou/honey_art_academy/Honey_Art_Academy-3b08cfc3f42b337480a330f9b0097aaca9ef5160/honey-academy/components/ProgramCard.js
 
 "use client";
 import Image from "next/image";
@@ -16,6 +16,7 @@ export default function ProgramCard({ imgSrc, title, description, link }) {
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover group-hover:scale-105 transition-transform duration-300"
+          unoptimized={true} // <-- FIX APPLIED HERE
         />
       </div>
       <div className="p-6 flex-grow flex flex-col">

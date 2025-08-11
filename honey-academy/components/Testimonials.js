@@ -1,4 +1,4 @@
-// steven-ou/honey_art_academy/Honey_Art_Academy-b30d0db627a43b328427977d4914901b7229c657/honey-academy/components/Testimonials.js
+// steven-ou/honey_art_academy/Honey_Art_Academy-3b08cfc3f42b337480a330f9b0097aaca9ef5160/honey-academy/components/Testimonials.js
 
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,6 +20,7 @@ const TestimonialCard = ({ text, name, role, imgSrc }) => (
         width={50}
         height={50}
         className="w-12 h-12 rounded-full mr-4 object-cover"
+        unoptimized={true} // <-- FIX APPLIED HERE
       />
       <div>
         <p className="font-bold text-gray-800">{name}</p>
