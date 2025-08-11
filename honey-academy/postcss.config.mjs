@@ -1,8 +1,8 @@
-import tailwind from 'tailwindcss';
+import tailwindcss from '@tailwindcss/postcss';
 import tailwindConfig from './tailwind.config.mjs';
 
 const config = {
-  plugins: [tailwind(tailwindConfig)],
+  plugins: [tailwindcss(tailwindConfig)],
 };
 
 export default config;
