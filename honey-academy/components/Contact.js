@@ -1,17 +1,32 @@
+// steven-ou/honey_art_academy/Honey_Art_Academy-b30d0db627a43b328427977d4914901b7229c657/honey-academy/components/Contact.js
+
 "use client";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMapMarkerAlt,
   faPhone,
   faEnvelope,
+  faCheckCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function Contact() {
+  const [submitted, setSubmitted] = useState(false);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    alert("Thank you for your message! We will get back to you soon.");
-    event.target.reset();
+    // In a real app, you'd handle form submission here (e.g., send to an API)
+    setSubmitted(true);
+    setTimeout(() => {
+      event.target.reset();
+      setSubmitted(false);
+    }, 4000); // Reset form after 4 seconds
   };
+
+  const address = "123 Art Lane, Flushing, NY 11354";
+  const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+    address
+  )}`;
 
   return (
     <section
@@ -32,17 +47,22 @@ export default function Contact() {
               Contact Information
             </h3>
             <div className="space-y-4 text-lg">
-              <p className="flex items-start">
+              <a
+                href={googleMapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start hover:text-primary group"
+              >
                 <FontAwesomeIcon
                   icon={faMapMarkerAlt}
-                  className="text-primary mt-1 mr-4 w-5"
+                  className="text-primary mt-1 mr-4 w-5 group-hover:animate-bounce"
                 />
-                <span>
+                <span className="group-hover:underline">
                   123 Art Lane,
                   <br />
                   Flushing, NY 11354
                 </span>
-              </p>
+              </a>
               <p className="flex items-center">
                 <FontAwesomeIcon
                   icon={faPhone}
@@ -68,48 +88,64 @@ export default function Contact() {
           </div>
           {/* Form Column */}
           <form onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <input
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                required
-                className="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Your Email"
-                required
-                className="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-              />
-            </div>
-            <div className="mb-6">
-              <input
-                type="text"
-                name="subject"
-                placeholder="Subject"
-                required
-                className="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-              />
-            </div>
-            <div className="mb-6">
-              <textarea
-                name="message"
-                placeholder="Your Message"
-                rows="5"
-                required
-                className="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-              ></textarea>
-            </div>
-            <div className="text-right">
-              <button
-                type="submit"
-                className="bg-primary text-white font-bold py-3 px-12 rounded-full cta-button hover:bg-primary-dark"
-              >
-                Send Message
-              </button>
-            </div>
+            {submitted ? (
+              <div className="flex flex-col items-center justify-center h-full bg-green-50 text-green-700 rounded-lg p-8 text-center">
+                <FontAwesomeIcon
+                  icon={faCheckCircle}
+                  className="text-5xl mb-4"
+                />
+                <h3 className="text-2xl font-bold">Thank You!</h3>
+                <p>
+                  Your message has been sent successfully. We'll be in touch
+                  soon.
+                </p>
+              </div>
+            ) : (
+              <>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Your Name"
+                    required
+                    className="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Your Email"
+                    required
+                    className="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
+                </div>
+                <div className="mb-6">
+                  <input
+                    type="text"
+                    name="subject"
+                    placeholder="Subject"
+                    required
+                    className="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
+                </div>
+                <div className="mb-6">
+                  <textarea
+                    name="message"
+                    placeholder="Your Message"
+                    rows="5"
+                    required
+                    className="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                  ></textarea>
+                </div>
+                <div className="text-right">
+                  <button
+                    type="submit"
+                    className="bg-primary text-white font-bold py-3 px-12 rounded-full cta-button hover:bg-primary-dark"
+                  >
+                    Send Message
+                  </button>
+                </div>
+              </>
+            )}
           </form>
         </div>
       </div>
