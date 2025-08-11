@@ -1,16 +1,11 @@
 import React from "react";
 import Image from "next/image";
 
-const ProgramCard = ({ imgSrc, title, description }) => (
+const ProgramCard = ({ title, description }) => (
   <div className="program-card bg-white rounded-lg shadow-lg overflow-hidden">
-    <div className="relative w-full h-56">
-      <Image
-        src={imgSrc}
-        alt={title}
-        fill
-        className="object-cover"
-        unoptimized
-      />
+    <div className="relative w-full h-56 bg-primary-light">
+      {/* Using a local image for all cards */}
+      <Image src="/images.png" alt={title} fill className="object-cover" />
     </div>
     <div className="p-6">
       <h3 className="text-2xl font-bold mb-2 text-secondary">{title}</h3>
@@ -25,19 +20,16 @@ const ProgramCard = ({ imgSrc, title, description }) => (
 export default function Programs() {
   const programData = [
     {
-      imgSrc: "https://placehold.co/600x400/FFFBEB/D97706?text=Fine+Arts",
       title: "Fine Arts",
       description:
         "Explore painting, drawing, and sculpture in our state-of-the-art studios.",
     },
     {
-      imgSrc: "https://placehold.co/600x400/FFFBEB/D97706?text=Dance",
       title: "Dance",
       description:
         "From ballet to hip-hop, our dance classes build confidence and grace.",
     },
     {
-      imgSrc: "https://placehold.co/600x400/FFFBEB/D97706?text=Music",
       title: "Music",
       description:
         "Private lessons and group classes for a variety of instruments and voice.",
