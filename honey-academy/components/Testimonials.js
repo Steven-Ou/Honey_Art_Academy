@@ -1,9 +1,11 @@
+// steven-ou/honey_art_academy/Honey_Art_Academy-b30d0db627a43b328427977d4914901b7229c657/honey-academy/components/Testimonials.js
+
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuoteLeft } from "@fortawesome/free-solid-svg-icons";
 
 const TestimonialCard = ({ text, name, role, imgSrc }) => (
-  <div className="bg-white p-8 rounded-lg shadow-lg relative">
+  <div className="bg-white p-8 rounded-lg shadow-lg relative transform hover:-translate-y-1 transition-transform duration-300">
     <FontAwesomeIcon
       icon={faQuoteLeft}
       className="absolute top-6 left-6 text-5xl text-primary/10"
@@ -17,8 +19,7 @@ const TestimonialCard = ({ text, name, role, imgSrc }) => (
         alt={name}
         width={50}
         height={50}
-        className="w-12 h-12 rounded-full mr-4"
-        unoptimized={true}
+        className="w-12 h-12 rounded-full mr-4 object-cover"
       />
       <div>
         <p className="font-bold text-gray-800">{name}</p>
