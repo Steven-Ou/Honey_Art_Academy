@@ -13,8 +13,8 @@ export default function Programs({ programs }) {
         </p>
       </div>
 
-      {/* This flex container creates the single horizontal row */}
-      <div className="flex flex-row gap-8 overflow-x-auto pb-4">
+      {/* This flex container creates a single, horizontally-scrollable row */}
+      <div className="flex flex-row gap-8 overflow-x-auto pb-4 -mx-6 px-6">
         {programs.map((p) => (
           <ProgramCard key={p.title} {...p} />
         ))}
