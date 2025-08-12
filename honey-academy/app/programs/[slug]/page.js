@@ -1,12 +1,11 @@
 import React from "react";
-import Link from "next/link"; // <-- Import Link
+import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 
 async function getProgram(slug) {
-  // Update the query to get the full gallery item data
   const query = `*[_type == "program" && slug.current == "${slug}"][0]{
     ...,
     gallery[]->{
@@ -20,8 +19,10 @@ async function getProgram(slug) {
   return program;
 }
 
-export default async function ProgramPage({ params }) {
-  const program = await getProgram(params.slug);
+// CHANGE THIS LINE: from { params } to { params: { slug } }
+export default async function ProgramPage({ params: { slug } }) {
+  // AND CHANGE THIS LINE: from params.slug to just slug
+  const program = await getProgram(slug);
 
   if (!program) return <div>Program not found.</div>;
 
@@ -51,8 +52,7 @@ export default async function ProgramPage({ params }) {
               Explore Our Instruments
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {program.gallery?.filter(Boolean).map((item) => (
-                // Wrap the card in a Link
+              {program.gallery.filter(Boolean).map((item) => (
                 <Link key={item._id} href={`/gallery/${item.slug.current}`}>
                   <div className="relative h-64 w-full rounded-lg overflow-hidden shadow-md transition-transform hover:scale-105">
                     <Image
