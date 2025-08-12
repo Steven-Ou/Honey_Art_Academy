@@ -47,6 +47,9 @@ export default function Footer() {
               <Link href="#contact" className="text-white/80 hover:text-white">
                 Contact
               </Link>
+              <Link href="/studio" className="text-white/80 hover:text-white">
+                Studio Login
+              </Link>
             </nav>
           </div>
 
