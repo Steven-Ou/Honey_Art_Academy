@@ -33,5 +33,11 @@ export const program = defineType({
       title: "Description",
       type: "text",
     }),
+     defineField({
+        name: 'body',
+        title: 'Body',
+        type: 'array',
+        of: [{type: 'block'}],
+    }),
   ],
 });
