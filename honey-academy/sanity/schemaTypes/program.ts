@@ -38,18 +38,8 @@ export const program = defineType({
       name: "gallery",
       title: "Gallery",
       type: "array",
-      of: [
-        {
-          type: "image",
-          fields: [
-            {
-              name: "caption",
-              type: "string",
-              title: "Caption",
-            },
-          ],
-        },
-      ],
+      // Change `of: [{type: 'image'}]` to this:
+      of: [{ type: "reference", to: [{ type: "galleryItem" }] }],
     }),
   ],
 });
