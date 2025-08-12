@@ -11,6 +11,16 @@ export const program = defineType({
       type: "string",
     }),
     defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 96,
+      },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: "description",
       title: "Description",
       type: "text",
