@@ -31,7 +31,7 @@ export default async function ProgramPage({ params }) {
         />
       </div>
       <div className="prose lg:prose-xl max-w-none">
-         <PortableText value={program.body} />
+        <PortableText value={program.body} />
       </div>
     </main>
   );
