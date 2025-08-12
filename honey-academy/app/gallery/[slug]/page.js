@@ -63,7 +63,8 @@ export default async function GalleryItemPage({ params: { slug } }) {
         {item.contactUrl && (
           <div className="mt-12 text-center">
             <Link
-              href={item.contactUrl}
+              // Add a fallback to /#contact in case the URL is missing in Sanity
+              href={item.contactUrl || "/#contact"}
               className="bg-primary text-white font-bold py-4 px-10 rounded-full text-lg cta-button hover:bg-primary-dark"
             >
               Contact Us About This Program
