@@ -11,14 +11,22 @@ export const program = defineType({
       type: "string",
     }),
     defineField({
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
+      name: "slug",
+      title: "Slug",
+      type: "slug",
       options: {
-        source: 'title',
+        source: "title",
         maxLength: 96,
       },
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "image",
+      title: "Image",
+      type: "image",
+      options: {
+        hotspot: true, // <-- Defaults to false
+      },
     }),
     defineField({
       name: "description",
