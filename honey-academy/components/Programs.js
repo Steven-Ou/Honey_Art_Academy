@@ -1,27 +1,43 @@
 import React from "react";
 import Image from "next/image";
-import { client } from "@/sanity/lib/client"; // 1. Import the Sanity client
+import Link from "next/link"; // Import Link
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image"; // Import the image URL builder
 
-// This component remains the same
-const ProgramCard = ({ title, description }) => (
-  <div className="program-card bg-white rounded-lg shadow-lg overflow-hidden">
-    <div className="relative w-full h-56 bg-primary-light">
-      <Image src="/images.png" alt={title} fill className="object-cover" />
+// Update ProgramCard to accept image and slug
+const ProgramCard = ({ title, description, image, slug }) => (
+  // Wrap the card in a Link component
+  <Link href={`/programs/${slug.current}`}>
+    <div className="program-card bg-white rounded-lg shadow-lg overflow-hidden h-full">
+      <div className="relative w-full h-56 bg-primary-light">
+        {/* Use the new image field */}
+        <Image
+          src={urlFor(image).width(500).height(300).url()}
+          alt={title}
+          fill
+          className="object-cover"
+        />
+      </div>
+      <div className="p-6">
+        <h3 className="text-2xl font-bold mb-2 text-secondary">{title}</h3>
+        <p className="text-gray-600 mb-4">{description}</p>
+        <div className="font-bold text-primary hover:text-primary-dark">
+          Learn More <i className="fas fa-arrow-right ml-1"></i>
+        </div>
+      </div>
     </div>
-    <div className="p-6">
-      <h3 className="text-2xl font-bold mb-2 text-secondary">{title}</h3>
-      <p className="text-gray-600 mb-4">{description}</p>
-      <a href="#" className="font-bold text-primary hover:text-primary-dark">
-        Learn More <i className="fas fa-arrow-right ml-1"></i>
-      </a>
-    </div>
-  </div>
+  </Link>
 );
 
-// 2. Make the component async to fetch data
 export default async function Programs() {
-  // 3. Write the GROQ query and fetch data
-  const programData = await client.fetch(`*[_type == "program"]`);
+  // Update the query to include the new fields
+  const programData = await client.fetch(`*[_type == "program"]{
+    _id,
+    title,
+    description,
+    slug,
+    image
+  }`);
 
   return (
     <section id="programs" className="section-padding">
@@ -34,12 +50,13 @@ export default async function Programs() {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* 4. Map over the fetched data instead of the hardcoded array */}
           {programData.map((prog) => (
             <ProgramCard
               key={prog._id}
               title={prog.title}
               description={prog.description}
+              image={prog.image}
+              slug={prog.slug}
             />
           ))}
         </div>
