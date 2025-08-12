@@ -51,7 +51,7 @@ export default async function ProgramPage({ params }) {
               Explore Our Instruments
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {program.gallery.map((item) => (
+              {program.gallery?.filter(Boolean).map((item) => (
                 // Wrap the card in a Link
                 <Link key={item._id} href={`/gallery/${item.slug.current}`}>
                   <div className="relative h-64 w-full rounded-lg overflow-hidden shadow-md transition-transform hover:scale-105">
