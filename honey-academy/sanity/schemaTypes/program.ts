@@ -25,7 +25,7 @@ export const program = defineType({
       title: "Image",
       type: "image",
       options: {
-        hotspot: true, // <-- Defaults to false
+        hotspot: true,
       },
     }),
     defineField({
@@ -33,11 +33,30 @@ export const program = defineType({
       title: "Description",
       type: "text",
     }),
-     defineField({
-        name: 'body',
-        title: 'Body',
-        type: 'array',
-        of: [{type: 'block'}],
+    // This is the rich text editor for the program's detail page
+    defineField({
+      name: "body",
+      title: "Body",
+      type: "array",
+      of: [{ type: "block" }],
+    }),
+    // This is the new gallery for example images
+    defineField({
+      name: "gallery",
+      title: "Gallery",
+      type: "array",
+      of: [
+        {
+          type: "image",
+          fields: [
+            {
+              name: "caption",
+              type: "string",
+              title: "Caption",
+            },
+          ],
+        },
+      ],
     }),
   ],
 });
