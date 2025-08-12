@@ -12,12 +12,12 @@ const config = {
       },
       colors: {
         primary: {
-          light: '#FFFBEB',    // A light, creamy yellow
-          DEFAULT: '#FBBF24',  // A vibrant, honey-like amber
-          dark: '#D97706'     // A deeper, richer amber
+          light: '#FFFBEB',
+          DEFAULT: '#FBBF24',
+          dark: '#D97706'
         },
-        secondary: '#1F2937',   // A dark slate gray for text
-        accent: '#3B82F6',      // A friendly blue for highlights
+        secondary: '#1F2937',
+        accent: '#3B82F6',
       }
     },
   },
