@@ -8,17 +8,17 @@ const config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ["Inter", "sans-serif"],
       },
       colors: {
         primary: {
-          light: '#FFFBEB',
-          DEFAULT: '#FBBF24',
-          dark: '#D97706'
+          light: "#FFFBEB",
+          DEFAULT: "#FBBF24",
+          dark: "#D97706",
         },
-        secondary: '#1F2937',
-        accent: '#3B82F6',
-      }
+        secondary: "#1F2937",
+        accent: "#3B82F6",
+      },
     },
   },
   plugins: [],
