@@ -12,7 +12,7 @@ const ProgramCard = ({ title, description, image, slug }) => (
       <div className="relative w-full h-56 bg-primary-light">
         {/* Use the new image field */}
         <Image
-          src={urlFor(image).width(500).height(300).url()}
+          src={image ? urlFor(image).url() : "/images.png"}
           alt={title}
           fill
           className="object-cover"
