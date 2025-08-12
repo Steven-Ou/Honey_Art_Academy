@@ -5,7 +5,15 @@ import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 
 async function getProgram(slug) {
-  const query = `*[_type == "program" && slug.current == "${slug}"][0]`;
+  // Update the query to fetch the new gallery field
+  const query = `*[_type == "program" && slug.current == "${slug}"][0]{
+    ...,
+    gallery[] {
+      _key,
+      asset,
+      caption
+    }
+  }`;
   const program = await client.fetch(query);
   return program;
 }
@@ -33,6 +41,33 @@ export default async function ProgramPage({ params }) {
         </div>
         <div className="prose lg:prose-xl max-w-none">
           <PortableText value={program.body} />
+        </div>
+
+        {/* Add the Gallery Section Here */}
+        <div className="mt-12">
+          <h2 className="text-3xl font-bold text-secondary mb-6">
+            Examples of Work
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {program.gallery?.map((image) => (
+              <div
+                key={image._key}
+                className="relative h-64 w-full rounded-lg overflow-hidden shadow-md"
+              >
+                <Image
+                  src={urlFor(image.asset).url()}
+                  alt={image.caption || "Gallery image"}
+                  fill
+                  className="object-cover"
+                />
+                {image.caption && (
+                  <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 text-center text-sm">
+                    {image.caption}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </main>
