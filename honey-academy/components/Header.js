@@ -14,7 +14,7 @@ export default function Header() {
           href="#"
           className="text-2xl font-bold text-primary-dark hover:text-primary transition-colors"
         >
-          <i className="fas fa-palette mr-2"></i>Honey Art Academy
+          <i className="fas fa-palette mr-2"></i>Honey Academy
         </a>
         <div className="hidden md:flex items-center space-x-8">
           <a
