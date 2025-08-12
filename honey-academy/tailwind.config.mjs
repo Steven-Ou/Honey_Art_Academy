@@ -1,23 +1,24 @@
 /** @type {import('tailwindcss').Config} */
 const config = {
   content: [
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
+        sans: ['Inter', 'sans-serif'],
       },
       colors: {
         primary: {
-          light: "#FFFBEB", // A light, creamy yellow
-          DEFAULT: "#FBBF24", // A vibrant, honey-like amber
-          dark: "#D97706", // A deeper, richer amber
+          light: '#FFFBEB',    // A light, creamy yellow
+          DEFAULT: '#FBBF24',  // A vibrant, honey-like amber
+          dark: '#D97706'     // A deeper, richer amber
         },
-        secondary: "#1F2937", // A dark slate gray for text
-        accent: "#3B82F6", // A friendly blue for highlights
-      },
+        secondary: '#1F2937',   // A dark slate gray for text
+        accent: '#3B82F6',      // A friendly blue for highlights
+      }
     },
   },
   plugins: [],
