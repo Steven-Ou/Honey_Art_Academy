@@ -1,17 +1,25 @@
-import React from 'react';
-import { client } from '@/sanity/lib/client';
-import { urlFor } from '@/sanity/lib/image';
-import Image from 'next/image';
-import { PortableText } from '@portabletext/react';
+import React from "react";
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
+import Image from "next/image";
+import Link from "next/link"; // Import the Link component
+import { PortableText } from "@portabletext/react";
 
 async function getGalleryItem(slug) {
-  const query = `*[_type == "galleryItem" && slug.current == "${slug}"][0]`;
+  // Update the query to get the new fields
+  const query = `*[_type == "galleryItem" && slug.current == "${slug}"][0]{
+    title,
+    image,
+    details,
+    videoUrl,
+    contactUrl
+  }`;
   const item = await client.fetch(query);
   return item;
 }
 
-export default async function GalleryItemPage({ params }) {
-  const item = await getGalleryItem(params.slug);
+export default async function GalleryItemPage({ params: { slug } }) {
+  const item = await getGalleryItem(slug);
 
   if (!item) {
     return <div>Item not found.</div>;
@@ -27,13 +35,41 @@ export default async function GalleryItemPage({ params }) {
               src={urlFor(item.image).url()}
               alt={item.title}
               fill
-              className="object-cover rounded-lg"
+              className="object-cover rounded-lg shadow-md"
             />
           </div>
         )}
-        <div className="prose lg:prose-xl">
+        <div className="prose lg:prose-xl max-w-none">
           <PortableText value={item.details} />
         </div>
+
+        {/* Conditionally render the video */}
+        {item.videoUrl && (
+          <div className="mt-12">
+            <h2 className="text-3xl font-bold text-secondary mb-4">Video</h2>
+            <div className="aspect-w-16 aspect-h-9">
+              <iframe
+                src={item.videoUrl.replace("watch?v=", "embed/")}
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full rounded-lg"
+              ></iframe>
+            </div>
+          </div>
+        )}
+
+        {/* Conditionally render the contact button */}
+        {item.contactUrl && (
+          <div className="mt-12 text-center">
+            <Link
+              href={item.contactUrl}
+              className="bg-primary text-white font-bold py-4 px-10 rounded-full text-lg cta-button hover:bg-primary-dark"
+            >
+              Contact Us About This Program
+            </Link>
+          </div>
+        )}
       </div>
     </main>
   );
