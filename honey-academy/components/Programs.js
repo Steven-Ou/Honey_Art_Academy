@@ -4,6 +4,7 @@ import Image from "next/image";
 const ProgramCard = ({ title, description }) => (
   <div className="program-card bg-white rounded-lg shadow-lg overflow-hidden">
     <div className="relative w-full h-56 bg-primary-light">
+      {/* Using a local image for all cards */}
       <Image src="/images.png" alt={title} fill className="object-cover" />
     </div>
     <div className="p-6">
