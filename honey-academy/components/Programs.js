@@ -1,10 +1,11 @@
 import React from "react";
 import Image from "next/image";
+import { client } from "@/sanity/lib/client"; // 1. Import the Sanity client
 
+// This component remains the same
 const ProgramCard = ({ title, description }) => (
   <div className="program-card bg-white rounded-lg shadow-lg overflow-hidden">
     <div className="relative w-full h-56 bg-primary-light">
-      {/* Using a local image for all cards */}
       <Image src="/images.png" alt={title} fill className="object-cover" />
     </div>
     <div className="p-6">
@@ -17,24 +18,10 @@ const ProgramCard = ({ title, description }) => (
   </div>
 );
 
-export default function Programs() {
-  const programData = [
-    {
-      title: "Fine Arts",
-      description:
-        "Explore painting, drawing, and sculpture in our state-of-the-art studios.",
-    },
-    {
-      title: "Dance",
-      description:
-        "From ballet to hip-hop, our dance classes build confidence and grace.",
-    },
-    {
-      title: "Music",
-      description:
-        "Private lessons and group classes for a variety of instruments and voice.",
-    },
-  ];
+// 2. Make the component async to fetch data
+export default async function Programs() {
+  // 3. Write the GROQ query and fetch data
+  const programData = await client.fetch(`*[_type == "program"]`);
 
   return (
     <section id="programs" className="section-padding">
@@ -47,8 +34,13 @@ export default function Programs() {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {programData.map((prog, index) => (
-            <ProgramCard key={index} {...prog} />
+          {/* 4. Map over the fetched data instead of the hardcoded array */}
+          {programData.map((prog) => (
+            <ProgramCard
+              key={prog._id}
+              title={prog.title}
+              description={prog.description}
+            />
           ))}
         </div>
       </div>
