@@ -12,6 +12,15 @@ async function getAboutPage() {
 export default async function AboutPage() {
   const data = await getAboutPage();
 
+  // If no data has been published in Sanity, show a message instead of crashing
+  if (!data) {
+    return (
+      <div className="text-center py-24">
+        About page content has not been published yet.
+      </div>
+    );
+  }
+
   return (
     <div className="bg-white">
       {/* Hero Section */}

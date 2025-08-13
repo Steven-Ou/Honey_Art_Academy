@@ -1,52 +1,65 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { client } from "@/sanity/lib/client";
 
-async function getAboutSummary() {
-  // Fetch just a small part of the story text
-  const query = `*[_type == "aboutPage"][0]{
-    storyText,
-    storyImage
-  }`;
-  return client.fetch(query);
-}
+const StatCard = ({ number, label, icon }) => (
+  <div className="text-center">
+    <div className="bg-primary-light p-4 rounded-full inline-block mb-4">
+      <i className={`${icon} text-primary-dark text-3xl`}></i>
+    </div>
+    <p className="text-4xl font-bold text-secondary">{number}</p>
+    <p className="text-gray-500 mt-1">{label}</p>
+  </div>
+);
 
-// A small client component for the text snippet
-function TextSnippet({ text }) {
-  const snippet = text
-    .map((block) => block.children.map((child) => child.text).join(""))
-    .join(" ")
-    .slice(0, 150);
-  return <p className="text-gray-600 mb-6">{snippet}...</p>;
-}
-
-export default async function About() {
-  const data = await getAboutSummary();
-
+export default function About() {
   return (
     <section id="about" className="section-padding bg-white">
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="relative w-full h-[500px] rounded-2xl shadow-2xl overflow-hidden">
-            <Image
-              src="/images.png"
-              alt="About Honey Art Academy"
-              fill
-              className="object-cover"
-            />
+          <div className="about-image">
+            <div className="relative w-full h-[500px] rounded-2xl shadow-2xl overflow-hidden">
+              <Image
+                src="/images.png"
+                alt="About Honey Art Academy"
+                fill
+                className="object-cover"
+              />
+            </div>
           </div>
           <div className="about-content">
             <h2 className="text-4xl font-bold text-primary-dark mb-4">
               About Honey Art Academy
             </h2>
-            {data?.storyText && <TextSnippet text={data.storyText} />}
+            <p className="text-gray-600 mb-6">
+              Founded with a passion for nurturing creativity, Honey Art Academy
+              offers a vibrant and inspiring space for students of all ages to
+              explore their artistic talents.
+            </p>
+            <div className="grid grid-cols-3 gap-6 my-8">
+              <StatCard number="10+" label="Instructors" icon="fas fa-users" />
+              <StatCard
+                number="500+"
+                label="Happy Students"
+                icon="fas fa-child"
+              />
+              <StatCard
+                number="2000"
+                label="Sq. Ft. Campus"
+                icon="fas fa-school"
+              />
+            </div>
+            <p className="mt-4 text-gray-600">
+              Our experienced instructors are dedicated to providing a
+              supportive and engaging environment where students can thrive.
+            </p>
+            {/* This button caused the error without the import */}
             <div className="mt-8">
               <Link
-                href="/about"
+                href="/#programs"
                 className="bg-primary text-white font-bold py-3 px-8 rounded-full text-lg cta-button hover:bg-primary-dark"
               >
-                Learn More About Us
+                Explore Our Programs
               </Link>
             </div>
           </div>
