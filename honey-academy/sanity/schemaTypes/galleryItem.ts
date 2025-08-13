@@ -34,7 +34,7 @@ export const galleryItem = defineType({
         { type: "block" },
         { type: "image" },
         // Reference the new videoEmbed type here
-        { type: "videoEmbed" }, 
+        { type: "videoEmbed" },
       ],
     }),
     defineField({

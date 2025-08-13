@@ -15,7 +15,7 @@
     "noEmit": true,
     "module": "esnext",
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "isolatedModules": true,
     "forceConsistentCasingInFileNames": true,
     "plugins": [

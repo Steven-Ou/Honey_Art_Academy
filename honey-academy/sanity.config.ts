@@ -1,4 +1,5 @@
 import { defineConfig } from "sanity";
+// @ts-ignore
 import { structureTool } from "sanity/structure"; 
 import { visionTool } from "@sanity/vision";
 
