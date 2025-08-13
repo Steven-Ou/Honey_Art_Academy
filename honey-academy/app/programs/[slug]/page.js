@@ -24,6 +24,7 @@ async function getProgram(slug) {
 }
 
 export default async function ProgramPage({ params }) {
+  const { slug } = await params;
   const program = await getProgram(params.slug);
 
   if (!program) return <div>Program not found.</div>;
