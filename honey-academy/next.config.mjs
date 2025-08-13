@@ -1,8 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    serverComponentsExternalPackages: ["@sanity/client"],
-  },
+  transpilePackages: ["sanity", "framer-motion"],
   images: {
     remotePatterns: [
       {
