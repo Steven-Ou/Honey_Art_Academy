@@ -11,6 +11,11 @@ export const galleryItem = defineType({
       type: "string",
     }),
     defineField({
+      name: "subtitle",
+      title: "Subtitle",
+      type: "string",
+    }),
+    defineField({
       name: "slug",
       title: "Slug",
       type: "slug",
@@ -21,30 +26,33 @@ export const galleryItem = defineType({
       title: "Image",
       type: "image",
     }),
+
+    // This is our new "Page Builder" field
     defineField({
-      name: "subtitle",
-      title: "Subtitle",
-      type: "string",
-    }),
-    defineField({
-      name: "details",
-      title: "Details",
+      name: "content",
+      title: "Page Content",
       type: "array",
-      of: [{ type: "block" }], // You can create subheadings here in the Studio
+      of: [
+        { type: "block" }, // Standard rich text
+        { type: "image" }, // Allow adding images directly in the flow
+        {
+          type: "object",
+          name: "videoEmbed",
+          title: "Video Embed",
+          fields: [
+            {
+              name: "url",
+              type: "url",
+              title: "YouTube or Vimeo URL",
+            },
+          ],
+        },
+      ],
     }),
-    // Add a field for the video URL
-    defineField({
-      name: "videoUrl",
-      title: "Video URL",
-      description: "Paste the full URL of a YouTube or Vimeo video.",
-      type: "url",
-    }),
-    // Add a field for the contact button link
+
     defineField({
       name: "contactUrl",
       title: "Contact Button URL",
-      description:
-        "The URL the contact button should link to (e.g., /#contact).",
       type: "string",
     }),
   ],
