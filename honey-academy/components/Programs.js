@@ -49,7 +49,7 @@ export default async function Programs() {
             programs to ignite your child's passion.
           </p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-2  gap-8">
           {programData.map((prog) => (
             <ProgramCard
               key={prog._id}
