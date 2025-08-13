@@ -1,13 +1,21 @@
 import { defineField, defineType } from "sanity";
+import { BookIcon } from "@sanity/icons";
 
 export const program = defineType({
   name: "program",
   title: "Program",
   type: "document",
+  icon: BookIcon,
   fields: [
     defineField({
       name: "title",
       title: "Title",
+      type: "string",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "subtitle",
+      title: "Subtitle",
       type: "string",
     }),
     defineField({
@@ -19,27 +27,43 @@ export const program = defineType({
     }),
     defineField({
       name: "image",
-      title: "Image",
+      title: "Main Image",
       type: "image",
       options: { hotspot: true },
     }),
     defineField({
       name: "description",
-      title: "Description",
+      title: "Short Description",
+      description: "A brief summary for program cards.",
       type: "text",
+      rows: 3,
     }),
     defineField({
       name: "body",
-      title: "Body",
+      title: "Main Content",
+      description: "The full details of the program.",
       type: "array",
-      of: [{ type: "block" }],
+      of: [{ type: "block" }], // This makes it a rich text editor
+    }),
+    defineField({
+      name: "featured",
+      title: "Featured Program",
+      type: "boolean",
+      description: "Toggle on to feature this program on the homepage.",
+      initialValue: false,
     }),
     defineField({
       name: "gallery",
       title: "Gallery",
       type: "array",
-      // Change `of: [{type: 'image'}]` to this:
       of: [{ type: "reference", to: [{ type: "galleryItem" }] }],
     }),
   ],
+  preview: {
+    select: {
+      title: "title",
+      subtitle: "description",
+      media: "image",
+    },
+  },
 });
