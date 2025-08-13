@@ -1,12 +1,12 @@
 import { defineConfig } from 'sanity';
-// As the deprecation message advises, we use 'structureTool' from 'sanity/structure'
-import { structureTool } from 'sanity/structure';
+// The structureTool is now the default export from 'sanity/structure'
+import { structure } from 'sanity/structure';
 import { visionTool } from '@sanity/vision';
 
-// Import your schema and custom structure
+// Import your schema
 import { schema } from './sanity/schemaTypes';
-// Rename your imported structure to avoid name conflicts
-import { structure as customStructure } from './sanity/structure'; 
+// Import your custom structure
+import { structure as customStructure } from './sanity/structure';
 
 export default defineConfig({
   basePath: '/studio',
@@ -16,9 +16,9 @@ export default defineConfig({
   dataset: 'production',
 
   plugins: [
-    // Use the modern 'structureTool'
-    structureTool({
-      structure: customStructure, 
+    // Use the structure tool with your custom structure
+    structure({
+      structure: customStructure,
     }),
     visionTool(),
   ],
