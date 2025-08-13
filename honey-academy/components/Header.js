@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <header
       id="header"
-      className="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-md"
+      className="bg-brandRed text-white backdrop-blur-lg sticky top-0 z-50 shadow-md"
     >
       <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
         <Link // 2. Use Link for the main logo/title
