@@ -24,7 +24,7 @@ async function getGalleryItem(slug) {
 
 export default async function GalleryItemPage({ params }) {
   const { slug } = await params;
-  const item = await getGalleryItem(params.slug);
+  const item = await getGalleryItem(slug);
 
   if (!item) return <div>Item not found.</div>;
 
