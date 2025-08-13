@@ -11,6 +11,7 @@ const config = {
         sans: ["Inter", "sans-serif"],
       },
       colors: {
+        brandRed:'#8B2C21',
         primary: {
           light: "#FFFBEB",
           DEFAULT: "#FBBF24",

@@ -15,7 +15,10 @@ export async function generateStaticParams() {
 }
 
 async function getGalleryItem(slug) {
-  const query = `*[_type == "galleryItem" && slug.current == "${slug}"][0]`;
+  const query = `*[_type == "galleryItem" && slug.current == "${slug}"][0]{
+    title,
+    subtile
+  }`;
   return client.fetch(query);
 }
 
