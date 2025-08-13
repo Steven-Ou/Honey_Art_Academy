@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+// Restore the StatCard component definition
 const StatCard = ({ number, label, icon }) => (
   <div className="text-center">
     <div className="bg-primary-light p-4 rounded-full inline-block mb-4">
@@ -17,15 +18,13 @@ export default function About() {
     <section id="about" className="section-padding bg-white">
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="about-image">
-            <div className="relative w-full h-[500px] rounded-2xl shadow-2xl overflow-hidden">
-              <Image
-                src="/images.png"
-                alt="About Honey Art Academy"
-                fill
-                className="object-cover"
-              />
-            </div>
+          <div className="relative w-full h-[500px] rounded-2xl shadow-2xl overflow-hidden">
+            <Image
+              src="/images.png" // This uses the static image for the homepage
+              alt="About Honey Art Academy"
+              fill
+              className="object-cover"
+            />
           </div>
           <div className="about-content">
             <h2 className="text-4xl font-bold text-primary-dark mb-4">
@@ -36,6 +35,7 @@ export default function About() {
               offers a vibrant and inspiring space for students of all ages to
               explore their artistic talents.
             </p>
+            {/* Restore the StatCards grid */}
             <div className="grid grid-cols-3 gap-6 my-8">
               <StatCard number="10+" label="Instructors" icon="fas fa-users" />
               <StatCard
@@ -49,17 +49,13 @@ export default function About() {
                 icon="fas fa-school"
               />
             </div>
-            <p className="mt-4 text-gray-600">
-              Our experienced instructors are dedicated to providing a
-              supportive and engaging environment where students can thrive.
-            </p>
-            {/* This button caused the error without the import */}
+            {/* Add the "Learn More" button that links to the new page */}
             <div className="mt-8">
               <Link
-                href="/#programs"
+                href="/about"
                 className="bg-primary text-white font-bold py-3 px-8 rounded-full text-lg cta-button hover:bg-primary-dark"
               >
-                Explore Our Programs
+                Learn More About Our Story
               </Link>
             </div>
           </div>
