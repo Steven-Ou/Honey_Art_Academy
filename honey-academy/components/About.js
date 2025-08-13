@@ -50,6 +50,19 @@ export default function About() {
             </div>
           </div>
         </div>
+        <p className="mt-4 text-gray-600">
+          Our experienced instructors are dedicated to providing a supportive
+          and engaging environment where students can thrive.
+        </p>
+        {/* Add this button */}
+        <div className="mt-8">
+          <Link
+            href="/#programs"
+            className="bg-primary text-white font-bold py-3 px-8 rounded-full text-lg cta-button hover:bg-primary-dark"
+          >
+            Explore Our Programs
+          </Link>
+        </div>
       </div>
     </section>
   );
