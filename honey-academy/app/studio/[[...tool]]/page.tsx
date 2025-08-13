@@ -1,12 +1,12 @@
-"use client";
-// Make sure there is NO "use client" at the top of this file.
+// NO "use client" in this file
 
+import { metadata, viewport } from 'next-sanity/studio'
 import { Studio } from './Studio'
 
 export const dynamic = 'force-static'
 
-// Re-export metadata and viewport from next-sanity/studio
-export { metadata, viewport } from 'next-sanity/studio'
+// This is a server component, so it CAN export metadata
+export { metadata, viewport }
 
 export default function StudioPage() {
   return <Studio />
