@@ -4,6 +4,7 @@ const nextConfig = {
     // This tells Next.js to re-compile these packages
     // in a way that follows its new, stricter rules.
     transpilePackages: ["sanity", "framer-motion"],
+    esmExternals: "loose",
   },
   images: {
     remotePatterns: [
