@@ -11,7 +11,7 @@ const config = {
         sans: ["Inter", "sans-serif"],
       },
       colors: {
-        brandRed:'#8B2C21',
+        brandRed: "#8B2C21",
         primary: {
           light: "#FFFBEB",
           DEFAULT: "#FBBF24",
@@ -20,11 +20,16 @@ const config = {
         secondary: "#1F2937",
         accent: "#3B82F6",
       },
+      typography: ({ theme }) => ({
+        DEFAULT: {
+          css: {
+            color: theme("colors.gray.800"), // Change the default text color
+          },
+        },
+      }),
     },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-  ],
+  plugins: [require("@tailwindcss/typography")],
 };
 
 export default config;
