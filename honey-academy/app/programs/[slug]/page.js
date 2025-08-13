@@ -5,7 +5,6 @@ import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 
-// This new function tells Next.js what pages to build
 export async function generateStaticParams() {
   const programs = await client.fetch(
     `*[_type == "program"]{ "slug": slug.current }`
@@ -25,8 +24,7 @@ async function getProgram(slug) {
 }
 
 export default async function ProgramPage({ params }) {
-  const { slug } = params;
-  const program = await getProgram(slug);
+  const program = await getProgram(params.slug);
 
   if (!program) return <div>Program not found.</div>;
 

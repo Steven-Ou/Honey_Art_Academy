@@ -2,28 +2,27 @@ import React from "react";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
-import Link from "next/link"; // Import the Link component
+import Link from "next/link";
 import { PortableText } from "@portabletext/react";
 
-async function getGalleryItem(slug) {
-  // Update the query to get the new fields
-  const query = `*[_type == "galleryItem" && slug.current == "${slug}"][0]{
-    title,
-    image,
-    details,
-    videoUrl,
-    contactUrl
-  }`;
-  const item = await client.fetch(query);
-  return item;
+export async function generateStaticParams() {
+  const items = await client.fetch(
+    `*[_type == "galleryItem"]{ "slug": slug.current }`
+  );
+  return items.map((item) => ({
+    slug: item.slug,
+  }));
 }
 
-export default async function GalleryItemPage({ params: { slug } }) {
-  const item = await getGalleryItem(slug);
+async function getGalleryItem(slug) {
+  const query = `*[_type == "galleryItem" && slug.current == "${slug}"][0]`;
+  return client.fetch(query);
+}
 
-  if (!item) {
-    return <div>Item not found.</div>;
-  }
+export default async function GalleryItemPage({ params }) {
+  const item = await getGalleryItem(params.slug);
+
+  if (!item) return <div>Item not found.</div>;
 
   return (
     <main className="container mx-auto px-6 py-12 bg-white">
@@ -43,7 +42,6 @@ export default async function GalleryItemPage({ params: { slug } }) {
           <PortableText value={item.details} />
         </div>
 
-        {/* Conditionally render the video */}
         {item.videoUrl && (
           <div className="mt-12">
             <h2 className="text-3xl font-bold text-secondary mb-4">Video</h2>
@@ -59,12 +57,10 @@ export default async function GalleryItemPage({ params: { slug } }) {
           </div>
         )}
 
-        {/* Conditionally render the contact button */}
         {item.contactUrl && (
           <div className="mt-12 text-center">
             <Link
-              // Add a fallback to /#contact in case the URL is missing in Sanity
-              href={item.contactUrl || "/#contact"}
+              href={item.contactUrl}
               className="bg-primary text-white font-bold py-4 px-10 rounded-full text-lg cta-button hover:bg-primary-dark"
             >
               Contact Us About This Program
