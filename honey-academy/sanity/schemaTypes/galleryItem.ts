@@ -1,11 +1,13 @@
-// steven-ou/honey_art_academy/Honey_Art_Academy-d0bbf44cc80b7a71dc901462b17d3cc60358da82/honey-academy/sanity/schemaTypes/galleryItem.ts
 import { defineField, defineType } from "sanity";
+import { DocumentIcon } from "@sanity/icons";
 
 export const galleryItem = defineType({
   name: "galleryItem",
   title: "Gallery Item",
   type: "document",
+  icon: DocumentIcon, // Added an icon for a better look in the studio list
   fields: [
+    // ... (your existing fields: title, subtitle, slug, image)
     defineField({
       name: "title",
       title: "Title",
@@ -27,8 +29,6 @@ export const galleryItem = defineType({
       title: "Image",
       type: "image",
     }),
-
-    // REPLACE the old "content" field with this new one
     defineField({
       name: "content",
       title: "Page Content",
@@ -58,16 +58,29 @@ export const galleryItem = defineType({
             ],
           },
         },
-        // You can add other object types here
         { type: "image", options: { hotspot: true } },
         { type: "videoEmbed" },
       ],
     }),
-
     defineField({
       name: "contactUrl",
       title: "Contact Button URL",
       type: "string",
     }),
   ],
+  // THIS IS THE NEW PART THAT FIXES DRAG-AND-DROP
+  preview: {
+    select: {
+      title: "title",
+      subtitle: "subtitle",
+      media: "image",
+    },
+    prepare({ title, subtitle, media }) {
+      return {
+        title: title || "Untitled Gallery Item",
+        subtitle: subtitle || "",
+        media: media || DocumentIcon,
+      };
+    },
+  },
 });
