@@ -8,20 +8,15 @@ import { PortableText } from "@portabletext/react";
 async function getProgram(slug) {
   const query = `*[_type == "program" && slug.current == "${slug}"][0]{
     ...,
-    gallery[]->{
-      _id,
-      title,
-      slug,
-      image
-    }
+    gallery[]->{ _id, title, slug, image }
   }`;
   const program = await client.fetch(query);
   return program;
 }
 
-// CHANGE THIS LINE: from { params } to { params: { slug } }
-export default async function ProgramPage({ params: { slug } }) {
-  // AND CHANGE THIS LINE: from params.slug to just slug
+// REVERT to { params } and we will get the slug inside
+export default async function ProgramPage({ params }) {
+  const slug = params.slug; // Get slug safely here
   const program = await getProgram(slug);
 
   if (!program) return <div>Program not found.</div>;
@@ -52,6 +47,8 @@ export default async function ProgramPage({ params: { slug } }) {
               Explore Our Instruments
             </h2>
             <div className="grid grid-cols-2 gap-6">
+              {" "}
+              {/* Updated grid class */}
               {program.gallery.filter(Boolean).map((item) => (
                 <Link key={item._id} href={`/gallery/${item.slug.current}`}>
                   <div className="relative h-64 w-full rounded-lg overflow-hidden shadow-md transition-transform hover:scale-105">
