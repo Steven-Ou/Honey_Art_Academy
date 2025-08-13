@@ -2,67 +2,67 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+const StatCard = ({ number, label, icon }) => (
+  <div className="text-center">
+    <div className="bg-primary-light p-4 rounded-full inline-block mb-4">
+      <i className={`${icon} text-primary-dark text-3xl`}></i>
+    </div>
+    <p className="text-4xl font-bold text-secondary">{number}</p>
+    <p className="text-gray-500 mt-1">{label}</p>
+  </div>
+);
+
 export default function About() {
   return (
     <section id="about" className="section-padding bg-white">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-          <div className="lg:w-1/2 relative h-80 w-full rounded-xl shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
-            {/* Using a local image from the 'public' folder */}
-            <Image
-              src="/images.png"
-              alt="Honey Art Academy Studio"
-              fill
-              className="object-cover"
-            />
-          </div>
-          <div className="lg:w-1/2 text-center lg:text-left">
-            <h2 className="text-4xl font-bold text-primary-dark mb-6">
-              Fostering Excellence For 8+ Years
-            </h2>
-            <p className="mb-4 text-lg text-gray-700">
-              Honey Art Academy is more than just an after-school program. We
-              are a vibrant community dedicated to providing the finest academic
-              and creative education.
-            </p>
-            <p className="mb-8 text-lg text-gray-700">
-              With over thirty experienced instructors, we are passionate about
-              giving your child the head-start they deserve.
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-              <div className="bg-primary-light p-6 rounded-lg shadow-lg transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl border-t-4 border-primary">
-                <p className="text-4xl lg:text-5xl font-bold text-primary-dark">
-                  30+
-                </p>
-                <p className="text-gray-600 font-medium mt-2">Instructors</p>
-              </div>
-              <div className="bg-primary-light p-6 rounded-lg shadow-lg transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl border-t-4 border-primary">
-                <p className="text-4xl lg:text-5xl font-bold text-primary-dark">
-                  500+
-                </p>
-                <p className="text-gray-600 font-medium mt-2">Happy Students</p>
-              </div>
-              <div className="bg-primary-light p-6 rounded-lg shadow-lg transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl border-t-4 border-primary">
-                <p className="text-4xl lg:text-5xl font-bold text-primary-dark">
-                  10k
-                </p>
-                <p className="text-gray-600 font-medium mt-2">Sq. Ft. Campus</p>
-              </div>
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="about-image">
+            <div className="relative w-full h-[500px] rounded-2xl shadow-2xl overflow-hidden">
+              <Image
+                src="/images.png"
+                alt="About Honey Art Academy"
+                fill
+                className="object-cover"
+              />
             </div>
           </div>
-        </div>
-        <p className="mt-4 text-gray-600">
-          Our experienced instructors are dedicated to providing a supportive
-          and engaging environment where students can thrive.
-        </p>
-        {/* Add this button */}
-        <div className="mt-8">
-          <Link
-            href="/#programs"
-            className="bg-primary text-white font-bold py-3 px-8 rounded-full text-lg cta-button hover:bg-primary-dark"
-          >
-            Explore Our Programs
-          </Link>
+          <div className="about-content">
+            <h2 className="text-4xl font-bold text-primary-dark mb-4">
+              About Honey Art Academy
+            </h2>
+            <p className="text-gray-600 mb-6">
+              Founded with a passion for nurturing creativity, Honey Art Academy
+              offers a vibrant and inspiring space for students of all ages to
+              explore their artistic talents.
+            </p>
+            <div className="grid grid-cols-3 gap-6 my-8">
+              <StatCard number="10+" label="Instructors" icon="fas fa-users" />
+              <StatCard
+                number="500+"
+                label="Happy Students"
+                icon="fas fa-child"
+              />
+              <StatCard
+                number="2000"
+                label="Sq. Ft. Campus"
+                icon="fas fa-school"
+              />
+            </div>
+            <p className="mt-4 text-gray-600">
+              Our experienced instructors are dedicated to providing a
+              supportive and engaging environment where students can thrive.
+            </p>
+            {/* This button caused the error without the import */}
+            <div className="mt-8">
+              <Link
+                href="/#programs"
+                className="bg-primary text-white font-bold py-3 px-8 rounded-full text-lg cta-button hover:bg-primary-dark"
+              >
+                Explore Our Programs
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </section>
