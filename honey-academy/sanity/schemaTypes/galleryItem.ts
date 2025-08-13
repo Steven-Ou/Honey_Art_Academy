@@ -22,6 +22,11 @@ export const galleryItem = defineType({
       type: "image",
     }),
     defineField({
+      name: "subtitle",
+      title: "Subtitle",
+      type: "string",
+    }),
+    defineField({
       name: "details",
       title: "Details",
       type: "array",
