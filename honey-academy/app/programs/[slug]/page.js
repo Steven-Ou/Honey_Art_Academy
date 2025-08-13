@@ -51,7 +51,7 @@ export default async function ProgramPage({ params: { slug } }) {
             <h2 className="text-3xl font-bold text-secondary mb-6">
               Explore Our Instruments
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {program.gallery.filter(Boolean).map((item) => (
                 <Link key={item._id} href={`/gallery/${item.slug.current}`}>
                   <div className="relative h-64 w-full rounded-lg overflow-hidden shadow-md transition-transform hover:scale-105">
