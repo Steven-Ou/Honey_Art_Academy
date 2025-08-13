@@ -54,21 +54,24 @@ export default async function ProgramPage({ params }) {
             <h2 className="text-3xl font-bold text-secondary mb-6">
               Explore Our Instruments
             </h2>
-            <div className="grid grid-cols-2 gap-6">
-              {program.gallery.filter(Boolean).map((item) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {program.gallery?.filter(Boolean).map((item) => (
                 <Link key={item._id} href={`/gallery/${item.slug.current}`}>
-                  <div className="relative h-64 w-full rounded-lg overflow-hidden shadow-md transition-transform hover:scale-105">
-                    <Image
-                      src={urlFor(item.image).url()}
-                      alt={item.title || "Gallery image"}
-                      fill
-                      className="object-cover"
-                    />
-                    {item.title && (
-                      <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-2 text-center">
+                  {/* New Card Design */}
+                  <div className="group block bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+                    <div className="relative h-48 w-full">
+                      <Image
+                        src={urlFor(item.image).url()}
+                        alt={item.title || "Gallery image"}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="p-4">
+                      <h3 className="text-lg font-bold text-primary-dark group-hover:text-primary transition-colors">
                         {item.title}
-                      </div>
-                    )}
+                      </h3>
+                    </div>
                   </div>
                 </Link>
               ))}
