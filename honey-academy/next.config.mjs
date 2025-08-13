@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Add this experimental block to fix the error
+  experimental: {
+    transpilePackages: ["sanity", "framer-motion"],
+  },
   images: {
     remotePatterns: [
       {
@@ -8,7 +12,6 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
-      // Add this object to whitelist Sanity's CDN
       {
         protocol: "https",
         hostname: "cdn.sanity.io",
