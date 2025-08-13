@@ -5,6 +5,16 @@ import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 
+// This new function tells Next.js what pages to build
+export async function generateStaticParams() {
+  const programs = await client.fetch(
+    `*[_type == "program"]{ "slug": slug.current }`
+  );
+  return programs.map((program) => ({
+    slug: program.slug,
+  }));
+}
+
 async function getProgram(slug) {
   const query = `*[_type == "program" && slug.current == "${slug}"][0]{
     ...,
@@ -14,9 +24,8 @@ async function getProgram(slug) {
   return program;
 }
 
-// REVERT to { params } and we will get the slug inside
 export default async function ProgramPage({ params }) {
-  const slug = params.slug; // Get slug safely here
+  const { slug } = params;
   const program = await getProgram(slug);
 
   if (!program) return <div>Program not found.</div>;
@@ -47,8 +56,6 @@ export default async function ProgramPage({ params }) {
               Explore Our Instruments
             </h2>
             <div className="grid grid-cols-2 gap-6">
-              {" "}
-              {/* Updated grid class */}
               {program.gallery.filter(Boolean).map((item) => (
                 <Link key={item._id} href={`/gallery/${item.slug.current}`}>
                   <div className="relative h-64 w-full rounded-lg overflow-hidden shadow-md transition-transform hover:scale-105">
