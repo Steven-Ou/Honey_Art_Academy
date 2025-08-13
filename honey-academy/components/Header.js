@@ -13,7 +13,7 @@ export default function Header() {
       <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
         <Link // 2. Use Link for the main logo/title
           href="/"
-          className="text-2xl font-bold text-primary-dark hover:text-primary transition-colors"
+          className="flex items-center gap-2 text-2xl font-bold hover:opacity-80 transition-opacity"
         >
           <i className="fas fa-palette mr-2"></i>Honey Art Academy
         </Link>
