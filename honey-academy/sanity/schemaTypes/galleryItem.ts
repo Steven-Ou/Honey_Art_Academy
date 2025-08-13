@@ -26,30 +26,17 @@ export const galleryItem = defineType({
       title: "Image",
       type: "image",
     }),
-
-    // This is our new "Page Builder" field
     defineField({
       name: "content",
       title: "Page Content",
       type: "array",
       of: [
-        { type: "block" }, // Standard rich text
-        { type: "image" }, // Allow adding images directly in the flow
-        {
-          type: "object",
-          name: "videoEmbed",
-          title: "Video Embed",
-          fields: [
-            {
-              name: "url",
-              type: "url",
-              title: "YouTube or Vimeo URL",
-            },
-          ],
-        },
+        { type: "block" },
+        { type: "image" },
+        // Reference the new videoEmbed type here
+        { type: "videoEmbed" }, 
       ],
     }),
-
     defineField({
       name: "contactUrl",
       title: "Contact Button URL",
