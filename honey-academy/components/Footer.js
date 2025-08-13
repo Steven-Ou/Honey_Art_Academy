@@ -10,7 +10,7 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="bg-primary-dark text-white">
+    <footer className="bg-brandRed text-white">
       <div className="container mx-auto px-6 py-12">
         <div className="grid md:grid-cols-3 gap-8 text-center md:text-left">
           {/* Logo and Copyright */}
