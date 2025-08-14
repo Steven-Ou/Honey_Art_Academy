@@ -10,6 +10,8 @@ import { heroSection } from "./heroSection";
 import { textWithImageSection } from "./textWithImageSection";
 import { instructor } from "./instructor";
 import { teamSection } from "./teamSection";
+import { event } from "./event";
+import { settings } from "./setting";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   // Add the new types to this array
@@ -24,5 +26,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     textWithImageSection,
     instructor,
     teamSection,
+    event,
+    settings,
   ],
 };
