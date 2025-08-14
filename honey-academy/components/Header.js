@@ -1,86 +1,58 @@
-"use client";
-import React, { useState } from "react";
-import Link from "next/link"; // 1. Import the Link component
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { urlFor } from "@/sanity/lib/image";
 
-export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+// The getUrlForLink function helps determine the correct path for different content types
+const getUrlForLink = (link) => {
+  switch (link._type) {
+    case "program":
+      return `/programs/${link.slug}`;
+    case "aboutPage":
+      return "/about";
+    case "event":
+      return `/events/${link.slug}`;
+    default:
+      return "/";
+  }
+};
 
+// The Header now receives props
+export default function Header({ logo, mainNav }) {
   return (
-    <header
-      id="header"
-      className="bg-brandRed text-white backdrop-blur-lg sticky top-0 z-50 shadow-md"
-    >
-      <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
-        <Link // 2. Use Link for the main logo/title
-          href="/"
-          className="flex items-center gap-2 text-2xl font-bold hover:opacity-80 transition-opacity"
-        >
-          <i className="fas fa-palette mr-2"></i>Honey Art Academy
-        </Link>
-        <div className="hidden md:flex items-center space-x-8">
-          {/* 3. Update all links to use the Link component and absolute paths */}
-          <Link
-            href="/#about"
-            className="text-gray-600 hover:text-primary font-medium"
-          >
-            About
+    <header className="bg-white shadow-md">
+      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+        <div className="text-2xl font-bold text-primary">
+          <Link href="/">
+            {logo ? (
+              <Image
+                src={urlFor(logo).url()}
+                alt="Honey Art Academy Logo"
+                width={150}
+                height={50}
+              />
+            ) : (
+              "Honey Art Academy"
+            )}
           </Link>
-          <Link
-            href="/#programs"
-            className="text-gray-600 hover:text-primary font-medium"
-          >
-            Programs
-          </Link>
-          <Link
-            href="/#testimonials"
-            className="text-gray-600 hover:text-primary font-medium"
-          >
-            Testimonials
-          </Link>
+        </div>
+        <nav className="hidden md:flex items-center space-x-6">
+          {/* Map over the dynamic navigation links */}
+          {mainNav?.map((item) => (
+            <Link key={item._id || item.title} href={getUrlForLink(item)}>
+              <span className="text-gray-600 hover:text-primary transition-colors">
+                {item.title}
+              </span>
+            </Link>
+          ))}
+          {/* You can still have static links if you want */}
           <Link
             href="/#contact"
             className="bg-primary text-white font-bold py-2 px-6 rounded-full cta-button hover:bg-primary-dark"
           >
             Contact Us
           </Link>
-        </div>
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden text-secondary"
-        >
-          <i className="fas fa-bars text-2xl"></i>
-        </button>
-      </nav>
-      {/* Mobile Menu */}
-      <div className={`${isMenuOpen ? "block" : "hidden"} md:hidden`}>
-        <Link
-          href="/#about"
-          className="block py-2 px-6 text-sm hover:bg-primary-light"
-          onClick={() => setIsMenuOpen(false)}
-        >
-          About
-        </Link>
-        <Link
-          href="/#programs"
-          className="block py-2 px-6 text-sm hover:bg-primary-light"
-          onClick={() => setIsMenuOpen(false)}
-        >
-          Programs
-        </Link>
-        <Link
-          href="/#testimonials"
-          className="block py-2 px-6 text-sm hover:bg-primary-light"
-          onClick={() => setIsMenuOpen(false)}
-        >
-          Testimonials
-        </Link>
-        <Link
-          href="/#contact"
-          className="block py-2 px-6 text-sm hover:bg-primary-light"
-          onClick={() => setIsMenuOpen(false)}
-        >
-          Contact Us
-        </Link>
+        </nav>
       </div>
     </header>
   );
