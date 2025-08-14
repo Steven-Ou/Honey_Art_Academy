@@ -1,3 +1,7 @@
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+config.autoAddCss = false; // This prevents Font Awesome from adding its own CSS
+
 import { client } from "@/sanity/lib/client";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
