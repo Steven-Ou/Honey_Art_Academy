@@ -13,6 +13,7 @@ import { teamSection } from "./teamSection";
 import { event } from "./event";
 import { settings } from "./setting";
 import { imageWithCaption } from "./imageWithCaption";
+import { navLink } from "./navLink";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   // Add the new types to this array
@@ -30,5 +31,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     event,
     settings,
     imageWithCaption,
+    navLink,
   ],
 };
