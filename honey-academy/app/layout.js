@@ -13,12 +13,16 @@ const settingsQuery = `*[_type == "settings"][0]{
     linkText,
     linkType,
     "slug": internalLink->slug.current,
-    "type": internalLink->_type, // This line ensures the type is fetched
+    "type": internalLink->_type,
     anchorLink,
     externalUrl
   },
   socialLinks,
-  copyrightText
+  copyrightText,
+  // Add these lines to fetch contact info
+  address,
+  phone,
+  email
 }`;
 
 export default async function RootLayout({ children }) {
