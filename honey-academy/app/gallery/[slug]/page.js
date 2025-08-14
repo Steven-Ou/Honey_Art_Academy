@@ -5,23 +5,56 @@ import Image from "next/image";
 import Link from "next/link";
 import { PortableText } from "@portabletext/react";
 
-// A custom component to render the video embed
+// A more robust component to render video embeds from YouTube or Vimeo
 const VideoEmbed = ({ value }) => {
-  const url = value.url;
+  const { url } = value;
   if (!url) return null;
-  // Simple logic to create an embeddable URL
-  const embedUrl = url.includes("youtube.com")
-    ? url.replace("watch?v=", "embed/")
-    : url;
+
+  let embedUrl = "";
+
+  // Function to extract video ID from various YouTube URL formats
+  const getYouTubeId = (ytUrl) => {
+    const regExp =
+      /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = ytUrl.match(regExp);
+    return match && match[2].length === 11 ? match[2] : null;
+  };
+
+  // Function to extract video ID from Vimeo URL
+  const getVimeoId = (vimeoUrl) => {
+    const regExp = /vimeo.*\/(\d+)/;
+    const match = vimeoUrl.match(regExp);
+    return match ? match[1] : null;
+  };
+
+  if (url.includes("youtube.com") || url.includes("youtu.be")) {
+    const videoId = getYouTubeId(url);
+    if (videoId) {
+      embedUrl = `https://www.youtube.com/embed/${videoId}`;
+    }
+  } else if (url.includes("vimeo.com")) {
+    const videoId = getVimeoId(url);
+    if (videoId) {
+      embedUrl = `https://player.vimeo.com/video/${videoId}`;
+    }
+  }
+
+  // If we couldn't create an embed URL, don't render anything
+  if (!embedUrl) {
+    return <p>Could not embed video from URL: {url}</p>;
+  }
 
   return (
-    <div className="my-8 aspect-w-16 aspect-h-9">
+    <div
+      className="my-8 relative"
+      style={{ paddingBottom: "56.25%", height: 0 }}
+    >
       <iframe
         src={embedUrl}
         title="Video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
-        className="w-full h-full rounded-lg"
+        className="absolute top-0 left-0 w-full h-full rounded-lg"
       ></iframe>
     </div>
   );
@@ -31,7 +64,6 @@ const VideoEmbed = ({ value }) => {
 const ptComponents = {
   types: {
     videoEmbed: VideoEmbed,
-    // you can add more custom components here
   },
 };
 
@@ -40,7 +72,7 @@ async function getGalleryItem(slug) {
     title,
     subtitle,
     image,
-    content, // Fetch the new 'content' field
+    content,
     contactUrl
   }`;
   const item = await client.fetch(query, { slug });
