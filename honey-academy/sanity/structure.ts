@@ -8,6 +8,6 @@ export const structure = (S) =>
         .child(S.document().schemaType("aboutPage").documentId("aboutPage")),
       S.documentTypeListItem("instructor").title("Instructors"),
       ...S.documentTypeListItems().filter(
-        (listItem) => !["aboutPage"].includes(listItem.getId())
+        (listItem) => !["aboutPage", "instructor"].includes(listItem.getId())
       ),
     ]);

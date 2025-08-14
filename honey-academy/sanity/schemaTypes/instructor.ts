@@ -15,9 +15,17 @@ export const instructor = defineType({
     }),
     defineField({
       name: "title",
-      title: "Title / Instrument",
+      title: "Title / Role",
       type: "string",
       description: 'E.g., "Piano Instructor", "Art Teacher"',
+    }),
+    // ADD THIS NEW FIELD
+    defineField({
+      name: "programs",
+      title: "Associated Programs",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "program" }] }],
+      description: "Select the programs this instructor is a part of.",
     }),
     defineField({
       name: "photo",
