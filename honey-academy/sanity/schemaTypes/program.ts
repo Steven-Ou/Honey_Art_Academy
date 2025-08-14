@@ -7,18 +7,13 @@ export const program = defineType({
   type: "document",
   icon: BookIcon,
   fields: [
-    // ... other fields
     defineField({
       name: "title",
       title: "Title",
       type: "string",
       validation: (rule) => rule.required(),
     }),
-    defineField({
-      name: "subtitle",
-      title: "Subtitle",
-      type: "string",
-    }),
+    defineField({ name: "subtitle", title: "Subtitle", type: "string" }),
     defineField({
       name: "slug",
       title: "Slug",
@@ -39,25 +34,12 @@ export const program = defineType({
       type: "text",
       rows: 3,
     }),
-    // UPDATED THIS FIELD
+    // Use the new blockContent type
     defineField({
       name: "body",
       title: "Main Content",
       description: "The full details of the program.",
-      type: "array",
-      of: [
-        {
-          type: "block",
-          styles: [
-            { title: "Normal", value: "normal" },
-            { title: "Center", value: "center" },
-            { title: "Right", value: "right" },
-            { title: "Heading 2", value: "h2" },
-            { title: "Heading 3", value: "h3" },
-            { title: "Quote", value: "blockquote" },
-          ],
-        },
-      ],
+      type: "blockContent",
     }),
     defineField({
       name: "featured",
@@ -74,10 +56,6 @@ export const program = defineType({
     }),
   ],
   preview: {
-    select: {
-      title: "title",
-      subtitle: "description",
-      media: "image",
-    },
+    select: { title: "title", subtitle: "description", media: "image" },
   },
 });
