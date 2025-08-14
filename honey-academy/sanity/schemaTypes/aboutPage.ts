@@ -7,15 +7,28 @@ export const aboutPage = defineType({
   type: "document",
   icon: UserIcon,
   fields: [
+    // ... other fields
     defineField({ name: "title", title: "Title", type: "string" }),
     defineField({ name: "heroImage", title: "Hero Image", type: "image" }),
     defineField({ name: "storyTitle", title: "Story Title", type: "string" }),
-    // Updated to be a rich text editor
+    // UPDATED THIS FIELD
     defineField({
       name: "storyText",
       title: "Story Text",
       type: "array",
-      of: [{ type: "block" }],
+      of: [
+        {
+          type: "block",
+          styles: [
+            { title: "Normal", value: "normal" },
+            { title: "Center", value: "center" },
+            { title: "Right", value: "right" },
+            { title: "Heading 2", value: "h2" },
+            { title: "Heading 3", value: "h3" },
+            { title: "Quote", value: "blockquote" },
+          ],
+        },
+      ],
     }),
     defineField({ name: "storyImage", title: "Story Image", type: "image" }),
     defineField({
@@ -23,12 +36,24 @@ export const aboutPage = defineType({
       title: "Philosophy Title",
       type: "string",
     }),
-    // Updated to be a rich text editor
+    // UPDATED THIS FIELD
     defineField({
       name: "philosophyText",
       title: "Philosophy Text",
       type: "array",
-      of: [{ type: "block" }],
+      of: [
+        {
+          type: "block",
+          styles: [
+            { title: "Normal", value: "normal" },
+            { title: "Center", value: "center" },
+            { title: "Right", value: "right" },
+            { title: "Heading 2", value: "h2" },
+            { title: "Heading 3", value: "h3" },
+            { title: "Quote", value: "blockquote" },
+          ],
+        },
+      ],
     }),
     defineField({
       name: "philosophyImage",
