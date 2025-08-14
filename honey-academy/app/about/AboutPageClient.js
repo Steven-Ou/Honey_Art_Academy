@@ -6,7 +6,7 @@ import Link from "next/link";
 import { PortableText } from "@portabletext/react";
 import { urlFor } from "@/sanity/lib/image";
 
-// --- Reusable Components (moved from the page.js file) ---
+// --- Reusable Components (No changes here) ---
 
 const ptComponents = {
   marks: {
@@ -75,8 +75,8 @@ const TextWithImageSection = ({ section }) => (
   </div>
 );
 
+// --- UPDATED TeamSection Component ---
 const TeamSection = ({ section }) => {
-  const [activeTab, setActiveTab] = useState("");
   const groupedInstructors = section.instructors?.reduce((acc, instructor) => {
     instructor.programs?.forEach((program) => {
       if (!acc[program.title]) {
@@ -87,22 +87,28 @@ const TeamSection = ({ section }) => {
     return acc;
   }, {});
 
+  const [activeTab, setActiveTab] = useState(
+    Object.keys(groupedInstructors || {})[0] || ""
+  );
+
   if (!groupedInstructors) return null;
-  if (activeTab === "" && Object.keys(groupedInstructors).length > 0) {
-    setActiveTab(Object.keys(groupedInstructors)[0]);
-  }
+
   const slugify = (text) => text.toLowerCase().replace(/\s+/g, "-");
+
+  // Get the list of instructors for the currently active tab
+  const activeInstructors = groupedInstructors[activeTab] || [];
 
   return (
     <div className="text-center">
       <h2 className="text-4xl font-bold text-primary-dark mb-8">
         {section.heading}
       </h2>
+
+      {/* This is the clickable navigation row */}
       <div className="flex flex-wrap justify-center gap-4 mb-12">
         {Object.keys(groupedInstructors).map((programTitle) => (
-          <a
+          <button
             key={programTitle}
-            href={`#${slugify(programTitle)}`}
             onClick={() => setActiveTab(programTitle)}
             className={`px-6 py-2 rounded-full font-semibold transition-colors duration-300 ${
               activeTab === programTitle
@@ -111,41 +117,36 @@ const TeamSection = ({ section }) => {
             }`}
           >
             {programTitle}
-          </a>
+          </button>
         ))}
       </div>
-      <div className="space-y-16">
-        {Object.entries(groupedInstructors).map(
-          ([programTitle, instructors]) => (
-            <div key={programTitle} id={slugify(programTitle)}>
-              <h3 className="text-3xl font-semibold text-secondary mb-8">
-                {programTitle}
-              </h3>
-              <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-10">
-                {instructors.map((instructor) => (
-                  <div key={instructor._id} className="text-center w-40">
-                    <div className="relative w-32 h-32 mx-auto rounded-full shadow-lg transition-transform duration-300 hover:scale-105">
-                      <Image
-                        src={urlFor(instructor.photo).url()}
-                        alt={instructor.name}
-                        fill
-                        className="object-cover rounded-full"
-                      />
-                    </div>
-                    <h4 className="text-xl font-bold mt-4 text-primary-dark">
-                      {instructor.name}
-                    </h4>
-                    <p className="text-gray-500">{instructor.title}</p>
-                  </div>
-                ))}
+
+      {/* This part renders ONLY the teachers for the active category */}
+      <div id="instructors-grid" className="mt-8">
+        <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-10">
+          {activeInstructors.map((instructor) => (
+            <div key={instructor._id} className="text-center w-40">
+              <div className="relative w-32 h-32 mx-auto rounded-full shadow-lg transition-transform duration-300 hover:scale-105">
+                <Image
+                  src={urlFor(instructor.photo).url()}
+                  alt={instructor.name}
+                  fill
+                  className="object-cover rounded-full"
+                />
               </div>
+              <h4 className="text-xl font-bold mt-4 text-primary-dark">
+                {instructor.name}
+              </h4>
+              <p className="text-gray-500">{instructor.title}</p>
             </div>
-          )
-        )}
+          ))}
+        </div>
       </div>
     </div>
   );
 };
+
+// --- No changes below this line ---
 
 const sectionComponents = {
   heroSection: HeroSection,
@@ -153,7 +154,6 @@ const sectionComponents = {
   teamSection: TeamSection,
 };
 
-// This is the main component we'll export
 export default function AboutPageClient({ pageData }) {
   return (
     <div className="bg-white">
