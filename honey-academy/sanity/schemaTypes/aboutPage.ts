@@ -22,6 +22,7 @@ export const aboutPage = defineType({
       of: [
         { type: "heroSection" },
         { type: "textWithImageSection" },
+        { type: "teamSection" },
         // You can add more section types here in the future
       ],
     }),
