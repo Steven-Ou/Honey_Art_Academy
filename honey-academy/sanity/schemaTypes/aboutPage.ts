@@ -1,74 +1,38 @@
 import { defineField, defineType } from "sanity";
-import { CogIcon } from "@sanity/icons";
+import { UserIcon } from "@sanity/icons";
 
-export const settings = defineType({
-  name: "settings",
-  title: "Site Settings",
+// Ensure the constant name matches the export and what's being imported in index.ts
+export const aboutPage = defineType({
+  name: "aboutPage",
+  title: "About Page",
   type: "document",
-  icon: CogIcon,
+  icon: UserIcon,
   fields: [
     defineField({
-      name: "logo",
-      title: "Logo",
-      type: "image",
-      description: "The main logo to display in the header.",
-    }),
-    defineField({
-      name: "mainNav",
-      title: "Main Navigation",
-      description: "Select pages or events to show in the main navigation bar.",
-      type: "array",
-      of: [
-        // Each reference now has a unique 'name'
-        {
-          name: "programReference",
-          type: "reference",
-          title: "Program Link",
-          to: [{ type: "program" }],
-        },
-        {
-          name: "eventReference",
-          type: "reference",
-          title: "Event Link",
-          to: [{ type: "event" }],
-        },
-        {
-          name: "aboutPageReference",
-          type: "reference",
-          title: "About Page Link",
-          to: [{ type: "aboutPage" }],
-        },
-      ],
-    }),
-    defineField({
-      name: "socialLinks",
-      title: "Footer Social Media Links",
-      type: "array",
-      of: [
-        {
-          type: "object",
-          fields: [
-            {
-              name: "platform",
-              type: "string",
-              title: "Platform (e.g., Facebook, Instagram)",
-            },
-            { name: "url", type: "url", title: "URL" },
-          ],
-        },
-      ],
-    }),
-    defineField({
-      name: "copyrightText",
-      title: "Footer Copyright Text",
+      name: "title",
+      title: "Page Title",
+      description:
+        "The title of the page, used for internal reference in the Studio.",
       type: "string",
-      initialValue: `© ${new Date().getFullYear()} Honey Art Academy. All rights reserved.`,
+    }),
+    defineField({
+      name: "pageBuilder",
+      title: "Page Builder",
+      type: "array",
+      of: [
+        { type: "heroSection" },
+        { type: "textWithImageSection" },
+        { type: "teamSection" },
+      ],
     }),
   ],
   preview: {
-    prepare() {
+    select: {
+      title: "title",
+    },
+    prepare({ title }) {
       return {
-        title: "Site Settings",
+        title: title || "About Page",
       };
     },
   },
