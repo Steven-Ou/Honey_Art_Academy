@@ -31,7 +31,13 @@ export const navLink = defineType({
       name: "internalLink",
       title: "Internal Page",
       type: "reference",
-      to: [{ type: "aboutPage" }, { type: "program" }, { type: "event" }],
+      // THIS IS THE FIX: Add 'facilitiesPage' to this list
+      to: [
+        { type: "aboutPage" },
+        { type: "program" },
+        { type: "event" },
+        { type: "facilitiesPage" },
+      ],
       hidden: ({ parent }) => parent?.linkType !== "internal",
     }),
     defineField({
