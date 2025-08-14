@@ -7,6 +7,7 @@ export const program = defineType({
   type: "document",
   icon: BookIcon,
   fields: [
+    // ... other fields
     defineField({
       name: "title",
       title: "Title",
@@ -38,12 +39,25 @@ export const program = defineType({
       type: "text",
       rows: 3,
     }),
+    // UPDATED THIS FIELD
     defineField({
       name: "body",
       title: "Main Content",
       description: "The full details of the program.",
       type: "array",
-      of: [{ type: "block" }], // This makes it a rich text editor
+      of: [
+        {
+          type: "block",
+          styles: [
+            { title: "Normal", value: "normal" },
+            { title: "Center", value: "center" },
+            { title: "Right", value: "right" },
+            { title: "Heading 2", value: "h2" },
+            { title: "Heading 3", value: "h3" },
+            { title: "Quote", value: "blockquote" },
+          ],
+        },
+      ],
     }),
     defineField({
       name: "featured",
