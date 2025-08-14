@@ -137,4 +137,3 @@ export default async function GalleryItemPage({ params }) {
     </main>
   );
 }
-s;
