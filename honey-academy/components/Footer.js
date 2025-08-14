@@ -1,7 +1,16 @@
 import React from "react";
 import Link from "next/link";
+// Import the Font Awesome components and icons
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faYoutube, faInstagram } from "@fortawesome/free-brands-svg-icons";
 
-// The Footer now receives props
+// Create a map to look up the correct icon object based on the string from Sanity
+const iconMap = {
+  youtube: faYoutube,
+  instagram: faInstagram,
+  // Add other platforms here as you need them, e.g., facebook: faFacebook
+};
+
 export default function Footer({ socialLinks, copyrightText }) {
   return (
     <footer className="bg-primary-dark text-white">
@@ -17,18 +26,22 @@ export default function Footer({ socialLinks, copyrightText }) {
             <h3 className="text-xl font-semibold mb-3">Follow Us</h3>
             <div className="flex space-x-4">
               {/* Map over the dynamic social links */}
-              {socialLinks?.map((link, index) => (
-                <a
-                  key={index}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary-light hover:text-white transition-colors text-2xl"
-                >
-                  {/* You would typically use an icon library here, but text works for now */}
-                  <i className={`fab fa-${link.platform.toLowerCase()}`}></i>
-                </a>
-              ))}
+              {socialLinks?.map((link) => {
+                const icon = iconMap[link.platform.toLowerCase()];
+                if (!icon) return null; // Don't render if the icon doesn't exist in our map
+
+                return (
+                  <a
+                    key={link.platform}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary-light hover:text-white transition-colors text-2xl"
+                  >
+                    <FontAwesomeIcon icon={icon} />
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>
