@@ -1,30 +1,34 @@
-import { Inter } from "next/font/google";
-import "./globals.css";
+import { client } from "@/sanity/lib/client";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+// The query to fetch all global settings and navigation link details
+const settingsQuery = `*[_type == "settings"][0]{
+  logo,
+  mainNav[]->{
+    _type,
+    title,
+    "slug": slug.current
+  },
+  socialLinks,
+  copyrightText
+}`;
 
-export const metadata = {
-  title: "Honey Art Academy - Nurturing Creative Souls",
-  description:
-    "A vibrant community dedicated to providing the finest academic and creative education in dance, art, and music.",
-};
+// The layout is now an async function
+export default async function RootLayout({ children }) {
+  const settings = await client.fetch(settingsQuery);
 
-export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        {/* Font Awesome for Icons */}
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      <body>
+        {/* Pass the fetched data as props to the Header and Footer */}
+        <Header logo={settings.logo} mainNav={settings.mainNav} />
+        <main>{children}</main>
+        <Footer
+          socialLinks={settings.socialLinks}
+          copyrightText={settings.copyrightText}
         />
-      </head>
-      <body className={inter.className}>
-        <Header />
-        {children}
-        <Footer />
       </body>
     </html>
   );
