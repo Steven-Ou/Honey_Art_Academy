@@ -1,35 +1,75 @@
 import { defineField, defineType } from "sanity";
-import { UserIcon } from "@sanity/icons";
+import { CogIcon } from "@sanity/icons";
 
-export const aboutPage = defineType({
-  name: "aboutPage",
-  title: "About Page",
+export const settings = defineType({
+  name: "settings",
+  title: "Site Settings",
   type: "document",
-  icon: UserIcon,
+  icon: CogIcon,
   fields: [
     defineField({
-      name: "title",
-      title: "Page Title",
-      description:
-        "The title of the page, used for internal reference in the Studio.",
-      type: "string",
+      name: "logo",
+      title: "Logo",
+      type: "image",
+      description: "The main logo to display in the header.",
     }),
-    // This is the new Page Builder field
     defineField({
-      name: "pageBuilder",
-      title: "Page Builder",
+      name: "mainNav",
+      title: "Main Navigation",
+      description: "Select pages or events to show in the main navigation bar.",
       type: "array",
       of: [
-        { type: "heroSection" },
-        { type: "textWithImageSection" },
-        { type: "teamSection" },
-        // You can add more section types here in the future
+        // Each reference now has a unique 'name'
+        {
+          name: "programReference",
+          type: "reference",
+          title: "Program Link",
+          to: [{ type: "program" }],
+        },
+        {
+          name: "eventReference",
+          type: "reference",
+          title: "Event Link",
+          to: [{ type: "event" }],
+        },
+        {
+          name: "aboutPageReference",
+          type: "reference",
+          title: "About Page Link",
+          to: [{ type: "aboutPage" }],
+        },
       ],
+    }),
+    defineField({
+      name: "socialLinks",
+      title: "Footer Social Media Links",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "platform",
+              type: "string",
+              title: "Platform (e.g., Facebook, Instagram)",
+            },
+            { name: "url", type: "url", title: "URL" },
+          ],
+        },
+      ],
+    }),
+    defineField({
+      name: "copyrightText",
+      title: "Footer Copyright Text",
+      type: "string",
+      initialValue: `© ${new Date().getFullYear()} Honey Art Academy. All rights reserved.`,
     }),
   ],
   preview: {
-    select: {
-      title: "title",
+    prepare() {
+      return {
+        title: "Site Settings",
+      };
     },
   },
 });
