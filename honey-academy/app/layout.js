@@ -46,6 +46,10 @@ export default async function RootLayout({ children }) {
         <Footer
           socialLinks={settings.socialLinks}
           copyrightText={settings.copyrightText}
+          // Pass the new props to the Footer
+          address={settings.address}
+          phone={settings.phone}
+          email={settings.email}
         />
       </body>
     </html>
