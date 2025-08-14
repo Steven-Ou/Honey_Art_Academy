@@ -1,16 +1,14 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link"; // Import Link
+import Link from "next/link";
 import { client } from "@/sanity/lib/client";
-import { urlFor } from "@/sanity/lib/image"; // Import the image URL builder
+import { urlFor } from "@/sanity/lib/image";
 
-// Update ProgramCard to accept image and slug
-const ProgramCard = ({ title, description, image, slug }) => (
-  // Wrap the card in a Link component
+// UPDATE ProgramCard to accept and display the subtitle
+const ProgramCard = ({ title, subtitle, description, image, slug }) => (
   <Link href={`/programs/${slug.current}`}>
     <div className="program-card bg-white rounded-lg shadow-lg overflow-hidden h-full">
       <div className="relative w-full h-56 bg-primary-light">
-        {/* Use the new image field */}
         <Image
           src={image ? urlFor(image).url() : "/images.png"}
           alt={title}
@@ -19,7 +17,9 @@ const ProgramCard = ({ title, description, image, slug }) => (
         />
       </div>
       <div className="p-6">
-        <h3 className="text-2xl font-bold mb-2 text-secondary">{title}</h3>
+        <h3 className="text-2xl font-bold mb-1 text-secondary">{title}</h3>
+        {/* ADD THIS LINE to display the subtitle */}
+        {subtitle && <p className="text-md text-gray-500 mb-2">{subtitle}</p>}
         <p className="text-gray-600 mb-4">{description}</p>
         <div className="font-bold text-primary hover:text-primary-dark">
           Learn More <i className="fas fa-arrow-right ml-1"></i>
@@ -30,10 +30,11 @@ const ProgramCard = ({ title, description, image, slug }) => (
 );
 
 export default async function Programs() {
-  // Update the query to include the new fields
+  // UPDATE the query to include the new 'subtitle' field
   const programData = await client.fetch(`*[_type == "program"]{
     _id,
     title,
+    subtitle,
     description,
     slug,
     image
@@ -54,6 +55,7 @@ export default async function Programs() {
             <ProgramCard
               key={prog._id}
               title={prog.title}
+              subtitle={prog.subtitle} // Pass the subtitle prop
               description={prog.description}
               image={prog.image}
               slug={prog.slug}
