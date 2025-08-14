@@ -4,12 +4,12 @@ import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import Link from "next/link";
 
-// ADD THIS ptComponents object
 const ptComponents = {
   marks: {
     center: ({ children }) => <div className="text-center">{children}</div>,
     right: ({ children }) => <div className="text-right">{children}</div>,
     left: ({ children }) => <div className="text-left">{children}</div>,
+    underline: ({ children }) => <span className="underline">{children}</span>, // <-- ADD THIS LINE
   },
 };
 
