@@ -4,6 +4,15 @@ import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import Link from "next/link";
 
+// ADD THIS ptComponents object
+const ptComponents = {
+  marks: {
+    center: ({ children }) => <div className="text-center">{children}</div>,
+    right: ({ children }) => <div className="text-right">{children}</div>,
+    left: ({ children }) => <div className="text-left">{children}</div>,
+  },
+};
+
 async function getAboutPage() {
   const query = `*[_type == "aboutPage"][0]`;
   return client.fetch(query);
@@ -11,19 +20,14 @@ async function getAboutPage() {
 
 export default async function AboutPage() {
   const data = await getAboutPage();
-
-  // If no data has been published in Sanity, show a message instead of crashing
-  if (!data) {
+  if (!data)
     return (
       <div className="text-center py-24">
         About page content has not been published yet.
       </div>
     );
-  }
-
   return (
     <div className="bg-white">
-      {/* Hero Section */}
       <div className="relative h-[50vh] w-full">
         <Image
           src={urlFor(data.heroImage).url()}
@@ -35,16 +39,14 @@ export default async function AboutPage() {
           <h1 className="text-5xl font-extrabold text-white">{data.title}</h1>
         </div>
       </div>
-
       <div className="container mx-auto px-6 py-16">
-        {/* Story Section */}
         <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
           <div>
             <h2 className="text-4xl font-bold text-primary-dark mb-4">
               {data.storyTitle}
             </h2>
             <div className="prose lg:prose-xl">
-              <PortableText value={data.storyText} />
+              <PortableText value={data.storyText} components={ptComponents} />
             </div>
           </div>
           <div className="relative h-96 w-full rounded-lg shadow-xl">
@@ -56,8 +58,6 @@ export default async function AboutPage() {
             />
           </div>
         </div>
-
-        {/* Philosophy Section */}
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="relative h-96 w-full rounded-lg shadow-xl md:order-last">
             <Image
@@ -72,12 +72,14 @@ export default async function AboutPage() {
               {data.philosophyTitle}
             </h2>
             <div className="prose lg:prose-xl">
-              <PortableText value={data.philosophyText} />
+              <PortableText
+                value={data.philosophyText}
+                components={ptComponents}
+              />
             </div>
           </div>
         </div>
       </div>
-      {/* CTA Section */}
       <div className="bg-primary-light py-16 text-center">
         <h2 className="text-3xl font-bold text-primary-dark">
           Ready to Join Us?
