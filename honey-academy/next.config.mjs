@@ -3,10 +3,8 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  productionBrowserSourceMaps: true,
   images: {
-    // ADD THIS LINE to enable AVIF support
-    formats: ["image/avif", "image/webp"],
+    // We are removing the formats array to use Next.js defaults
     remotePatterns: [
       {
         protocol: "https",

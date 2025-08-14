@@ -8,15 +8,32 @@ export const settings = defineType({
   icon: CogIcon,
   fields: [
     defineField({ name: "logo", title: "Logo", type: "image" }),
-    // Replace the old mainNav field with this one
     defineField({
       name: "mainNav",
       title: "Main Navigation",
       description: "Add and reorder links for the main site header.",
       type: "array",
-      of: [{ type: "navLink" }], // Use our new, flexible link type
+      of: [{ type: "navLink" }],
     }),
-    // ... (your other fields like socialLinks and copyrightText remain the same)
+
+    // START of new fields to add
+    defineField({
+      name: "address",
+      title: "Address",
+      type: "string",
+    }),
+    defineField({
+      name: "phone",
+      title: "Phone Number",
+      type: "string",
+    }),
+    defineField({
+      name: "email",
+      title: "Email Address",
+      type: "string",
+    }),
+    // END of new fields to add
+
     defineField({
       name: "socialLinks",
       title: "Footer Social Media Links",
