@@ -10,9 +10,8 @@ const getUrlForLink = (link) => {
       // Handle different internal document types
       if (link.type === "aboutPage") return "/about";
       if (link.type === "program") return `/programs/${link.slug}`;
-      if (link.type === "event") return `/events/${link.slug}`;
-      // Add this new condition for the facilities page
       if (link.type === "facilitiesPage") return "/facilities";
+      if (link.type === "event") return `/events/${link.slug}`;
       return "/";
     case "anchor":
       return `/#${link.anchorLink}`;
@@ -29,7 +28,8 @@ export default function Header({ logo, mainNav }) {
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         <div className="text-2xl font-bold text-primary">
           <Link href="/">
-            {logo ? (
+            {/* This check is now more robust */}
+            {logo && logo.asset ? (
               <Image
                 src={urlFor(logo).url()}
                 alt="Honey Art Academy Logo"
