@@ -10,7 +10,6 @@ export const textWithImageSection = defineType({
       title: "Title",
       type: "string",
     }),
-    // NEW: Add a tagline field
     defineField({
       name: "tagline",
       title: "Tagline",
@@ -27,15 +26,18 @@ export const textWithImageSection = defineType({
       name: "image",
       title: "Image",
       type: "image",
-      options: { hotspot: true },
-      // NEW: Add a caption field to the image
-      fields: [
-        defineField({
-          name: "caption",
-          title: "Caption",
-          type: "string",
-        }),
-      ],
+      // The 'fields' array must be inside the 'options' object.
+      options: {
+        hotspot: true,
+        // The caption field is now correctly placed here
+        fields: [
+          defineField({
+            name: "caption",
+            title: "Caption",
+            type: "string",
+          }),
+        ],
+      },
     }),
     defineField({
       name: "imagePlacement",

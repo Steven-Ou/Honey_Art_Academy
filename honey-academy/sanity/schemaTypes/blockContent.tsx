@@ -1,10 +1,16 @@
 import React from "react";
 import { defineType, defineArrayMember } from "sanity";
 
-// Custom components to render simple text as icons
-const LeftAlignIcon = () => <div style={{ textAlign: "left" }}>L</div>;
-const CenterAlignIcon = () => <div style={{ textAlign: "center" }}>C</div>;
-const RightAlignIcon = () => <div style={{ textAlign: "right" }}>R</div>;
+// ... (Keep the custom icon components at the top)
+const LeftAlignIcon = () => (
+  <div style={{ textAlign: "left", width: "100%" }}>L</div>
+);
+const CenterAlignIcon = () => (
+  <div style={{ textAlign: "center", width: "100%" }}>C</div>
+);
+const RightAlignIcon = () => (
+  <div style={{ textAlign: "right", width: "100%" }}>R</div>
+);
 
 export const blockContent = defineType({
   title: "Block Content",
@@ -14,6 +20,7 @@ export const blockContent = defineType({
     defineArrayMember({
       title: "Block",
       type: "block",
+      // ... (styles and lists remain the same)
       styles: [
         { title: "Normal", value: "normal" },
         { title: "Heading 1", value: "h1" },
@@ -28,7 +35,7 @@ export const blockContent = defineType({
         decorators: [
           { title: "Strong", value: "strong" },
           { title: "Emphasis", value: "em" },
-          { title: "Underline", value: "underline" }, // <-- ADD THIS LINE
+          { title: "Underline", value: "underline" },
           { title: "Left Align", value: "left", icon: LeftAlignIcon },
           { title: "Center Align", value: "center", icon: CenterAlignIcon },
           { title: "Right Align", value: "right", icon: RightAlignIcon },
@@ -43,9 +50,9 @@ export const blockContent = defineType({
         ],
       },
     }),
+    // REPLACE the old image type with our new custom one
     defineArrayMember({
-      type: "image",
-      options: { hotspot: true },
+      type: "imageWithCaption",
     }),
     defineArrayMember({
       type: "videoEmbed",
