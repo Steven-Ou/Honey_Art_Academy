@@ -5,7 +5,7 @@ import { galleryItem } from "./galleryItem";
 import { aboutPage } from "./aboutPage";
 import { videoEmbed } from "./videoEmbed";
 // Update the import to point to the .tsx file
-import { blockContent } from "./blockContent.tsx";
+import { blockContent } from "./blockContent";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
