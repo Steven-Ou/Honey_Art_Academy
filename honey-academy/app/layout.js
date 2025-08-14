@@ -1,11 +1,10 @@
-import { config } from "@fortawesome/fontawesome-svg-core";
-import "@fortawesome/fontawesome-svg-core/styles.css";
-config.autoAddCss = false;
-
 import { client } from "@/sanity/lib/client";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "./globals.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+config.autoAddCss = false;
 
 const settingsQuery = `*[_type == "settings"][0]{
   logo,
@@ -40,6 +39,7 @@ export default async function RootLayout({ children }) {
         <Header logo={settings.logo} mainNav={settings.mainNav} />
         <main>{children}</main>
         <Footer
+          logo={settings.logo} // Add this prop
           socialLinks={settings.socialLinks}
           copyrightText={settings.copyrightText}
           address={settings.address}
