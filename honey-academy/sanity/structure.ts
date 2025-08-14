@@ -1,5 +1,5 @@
 import { CogIcon } from "@sanity/icons"; // Make sure this import is at the top
-
+import {CameraIcon} from "@sanity/icons";
 export const structure = (S) =>
   S.list()
     .title("Content")
@@ -11,6 +11,13 @@ export const structure = (S) =>
         .child(S.document().schemaType("settings").documentId("settings")),
       S.divider(),
       S.listItem()
+        .title("Facilities Page")
+        .id("facilitiesPage")
+        .icon(CameraIcon)
+        .child(
+          S.document().schemaType("facilitiesPage").documentId("facilitiesPage")
+        ),
+      S.listItem()
         .title("About Page")
         .id("aboutPage")
         .child(S.document().schemaType("aboutPage").documentId("aboutPage")),
@@ -18,7 +25,7 @@ export const structure = (S) =>
       S.documentTypeListItem("event").title("Events"),
       ...S.documentTypeListItems().filter(
         (listItem) =>
-          !["aboutPage", "instructor", "settings", "event"].includes(
+          !["aboutPage", "instructor", "settings", "event", "facilitiesPage"].includes(
             listItem.getId()
           )
       ),
