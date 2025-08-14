@@ -1,4 +1,6 @@
 import React from "react";
+import Image from "next/image"; // Import the Image component
+import { urlFor } from "@/sanity/lib/image"; // Import the urlFor helper
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faYoutube,
@@ -21,6 +23,7 @@ const iconMap = {
 };
 
 export default function Footer({
+  logo, // Accept the new logo prop
   socialLinks,
   copyrightText,
   address,
@@ -30,11 +33,21 @@ export default function Footer({
   return (
     <footer className="bg-primary-dark text-white">
       <div className="container mx-auto px-6 py-8">
-        {/* Main Footer Grid */}
         <div className="grid md:grid-cols-3 gap-8 text-center md:text-left">
-          {/* Column 1: Academy Info */}
+          {/* Column 1: Academy Info with Logo */}
           <div>
-            <h2 className="text-2xl font-bold">Honey Art Academy</h2>
+            <div className="flex items-center justify-center md:justify-start gap-3">
+              {logo && logo.asset && (
+                <Image
+                  src={urlFor(logo).url()}
+                  alt="Honey Art Academy Logo"
+                  width={40}
+                  height={40}
+                  className="h-10 w-auto"
+                />
+              )}
+              <h2 className="text-2xl font-bold">Honey Art Academy</h2>
+            </div>
             <p className="max-w-sm mt-2 text-primary-light">
               Nurturing creativity and passion through the arts.
             </p>
