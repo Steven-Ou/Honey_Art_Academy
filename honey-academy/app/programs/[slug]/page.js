@@ -5,12 +5,12 @@ import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 
-// ADD THIS ptComponents object
 const ptComponents = {
   marks: {
     center: ({ children }) => <div className="text-center">{children}</div>,
     right: ({ children }) => <div className="text-right">{children}</div>,
     left: ({ children }) => <div className="text-left">{children}</div>,
+    underline: ({ children }) => <span className="underline">{children}</span>, // <-- ADD THIS LINE
   },
 };
 
@@ -52,7 +52,7 @@ export default async function ProgramPage({ params }) {
         </div>
         {program.gallery && (
           <div className="mt-12">
-            <h2 className="text-3xl font-bold text-secondary mb-6 text-center">
+            <h2 className="text-3xl font-bold text-secondary mb-6">
               Explore Our Instruments
             </h2>
             <div className="grid grid-cols-2 gap-8">
