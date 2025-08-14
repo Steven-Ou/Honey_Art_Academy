@@ -11,7 +11,7 @@ export const imageWithCaption = defineType({
       name: "image",
       title: "Image",
       type: "image",
-      options: { hotspot: true }, // Allows for better cropping
+      options: { hotspot: true },
       validation: (rule) => rule.required(),
     }),
     defineField({

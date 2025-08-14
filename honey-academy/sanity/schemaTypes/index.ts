@@ -32,5 +32,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     imageWithCaption,
     navLink,
     facilitiesPage,
+    imageWithCaption
   ],
 };

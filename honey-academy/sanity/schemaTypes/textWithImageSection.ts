@@ -14,14 +14,14 @@ export const textWithImageSection = defineType({
       name: "tagline",
       title: "Tagline",
       type: "string",
-      description:
-        "A short, catchy phrase that appears above the main content.",
     }),
     defineField({
       name: "content",
       title: "Content",
       type: "blockContent",
     }),
+    // THIS IS THE FIX:
+    // We are replacing the old, broken 'image' field with our new, correct type.
     defineField({
       name: "image",
       title: "Image",
