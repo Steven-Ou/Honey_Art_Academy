@@ -139,12 +139,15 @@ async function getAboutPage() {
     title,
     pageBuilder[]{
       ...,
-      // This part tells Sanity to fetch the full instructor data
       instructors[]->{
         _id,
         name,
         title,
-        photo
+        photo,
+        programs[]->{
+          _id,
+          title
+        }
       }
     }
   }`;
