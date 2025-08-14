@@ -19,10 +19,25 @@ export const settings = defineType({
       description: "Select pages or events to show in the main navigation bar.",
       type: "array",
       of: [
-        // This allows linking to different types of content
-        { type: "reference", to: [{ type: "program" }] },
-        { type: "reference", to: [{ type: "event" }] },
-        { type: "reference", to: [{ type: "aboutPage" }] },
+        // Each reference now has a unique 'name' and 'title'
+        {
+          name: "programReference",
+          type: "reference",
+          title: "Program Link",
+          to: [{ type: "program" }],
+        },
+        {
+          name: "eventReference",
+          type: "reference",
+          title: "Event Link",
+          to: [{ type: "event" }],
+        },
+        {
+          name: "aboutPageReference",
+          type: "reference",
+          title: "About Page Link",
+          to: [{ type: "aboutPage" }],
+        },
       ],
     }),
     defineField({
