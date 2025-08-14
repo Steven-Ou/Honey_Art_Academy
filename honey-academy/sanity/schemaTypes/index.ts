@@ -22,5 +22,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     blockContent,
     heroSection,
     textWithImageSection,
+    instructor,
+    teamSection,
   ],
 };
