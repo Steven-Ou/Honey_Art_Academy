@@ -43,20 +43,34 @@ const TextWithImageSection = ({ section }) => (
       <h2 className="text-4xl font-bold text-primary-dark mb-4">
         {section.title}
       </h2>
+      {/* ADDED: Render the tagline */}
+      {section.tagline && (
+        <p className="text-lg text-gray-500 mb-4 font-semibold">
+          {section.tagline}
+        </p>
+      )}
       <div className="prose lg:prose-xl">
         <PortableText value={section.content} components={ptComponents} />
       </div>
     </div>
     {section.image && (
       <div
-        className={`relative h-96 w-full rounded-lg shadow-xl ${section.imagePlacement === "left" ? "md:col-start-1" : ""}`}
+        className={`relative ${section.imagePlacement === "left" ? "md:col-start-1" : ""}`}
       >
-        <Image
-          src={urlFor(section.image).url()}
-          alt={section.title || "Section image"}
-          fill
-          className="object-cover rounded-lg"
-        />
+        <div className="relative h-96 w-full rounded-lg shadow-xl">
+          <Image
+            src={urlFor(section.image).url()}
+            alt={section.title || "Section image"}
+            fill
+            className="object-cover rounded-lg"
+          />
+        </div>
+        {/* ADDED: Render the image caption */}
+        {section.image.caption && (
+          <p className="text-center text-sm text-gray-500 mt-2">
+            {section.image.caption}
+          </p>
+        )}
       </div>
     )}
   </div>
