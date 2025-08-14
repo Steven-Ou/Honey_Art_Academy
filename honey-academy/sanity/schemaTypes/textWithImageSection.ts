@@ -25,7 +25,7 @@ export const textWithImageSection = defineType({
     defineField({
       name: "image",
       title: "Image",
-      type: "imageWithCaption",
+      type: "imageWithCaption", // Use the custom type here
     }),
     defineField({
       name: "imagePlacement",
