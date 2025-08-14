@@ -10,9 +10,9 @@ const getUrlForLink = (link) => {
       // Handle different internal document types
       if (link.type === "aboutPage") return "/about";
       if (link.type === "program") return `/programs/${link.slug}`;
-      // Add this line to handle the facilities page link
-      if (link.type === "facilitiesPage") return "/facilities";
       if (link.type === "event") return `/events/${link.slug}`;
+      // Add this new condition for the facilities page
+      if (link.type === "facilitiesPage") return "/facilities";
       return "/";
     case "anchor":
       return `/#${link.anchorLink}`;

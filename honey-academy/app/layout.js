@@ -9,7 +9,7 @@ const settingsQuery = `*[_type == "settings"][0]{
     linkText,
     linkType,
     "slug": internalLink->slug.current,
-    "type": internalLink->_type,
+    "type": internalLink->_type, // This line ensures the type is fetched
     anchorLink,
     externalUrl
   },
