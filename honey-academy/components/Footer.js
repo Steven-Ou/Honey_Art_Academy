@@ -1,82 +1,39 @@
-"use client";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFacebookF,
-  faInstagram,
-  faYoutube,
-} from "@fortawesome/free-brands-svg-icons";
+import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 
-export default function Footer() {
+// The Footer now receives props
+export default function Footer({ socialLinks, copyrightText }) {
   return (
-    <footer className="bg-brandRed text-white">
-      <div className="container mx-auto px-6 py-12">
-        <div className="grid md:grid-cols-3 gap-8 text-center md:text-left">
-          {/* Logo and Copyright */}
-          <div className="flex flex-col items-center md:items-start">
-            <Image
-              src="/images.png"
-              alt="Honey Art Academy Logo"
-              width={150}
-              height={37}
-              className="brightness-0 invert mb-4"
-            />
-            <p className="text-sm text-white/70">
-              &copy; {new Date().getFullYear()} Honey Art Academy. <br /> All
-              Rights Reserved.
+    <footer className="bg-primary-dark text-white">
+      <div className="container mx-auto px-6 py-8">
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <div className="text-center md:text-left mb-4 md:mb-0">
+            <h2 className="text-2xl font-bold">Honey Art Academy</h2>
+            <p className="max-w-sm mt-2 text-primary-light">
+              Nurturing creativity and passion through the arts.
             </p>
           </div>
-
-          {/* Footer Navigation */}
-          <div>
-            <h3 className="font-bold text-lg mb-4">Quick Links</h3>
-            <nav className="flex flex-col space-y-2">
-              <Link href="#about" className="text-white/80 hover:text-white">
-                About
-              </Link>
-              <Link href="#programs" className="text-white/80 hover:text-white">
-                Programs
-              </Link>
-              <Link
-                href="#testimonials"
-                className="text-white/80 hover:text-white"
-              >
-                Testimonials
-              </Link>
-              <Link href="#contact" className="text-white/80 hover:text-white">
-                Contact
-              </Link>
-              <Link href="/studio" className="text-white/80 hover:text-white">
-                Studio Login
-              </Link>
-            </nav>
-          </div>
-
-          {/* Social Icons */}
-          <div>
-            <h3 className="font-bold text-lg mb-4">Follow Us</h3>
-            <div className="flex justify-center md:justify-start space-x-6">
-              <Link
-                href="#"
-                className="text-white/80 hover:text-white text-2xl"
-              >
-                <FontAwesomeIcon icon={faFacebookF} />
-              </Link>
-              <Link
-                href="#"
-                className="text-white/80 hover:text-white text-2xl"
-              >
-                <FontAwesomeIcon icon={faInstagram} />
-              </Link>
-              <Link
-                href="#"
-                className="text-white/80 hover:text-white text-2xl"
-              >
-                <FontAwesomeIcon icon={faYoutube} />
-              </Link>
+          <div className="flex flex-col items-center">
+            <h3 className="text-xl font-semibold mb-3">Follow Us</h3>
+            <div className="flex space-x-4">
+              {/* Map over the dynamic social links */}
+              {socialLinks?.map((link, index) => (
+                <a
+                  key={index}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary-light hover:text-white transition-colors text-2xl"
+                >
+                  {/* You would typically use an icon library here, but text works for now */}
+                  <i className={`fab fa-${link.platform.toLowerCase()}`}></i>
+                </a>
+              ))}
             </div>
           </div>
+        </div>
+        <div className="text-center text-primary-light mt-8 border-t border-gray-700 pt-4">
+          <p>{copyrightText}</p>
         </div>
       </div>
     </footer>
