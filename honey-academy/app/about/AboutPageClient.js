@@ -53,14 +53,15 @@ const TextWithImageSection = ({ section }) => (
         <PortableText value={section.content} components={ptComponents} />
       </div>
     </div>
-    {section.image && (
+    {/* This now correctly checks for the nested image object */}
+    {section.image?.image && (
       <div
         className={`relative ${section.imagePlacement === "left" ? "md:col-start-1" : ""}`}
       >
         <div className="relative h-96 w-full rounded-lg shadow-xl">
           <Image
-            src={urlFor(section.image).url()}
-            alt={section.title || "Section image"}
+            src={urlFor(section.image.image).url()} // Notice the change: section.image.image
+            alt={section.image.caption || section.title || "Section image"}
             fill
             className="object-cover rounded-lg"
           />
