@@ -1,4 +1,4 @@
-"use client"; // This component needs to be a client component to handle state
+"use client";
 
 import React, { useState } from "react";
 import Link from "next/link";
@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const getUrlForLink = (link) => {
-  // This function remains the same as our last version
   switch (link.linkType) {
     case "internal":
       if (link.type === "aboutPage") return "/about";
@@ -28,24 +27,36 @@ const getUrlForLink = (link) => {
 export default function Header({ logo, mainNav }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // This new, more robust logic determines what to show: the logo or the title.
+  let logoContent;
+  if (logo && logo.asset) {
+    try {
+      logoContent = (
+        <Image
+          src={urlFor(logo).url()}
+          alt="Honey Art Academy Logo"
+          width={150}
+          height={50}
+          priority
+        />
+      );
+    } catch (error) {
+      console.error("Failed to build logo image URL:", error);
+      // If the logo object is bad, fall back to text
+      logoContent = <span>Honey Art Academy</span>;
+    }
+  } else {
+    // If no logo is set, show the text
+    logoContent = <span>Honey Art Academy</span>;
+  }
+
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-        {/* Logo and Site Title */}
         <div className="text-2xl font-bold text-primary">
           <Link href="/" onClick={() => setIsMenuOpen(false)}>
-            {/* This logic is now fixed to correctly show the fallback text */}
-            {logo && logo.asset ? (
-              <Image
-                src={urlFor(logo).url()}
-                alt="Honey Art Academy Logo"
-                width={150}
-                height={50}
-                priority
-              />
-            ) : (
-              <span>Honey Art Academy</span>
-            )}
+            {logoContent}
+            Honey Academy
           </Link>
         </div>
 
@@ -71,7 +82,7 @@ export default function Header({ logo, mainNav }) {
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="text-secondary focus:outline-none"
-            aria-label="Open menu"
+            aria-label="Toggle menu"
           >
             <FontAwesomeIcon
               icon={isMenuOpen ? faTimes : faBars}
