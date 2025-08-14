@@ -4,6 +4,7 @@ import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import Link from "next/link";
 
+// This is a reusable component for our rich text editor
 const ptComponents = {
   marks: {
     center: ({ children }) => <div className="text-center">{children}</div>,
@@ -13,15 +14,72 @@ const ptComponents = {
   },
 };
 
+// Component to render the Hero Section
+const HeroSection = ({ section }) => (
+  <div className="relative h-[50vh] w-full">
+    {section.backgroundImage && (
+      <Image
+        src={urlFor(section.backgroundImage).url()}
+        alt={section.heading || "Hero background"}
+        fill
+        className="object-cover"
+      />
+    )}
+    <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-center">
+      <h1 className="text-5xl font-extrabold text-white">{section.heading}</h1>
+      {section.subheading && (
+        <p className="text-xl text-white mt-4">{section.subheading}</p>
+      )}
+    </div>
+  </div>
+);
+
+// Component to render the Text with Image Section
+const TextWithImageSection = ({ section }) => (
+  <div
+    className={`grid md:grid-cols-2 gap-12 items-center ${section.imagePlacement === "left" ? "md:grid-flow-row-dense" : ""}`}
+  >
+    <div className={section.imagePlacement === "left" ? "md:col-start-2" : ""}>
+      <h2 className="text-4xl font-bold text-primary-dark mb-4">
+        {section.title}
+      </h2>
+      <div className="prose lg:prose-xl">
+        <PortableText value={section.content} components={ptComponents} />
+      </div>
+    </div>
+    {section.image && (
+      <div
+        className={`relative h-96 w-full rounded-lg shadow-xl ${section.imagePlacement === "left" ? "md:col-start-1" : ""}`}
+      >
+        <Image
+          src={urlFor(section.image).url()}
+          alt={section.title || "Section image"}
+          fill
+          className="object-cover rounded-lg"
+        />
+      </div>
+    )}
+  </div>
+);
+
+// A map to select the correct component for each section type
+const sectionComponents = {
+  heroSection: HeroSection,
+  textWithImageSection: TextWithImageSection,
+};
+
+// The new query to fetch the page builder content
 async function getAboutPage() {
-  const query = `*[_type == "aboutPage"][0]`;
+  const query = `*[_type == "aboutPage"][0]{
+    title,
+    pageBuilder[]
+  }`;
   return client.fetch(query);
 }
 
 export default async function AboutPage() {
   const data = await getAboutPage();
 
-  // If no data is found (e.g., not published), show a message instead of crashing.
   if (!data) {
     return (
       <div className="text-center py-24">
@@ -36,70 +94,20 @@ export default async function AboutPage() {
 
   return (
     <div className="bg-white">
-      {/* Hero Section */}
-      <div className="relative h-[50vh] w-full">
-        {data.heroImage && (
-          <Image
-            src={urlFor(data.heroImage).url()}
-            alt={data.title || "Hero Image"}
-            fill
-            className="object-cover"
-          />
-        )}
-        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-          <h1 className="text-5xl font-extrabold text-white">{data.title}</h1>
-        </div>
-      </div>
+      {/* Map through the pageBuilder array and render the correct component for each section */}
+      {data.pageBuilder?.map((section) => {
+        const SectionComponent = sectionComponents[section._type];
+        if (!SectionComponent) return null;
 
-      <div className="container mx-auto px-6 py-16">
-        {/* Story Section */}
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-          <div>
-            <h2 className="text-4xl font-bold text-primary-dark mb-4">
-              {data.storyTitle}
-            </h2>
-            <div className="prose lg:prose-xl">
-              <PortableText value={data.storyText} components={ptComponents} />
-            </div>
+        // Add a wrapper for spacing between sections
+        return (
+          <div key={section._key} className="container mx-auto px-6 py-16">
+            <SectionComponent section={section} />
           </div>
-          {data.storyImage && (
-            <div className="relative h-96 w-full rounded-lg shadow-xl">
-              <Image
-                src={urlFor(data.storyImage).url()}
-                alt={data.storyTitle || "Story Image"}
-                fill
-                className="object-cover rounded-lg"
-              />
-            </div>
-          )}
-        </div>
+        );
+      })}
 
-        {/* Philosophy Section */}
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {data.philosophyImage && (
-            <div className="relative h-96 w-full rounded-lg shadow-xl md:order-last">
-              <Image
-                src={urlFor(data.philosophyImage).url()}
-                alt={data.philosophyTitle || "Philosophy Image"}
-                fill
-                className="object-cover rounded-lg"
-              />
-            </div>
-          )}
-          <div>
-            <h2 className="text-4xl font-bold text-primary-dark mb-4">
-              {data.philosophyTitle}
-            </h2>
-            <div className="prose lg:prose-xl">
-              <PortableText
-                value={data.philosophyText}
-                components={ptComponents}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* CTA Section */}
+      {/* You can still have a static CTA section if you like */}
       <div className="bg-primary-light py-16 text-center">
         <h2 className="text-3xl font-bold text-primary-dark">
           Ready to Join Us?
