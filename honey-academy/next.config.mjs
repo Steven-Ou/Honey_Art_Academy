@@ -1,9 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // This is the new part to add
+  // Add this entire eslint block
   eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint errors.
+    // This tells Vercel to ignore ESLint errors during the build process.
     ignoreDuringBuilds: true,
   },
   
