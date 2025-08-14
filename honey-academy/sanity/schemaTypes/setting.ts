@@ -7,39 +7,16 @@ export const settings = defineType({
   type: "document",
   icon: CogIcon,
   fields: [
-    defineField({
-      name: "logo",
-      title: "Logo",
-      type: "image",
-      description: "The main logo to display in the header.",
-    }),
+    defineField({ name: "logo", title: "Logo", type: "image" }),
+    // Replace the old mainNav field with this one
     defineField({
       name: "mainNav",
       title: "Main Navigation",
-      description: "Select pages or events to show in the main navigation bar.",
+      description: "Add and reorder links for the main site header.",
       type: "array",
-      of: [
-        // Each reference now has a unique 'name' and 'title'
-        {
-          name: "programReference",
-          type: "reference",
-          title: "Program Link",
-          to: [{ type: "program" }],
-        },
-        {
-          name: "eventReference",
-          type: "reference",
-          title: "Event Link",
-          to: [{ type: "event" }],
-        },
-        {
-          name: "aboutPageReference",
-          type: "reference",
-          title: "About Page Link",
-          to: [{ type: "aboutPage" }],
-        },
-      ],
+      of: [{ type: "navLink" }], // Use our new, flexible link type
     }),
+    // ... (your other fields like socialLinks and copyrightText remain the same)
     defineField({
       name: "socialLinks",
       title: "Footer Social Media Links",
@@ -67,9 +44,7 @@ export const settings = defineType({
   ],
   preview: {
     prepare() {
-      return {
-        title: "Site Settings",
-      };
+      return { title: "Site Settings" };
     },
   },
 });
