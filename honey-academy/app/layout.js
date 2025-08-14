@@ -5,10 +5,13 @@ import "./globals.css";
 
 const settingsQuery = `*[_type == "settings"][0]{
   logo,
-  mainNav[]->{
-    _type,
-    title,
-    "slug": slug.current
+  "mainNav": mainNav[]{
+    linkText,
+    linkType,
+    "slug": internalLink->slug.current,
+    "type": internalLink->_type,
+    anchorLink,
+    externalUrl
   },
   socialLinks,
   copyrightText
