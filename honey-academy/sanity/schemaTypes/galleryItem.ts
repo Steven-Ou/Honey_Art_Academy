@@ -5,9 +5,9 @@ export const galleryItem = defineType({
   name: "galleryItem",
   title: "Gallery Item",
   type: "document",
-  icon: DocumentIcon, // Added an icon for a better look in the studio list
+  icon: DocumentIcon, // This gives it a standard icon
   fields: [
-    // ... (your existing fields: title, subtitle, slug, image)
+    // ... all your other fields like title, subtitle, content, etc. remain here
     defineField({
       name: "title",
       title: "Title",
@@ -68,7 +68,7 @@ export const galleryItem = defineType({
       type: "string",
     }),
   ],
-  // THIS IS THE NEW PART THAT FIXES DRAG-AND-DROP
+  // THIS IS THE NEW PART TO ADD
   preview: {
     select: {
       title: "title",
