@@ -1,5 +1,6 @@
 import {defineField, defineType} from 'sanity'
 import {ImageIcon} from '@sanity/icons'
+import React from 'react'
 
 export const imageWithCaption = defineType({
   name: 'imageWithCaption',
@@ -23,6 +24,7 @@ export const imageWithCaption = defineType({
   ],
   preview: {
     select: {
+      // Sanity needs to know the asset is a reference to get the URL
       imageUrl: 'image.asset.url',
       caption: 'caption',
     },
