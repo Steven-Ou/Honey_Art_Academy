@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
@@ -78,7 +79,9 @@ const TextWithImageSection = ({ section }) => (
 
 // Component to render the Team Section with categorized instructors
 const TeamSection = ({ section }) => {
-  // This logic groups instructors by their program titles
+  // --- This is the new logic for the navigation ---
+  const [activeTab, setActiveTab] = useState("");
+
   const groupedInstructors = section.instructors?.reduce((acc, instructor) => {
     instructor.programs?.forEach((program) => {
       if (!acc[program.title]) {
@@ -91,41 +94,75 @@ const TeamSection = ({ section }) => {
 
   if (!groupedInstructors) return null;
 
+  // Set the first program as the default active tab
+  if (activeTab === "" && Object.keys(groupedInstructors).length > 0) {
+    setActiveTab(Object.keys(groupedInstructors)[0]);
+  }
+
+  // Helper function to create URL-friendly IDs from program titles
+  const slugify = (text) => text.toLowerCase().replace(/\s+/g, "-");
+  // --- End of new logic ---
+
   return (
     <div className="text-center">
-      <h2 className="text-4xl font-bold text-primary-dark mb-12">
+      <h2 className="text-4xl font-bold text-primary-dark mb-8">
         {section.heading}
       </h2>
-      {/* Map over each program category */}
-      {Object.entries(groupedInstructors).map(([programTitle, instructors]) => (
-        <div key={programTitle} className="mb-16">
-          <h3 className="text-3xl font-semibold text-secondary mb-8">
+
+      {/* This is the new clickable navigation row */}
+      <div className="flex flex-wrap justify-center gap-4 mb-12">
+        {Object.keys(groupedInstructors).map((programTitle) => (
+          <a
+            key={programTitle}
+            href={`#${slugify(programTitle)}`}
+            onClick={() => setActiveTab(programTitle)}
+            // This conditionally applies styling for the active tab
+            className={`px-6 py-2 rounded-full font-semibold transition-colors duration-300 ${
+              activeTab === programTitle
+                ? "bg-primary text-white shadow-md"
+                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+            }`}
+          >
             {programTitle}
-          </h3>
-          {/* This flex container will create the dynamic, balanced layout */}
-          <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-10">
-            {instructors.map((instructor) => (
-              <div key={instructor._id} className="text-center w-40">
-                <div className="relative w-32 h-32 mx-auto rounded-full shadow-lg transition-transform duration-300 hover:scale-105">
-                  <Image
-                    src={urlFor(instructor.photo).url()}
-                    alt={instructor.name}
-                    fill
-                    className="object-cover rounded-full"
-                  />
-                </div>
-                <h4 className="text-xl font-bold mt-4 text-primary-dark">
-                  {instructor.name}
-                </h4>
-                <p className="text-gray-500">{instructor.title}</p>
+          </a>
+        ))}
+      </div>
+
+      {/* This part renders the categorized teachers */}
+      <div className="space-y-16">
+        {Object.entries(groupedInstructors).map(
+          ([programTitle, instructors]) => (
+            // Add an 'id' here to allow the anchor link to scroll to it
+            <div key={programTitle} id={slugify(programTitle)}>
+              <h3 className="text-3xl font-semibold text-secondary mb-8">
+                {programTitle}
+              </h3>
+              <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-10">
+                {instructors.map((instructor) => (
+                  <div key={instructor._id} className="text-center w-40">
+                    <div className="relative w-32 h-32 mx-auto rounded-full shadow-lg transition-transform duration-300 hover:scale-105">
+                      <Image
+                        src={urlFor(instructor.photo).url()}
+                        alt={instructor.name}
+                        fill
+                        className="object-cover rounded-full"
+                      />
+                    </div>
+                    <h4 className="text-xl font-bold mt-4 text-primary-dark">
+                      {instructor.name}
+                    </h4>
+                    <p className="text-gray-500">{instructor.title}</p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-      ))}
+            </div>
+          )
+        )}
+      </div>
     </div>
   );
 };
+
 // A map to select the correct component for each section type
 const sectionComponents = {
   heroSection: HeroSection,
