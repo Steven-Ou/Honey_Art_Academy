@@ -1,11 +1,11 @@
 import { defineField, defineType } from "sanity";
-import { CameraIcon } from "@sanity/icons";
+import { ImagesIcon } from "@sanity/icons"; // Change CameraIcon to ImagesIcon
 
 export const facilitiesPage = defineType({
   name: "facilitiesPage",
   title: "Facilities Page",
   type: "document",
-  icon: CameraIcon,
+  icon: ImagesIcon, // Use the correct icon here
   fields: [
     defineField({
       name: "title",
@@ -18,7 +18,6 @@ export const facilitiesPage = defineType({
       title: "Image Gallery",
       description: "Add all the pictures for the facilities page here.",
       type: "array",
-      // We are reusing the imageWithCaption type we already created!
       of: [{ type: "imageWithCaption" }],
     }),
   ],
