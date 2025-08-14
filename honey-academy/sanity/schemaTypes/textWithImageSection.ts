@@ -25,19 +25,7 @@ export const textWithImageSection = defineType({
     defineField({
       name: "image",
       title: "Image",
-      type: "image",
-      // The 'fields' array must be inside the 'options' object.
-      options: {
-        hotspot: true,
-        // The caption field is now correctly placed here
-        fields: [
-          defineField({
-            name: "caption",
-            title: "Caption",
-            type: "string",
-          }),
-        ],
-      },
+      type: "imageWithCaption", // Use the custom type here
     }),
     defineField({
       name: "imagePlacement",
