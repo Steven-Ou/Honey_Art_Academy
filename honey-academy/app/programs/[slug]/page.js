@@ -10,7 +10,7 @@ const ptComponents = {
     center: ({ children }) => <div className="text-center">{children}</div>,
     right: ({ children }) => <div className="text-right">{children}</div>,
     left: ({ children }) => <div className="text-left">{children}</div>,
-    underline: ({ children }) => <span className="underline">{children}</span>, // <-- ADD THIS LINE
+    underline: ({ children }) => <span className="underline">{children}</span>,
   },
 };
 
@@ -18,11 +18,16 @@ export async function generateStaticParams() {
   const programs = await client.fetch(
     `*[_type == "program"]{ "slug": slug.current }`
   );
-  return programs.map((program) => ({ slug: program.slug }));
+  return programs.map((program) => ({
+    slug: program.slug,
+  }));
 }
 
 async function getProgram(slug) {
-  const query = `*[_type == "program" && slug.current == "${slug}"][0]{ ..., gallery[]->{ _id, title, slug, image } }`;
+  const query = `*[_type == "program" && slug.current == "${slug}"][0]{
+    ...,
+    gallery[]->{ _id, title, slug, image }
+  }`;
   const program = await client.fetch(query);
   return program;
 }
@@ -30,13 +35,19 @@ async function getProgram(slug) {
 export default async function ProgramPage({ params }) {
   const { slug } = await params;
   const program = await getProgram(slug);
+
   if (!program) return <div>Program not found.</div>;
+
   return (
     <main className="container mx-auto px-6 py-12 bg-white">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-extrabold text-primary-dark">
           {program.title}
         </h1>
+        {/* ADD THIS LINE to display the subtitle */}
+        {program.subtitle && (
+          <p className="text-xl text-gray-500 mt-2">{program.subtitle}</p>
+        )}
         {program.image && (
           <div className="relative h-96 w-full my-8">
             <Image
@@ -50,6 +61,7 @@ export default async function ProgramPage({ params }) {
         <div className="prose lg:prose-xl max-w-none">
           <PortableText value={program.body} components={ptComponents} />
         </div>
+
         {program.gallery && (
           <div className="mt-12">
             <h2 className="text-3xl font-bold text-secondary mb-6">
