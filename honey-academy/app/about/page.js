@@ -106,14 +106,23 @@ const TeamSection = ({ section }) => (
 const sectionComponents = {
   heroSection: HeroSection,
   textWithImageSection: TextWithImageSection,
-  teamSection: TeamSection, 
+  teamSection: TeamSection,
 };
 
 // The new query to fetch the page builder content
 async function getAboutPage() {
   const query = `*[_type == "aboutPage"][0]{
     title,
-    pageBuilder[]
+    pageBuilder[]{
+      ...,
+      // This part tells Sanity to fetch the full instructor data
+      instructors[]->{
+        _id,
+        name,
+        title,
+        photo
+      }
+    }
   }`;
   return client.fetch(query);
 }
