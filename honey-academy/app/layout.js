@@ -1,6 +1,6 @@
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-config.autoAddCss = false; // This prevents Font Awesome from adding its own CSS
+config.autoAddCss = false;
 
 import { client } from "@/sanity/lib/client";
 import Header from "@/components/Header";
@@ -19,18 +19,14 @@ const settingsQuery = `*[_type == "settings"][0]{
   },
   socialLinks,
   copyrightText,
-  // Add these lines to fetch contact info
   address,
   phone,
   email
 }`;
 
 export default async function RootLayout({ children }) {
-  // Fetch the settings data
   const settingsData = await client.fetch(settingsQuery);
 
-  // THIS IS THE FIX: Provide a default empty object if no settings are found.
-  // This prevents the site from crashing.
   const settings = settingsData || {
     logo: null,
     mainNav: [],
@@ -46,7 +42,6 @@ export default async function RootLayout({ children }) {
         <Footer
           socialLinks={settings.socialLinks}
           copyrightText={settings.copyrightText}
-          // Pass the new props to the Footer
           address={settings.address}
           phone={settings.phone}
           email={settings.email}

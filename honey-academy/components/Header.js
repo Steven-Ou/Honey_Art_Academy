@@ -1,4 +1,4 @@
-"use client"; // This is now a client component to handle state
+"use client"; // This component needs to be a client component to handle state
 
 import React, { useState } from "react";
 import Link from "next/link";
@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const getUrlForLink = (link) => {
+  // This function remains the same as our last version
   switch (link.linkType) {
     case "internal":
       if (link.type === "aboutPage") return "/about";
@@ -30,8 +31,10 @@ export default function Header({ logo, mainNav }) {
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+        {/* Logo and Site Title */}
         <div className="text-2xl font-bold text-primary">
           <Link href="/" onClick={() => setIsMenuOpen(false)}>
+            {/* This logic is now fixed to correctly show the fallback text */}
             {logo && logo.asset ? (
               <Image
                 src={urlFor(logo).url()}
@@ -41,7 +44,7 @@ export default function Header({ logo, mainNav }) {
                 priority
               />
             ) : (
-              "Honey Art Academy"
+              <span>Honey Art Academy</span>
             )}
           </Link>
         </div>
@@ -70,36 +73,25 @@ export default function Header({ logo, mainNav }) {
             className="text-secondary focus:outline-none"
             aria-label="Open menu"
           >
-            <FontAwesomeIcon icon={faBars} className="h-6 w-6" />
+            <FontAwesomeIcon
+              icon={isMenuOpen ? faTimes : faBars}
+              className="h-6 w-6"
+            />
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Dropdown Panel */}
       {isMenuOpen && (
-        <div className="md:hidden absolute top-0 left-0 w-full h-screen bg-white z-50 p-6">
-          <div className="flex justify-between items-center mb-8">
-            <div className="text-2xl font-bold text-primary">
-              <Link href="/" onClick={() => setIsMenuOpen(false)}>
-                Honey Art Academy
-              </Link>
-            </div>
-            <button
-              onClick={() => setIsMenuOpen(false)}
-              className="text-secondary focus:outline-none"
-              aria-label="Close menu"
-            >
-              <FontAwesomeIcon icon={faTimes} className="h-8 w-8" />
-            </button>
-          </div>
-          <nav className="flex flex-col items-center space-y-6">
+        <div className="md:hidden absolute top-full left-0 w-full bg-white z-40 shadow-lg rounded-b-lg border-t border-gray-100">
+          <nav className="flex flex-col items-center space-y-4 p-6">
             {mainNav?.map((link) => (
               <Link
                 key={link.linkText}
                 href={getUrlForLink(link)}
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="text-2xl text-gray-800 hover:text-primary transition-colors font-medium">
+                <span className="text-xl text-gray-800 hover:text-primary transition-colors font-medium">
                   {link.linkText}
                 </span>
               </Link>
@@ -107,7 +99,7 @@ export default function Header({ logo, mainNav }) {
             <Link
               href="/#contact"
               onClick={() => setIsMenuOpen(false)}
-              className="bg-primary text-white font-bold py-3 px-8 rounded-full text-xl cta-button hover:bg-primary-dark w-full text-center mt-4"
+              className="bg-primary text-white font-bold py-3 px-8 rounded-full text-lg cta-button hover:bg-primary-dark w-full text-center mt-4"
             >
               Contact Us
             </Link>
