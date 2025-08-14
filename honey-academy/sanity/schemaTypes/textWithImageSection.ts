@@ -10,16 +10,32 @@ export const textWithImageSection = defineType({
       title: "Title",
       type: "string",
     }),
+    // NEW: Add a tagline field
+    defineField({
+      name: "tagline",
+      title: "Tagline",
+      type: "string",
+      description:
+        "A short, catchy phrase that appears above the main content.",
+    }),
     defineField({
       name: "content",
       title: "Content",
-      type: "blockContent", // Use our powerful rich text editor
+      type: "blockContent",
     }),
     defineField({
       name: "image",
       title: "Image",
       type: "image",
       options: { hotspot: true },
+      // NEW: Add a caption field to the image
+      fields: [
+        defineField({
+          name: "caption",
+          title: "Caption",
+          type: "string",
+        }),
+      ],
     }),
     defineField({
       name: "imagePlacement",
