@@ -1,14 +1,16 @@
 import React from "react";
-import Link from "next/link";
 // Import the Font Awesome components and icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faYoutube, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { faCameraRetro } from "@fortawesome/free-solid-svg-icons"; // A placeholder for the "Studio" icon
 
-// Create a map to look up the correct icon object based on the string from Sanity
+// This map will look up the correct icon based on the string you enter in Sanity
 const iconMap = {
   youtube: faYoutube,
-  instagram: faInstagram,
-  // Add other platforms here as you need them, e.g., facebook: faFacebook
+  studio: faCameraRetro, // Using a placeholder, you can change this to any Font Awesome icon
+  // you can add more here like:
+  // facebook: faFacebook,
+  // instagram: faInstagram,
 };
 
 export default function Footer({ socialLinks, copyrightText }) {
@@ -25,10 +27,10 @@ export default function Footer({ socialLinks, copyrightText }) {
           <div className="flex flex-col items-center">
             <h3 className="text-xl font-semibold mb-3">Follow Us</h3>
             <div className="flex space-x-4">
-              {/* Map over the dynamic social links */}
+              {/* This now correctly maps over your links and finds the right icon */}
               {socialLinks?.map((link) => {
                 const icon = iconMap[link.platform.toLowerCase()];
-                if (!icon) return null; // Don't render if the icon doesn't exist in our map
+                if (!icon) return null; // Don't render if we don't have an icon for it
 
                 return (
                   <a
