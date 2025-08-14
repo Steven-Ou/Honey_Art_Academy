@@ -23,11 +23,10 @@ export const event = defineType({
       title: "Event Date",
       type: "datetime",
     }),
-    // You can add a rich text editor for event details here if you like
-    // defineField({
-    //   name: 'details',
-    //   title: 'Event Details',
-    //   type: 'blockContent',
-    // }),
+    defineField({
+      name: "details",
+      title: "Event Details",
+      type: "blockContent",
+    }),
   ],
 });
