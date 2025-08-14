@@ -27,36 +27,28 @@ const getUrlForLink = (link) => {
 export default function Header({ logo, mainNav }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // This new, more robust logic determines what to show: the logo or the title.
-  let logoContent;
-  if (logo && logo.asset) {
-    try {
-      logoContent = (
-        <Image
-          src={urlFor(logo).url()}
-          alt="Honey Art Academy Logo"
-          width={150}
-          height={50}
-          priority
-        />
-      );
-    } catch (error) {
-      console.error("Failed to build logo image URL:", error);
-      // If the logo object is bad, fall back to text
-      logoContent = <span>Honey Art Academy</span>;
-    }
-  } else {
-    // If no logo is set, show the text
-    logoContent = <span>Honey Art Academy</span>;
-  }
-
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         <div className="text-2xl font-bold text-primary">
-          <Link href="/" onClick={() => setIsMenuOpen(false)}>
-            {logoContent}
-            Honey Academy
+          <Link
+            href="/"
+            onClick={() => setIsMenuOpen(false)}
+            // Use flexbox to align the logo and title
+            className="flex items-center gap-3"
+          >
+            {logo && logo.asset ? (
+              <Image
+                src={urlFor(logo).url()}
+                alt="Honey Art Academy Logo"
+                width={50} // Adjusted for better alignment
+                height={50}
+                priority
+                className="h-10 w-auto" // Control size for consistency
+              />
+            ) : null}
+            {/* The title is now inside the link and styled */}
+            <span className="text-secondary">Honey Art Academy</span>
           </Link>
         </div>
 
