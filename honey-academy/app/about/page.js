@@ -106,6 +106,7 @@ const TeamSection = ({ section }) => (
 const sectionComponents = {
   heroSection: HeroSection,
   textWithImageSection: TextWithImageSection,
+  teamSection: TeamSection, 
 };
 
 // The new query to fetch the page builder content
