@@ -9,48 +9,26 @@ export const aboutPage = defineType({
   fields: [
     defineField({
       name: "title",
-      title: "Title",
+      title: "Page Title",
+      description:
+        "The title of the page, used for internal reference in the Studio.",
       type: "string",
     }),
+    // This is the new Page Builder field
     defineField({
-      name: "heroImage",
-      title: "Hero Image",
-      type: "image",
-    }),
-    defineField({
-      name: "storyTitle",
-      title: "Story Title",
-      type: "string",
-    }),
-    // Use the new blockContent type
-    defineField({
-      name: "storyText",
-      title: "Story Text",
-      type: "blockContent",
-    }),
-    defineField({
-      name: "storyImage",
-      title: "Story Image",
-      type: "image",
-    }),
-    defineField({
-      name: "philosophyTitle",
-      title: "Philosophy Title",
-      type: "string",
-    }),
-    // Use the new blockContent type
-    defineField({
-      name: "philosophyText",
-      title: "Philosophy Text",
-      type: "blockContent",
-    }),
-    defineField({
-      name: "philosophyImage",
-      title: "Philosophy Image",
-      type: "image",
+      name: "pageBuilder",
+      title: "Page Builder",
+      type: "array",
+      of: [
+        { type: "heroSection" },
+        { type: "textWithImageSection" },
+        // You can add more section types here in the future
+      ],
     }),
   ],
   preview: {
-    select: { title: "title", media: "heroImage" },
+    select: {
+      title: "title",
+    },
   },
 });
