@@ -7,28 +7,16 @@ export const galleryItem = defineType({
   type: "document",
   icon: DocumentIcon,
   fields: [
-    // ... other fields
-    defineField({
-      name: "title",
-      title: "Title",
-      type: "string",
-    }),
-    defineField({
-      name: "subtitle",
-      title: "Subtitle",
-      type: "string",
-    }),
+    // ... other fields ...
+    defineField({ name: "title", title: "Title", type: "string" }),
+    defineField({ name: "subtitle", title: "Subtitle", type: "string" }),
     defineField({
       name: "slug",
       title: "Slug",
       type: "slug",
       options: { source: "title" },
     }),
-    defineField({
-      name: "image",
-      title: "Image",
-      type: "image",
-    }),
+    defineField({ name: "image", title: "Image", type: "image" }),
     defineField({
       name: "content",
       title: "Page Content",
@@ -38,18 +26,34 @@ export const galleryItem = defineType({
           type: "block",
           styles: [
             { title: "Normal", value: "normal" },
-            { title: "Center", value: "center" }, // Add this
-            { title: "Right", value: "right" }, // Add this
+            { title: "Heading 1", value: "h1" },
             { title: "Heading 2", value: "h2" },
             { title: "Heading 3", value: "h3" },
+            { title: "Heading 4", value: "h4" },
+            { title: "Heading 5", value: "h5" },
             { title: "Quote", value: "blockquote" },
           ],
-          // ... rest of the block definition
           lists: [{ title: "Bullet", value: "bullet" }],
           marks: {
             decorators: [
               { title: "Strong", value: "strong" },
               { title: "Emphasis", value: "em" },
+              // NEW ALIGNMENT DECORATORS
+              {
+                title: "Left Align",
+                value: "left",
+                blockEditor: { icon: () => "L" },
+              },
+              {
+                title: "Center Align",
+                value: "center",
+                blockEditor: { icon: () => "C" },
+              },
+              {
+                title: "Right Align",
+                value: "right",
+                blockEditor: { icon: () => "R" },
+              },
             ],
             annotations: [
               {
@@ -72,11 +76,7 @@ export const galleryItem = defineType({
     }),
   ],
   preview: {
-    select: {
-      title: "title",
-      subtitle: "subtitle",
-      media: "image",
-    },
+    select: { title: "title", subtitle: "subtitle", media: "image" },
     prepare({ title, subtitle, media }) {
       return {
         title: title || "Untitled Gallery Item",
