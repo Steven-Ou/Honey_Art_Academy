@@ -4,10 +4,13 @@ import { testimonial } from "./testimonial";
 import { galleryItem } from "./galleryItem";
 import { aboutPage } from "./aboutPage";
 import { videoEmbed } from "./videoEmbed";
-// Update the import to point to the .tsx file
-import { blockContent } from "./blockContent";
+import { blockContent } from "./blockContent.tsx";
+// Import the new types
+import { heroSection } from "./heroSection";
+import { textWithImageSection } from "./textWithImageSection";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
+  // Add the new types to this array
   types: [
     program,
     testimonial,
@@ -15,5 +18,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     aboutPage,
     videoEmbed,
     blockContent,
+    heroSection,
+    textWithImageSection,
   ],
 };
