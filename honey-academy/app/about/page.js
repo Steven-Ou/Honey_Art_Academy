@@ -1,5 +1,5 @@
-import { client } from '@/sanity/lib/client';
-import AboutPageClient from './AboutPageClient'; // Import our new client component
+import { client } from "@/sanity/lib/client";
+import AboutPageClient from "./AboutPageClient"; // Import our new client component
 
 // This query remains the same
 async function getAboutPage() {
@@ -30,7 +30,10 @@ export default async function AboutPage() {
     return (
       <div className="text-center py-24">
         <h1 className="text-2xl font-bold">About Page Not Found</h1>
-        <p>Please make sure the "About Page" document is created and published in the Sanity Studio.</p>
+        <p>
+          Please make sure the "About Page" document is created and published in
+          the Sanity Studio.
+        </p>
       </div>
     );
   }
