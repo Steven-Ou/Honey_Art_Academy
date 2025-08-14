@@ -1,176 +1,7 @@
-import React, { useState } from "react";
-import { client } from "@/sanity/lib/client";
-import { urlFor } from "@/sanity/lib/image";
-import Image from "next/image";
-import { PortableText } from "@portabletext/react";
-import Link from "next/link";
+import { client } from '@/sanity/lib/client';
+import AboutPageClient from './AboutPageClient'; // Import our new client component
 
-// This is a reusable component for our rich text editor
-const ptComponents = {
-  marks: {
-    center: ({ children }) => <div className="text-center">{children}</div>,
-    right: ({ children }) => <div className="text-right">{children}</div>,
-    left: ({ children }) => <div className="text-left">{children}</div>,
-    underline: ({ children }) => <span className="underline">{children}</span>,
-  },
-};
-
-// Component to render the Hero Section
-const HeroSection = ({ section }) => (
-  <div className="relative h-[50vh] w-full">
-    {section.backgroundImage && (
-      <Image
-        src={urlFor(section.backgroundImage).url()}
-        alt={section.heading || "Hero background"}
-        fill
-        className="object-cover"
-      />
-    )}
-    <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-center">
-      <h1 className="text-5xl font-extrabold text-white">{section.heading}</h1>
-      {section.subheading && (
-        <p className="text-xl text-white mt-4">{section.subheading}</p>
-      )}
-    </div>
-  </div>
-);
-
-// Component to render the Text with Image Section
-const TextWithImageSection = ({ section }) => (
-  <div
-    className={`grid md:grid-cols-2 gap-12 items-center ${section.imagePlacement === "left" ? "md:grid-flow-row-dense" : ""}`}
-  >
-    <div className={section.imagePlacement === "left" ? "md:col-start-2" : ""}>
-      <h2 className="text-4xl font-bold text-primary-dark mb-4">
-        {section.title}
-      </h2>
-      {/* ADDED: Render the tagline */}
-      {section.tagline && (
-        <p className="text-lg text-gray-500 mb-4 font-semibold">
-          {section.tagline}
-        </p>
-      )}
-      <div className="prose lg:prose-xl">
-        <PortableText value={section.content} components={ptComponents} />
-      </div>
-    </div>
-    {section.image && (
-      <div
-        className={`relative ${section.imagePlacement === "left" ? "md:col-start-1" : ""}`}
-      >
-        <div className="relative h-96 w-full rounded-lg shadow-xl">
-          <Image
-            src={urlFor(section.image).url()}
-            alt={section.title || "Section image"}
-            fill
-            className="object-cover rounded-lg"
-          />
-        </div>
-        {/* ADDED: Render the image caption */}
-        {section.image.caption && (
-          <p className="text-center text-sm text-gray-500 mt-2">
-            {section.image.caption}
-          </p>
-        )}
-      </div>
-    )}
-  </div>
-);
-
-// Component to render the Team Section with categorized instructors
-const TeamSection = ({ section }) => {
-  // --- This is the new logic for the navigation ---
-  const [activeTab, setActiveTab] = useState("");
-
-  const groupedInstructors = section.instructors?.reduce((acc, instructor) => {
-    instructor.programs?.forEach((program) => {
-      if (!acc[program.title]) {
-        acc[program.title] = [];
-      }
-      acc[program.title].push(instructor);
-    });
-    return acc;
-  }, {});
-
-  if (!groupedInstructors) return null;
-
-  // Set the first program as the default active tab
-  if (activeTab === "" && Object.keys(groupedInstructors).length > 0) {
-    setActiveTab(Object.keys(groupedInstructors)[0]);
-  }
-
-  // Helper function to create URL-friendly IDs from program titles
-  const slugify = (text) => text.toLowerCase().replace(/\s+/g, "-");
-  // --- End of new logic ---
-
-  return (
-    <div className="text-center">
-      <h2 className="text-4xl font-bold text-primary-dark mb-8">
-        {section.heading}
-      </h2>
-
-      {/* This is the new clickable navigation row */}
-      <div className="flex flex-wrap justify-center gap-4 mb-12">
-        {Object.keys(groupedInstructors).map((programTitle) => (
-          <a
-            key={programTitle}
-            href={`#${slugify(programTitle)}`}
-            onClick={() => setActiveTab(programTitle)}
-            // This conditionally applies styling for the active tab
-            className={`px-6 py-2 rounded-full font-semibold transition-colors duration-300 ${
-              activeTab === programTitle
-                ? "bg-primary text-white shadow-md"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-            }`}
-          >
-            {programTitle}
-          </a>
-        ))}
-      </div>
-
-      {/* This part renders the categorized teachers */}
-      <div className="space-y-16">
-        {Object.entries(groupedInstructors).map(
-          ([programTitle, instructors]) => (
-            // Add an 'id' here to allow the anchor link to scroll to it
-            <div key={programTitle} id={slugify(programTitle)}>
-              <h3 className="text-3xl font-semibold text-secondary mb-8">
-                {programTitle}
-              </h3>
-              <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-10">
-                {instructors.map((instructor) => (
-                  <div key={instructor._id} className="text-center w-40">
-                    <div className="relative w-32 h-32 mx-auto rounded-full shadow-lg transition-transform duration-300 hover:scale-105">
-                      <Image
-                        src={urlFor(instructor.photo).url()}
-                        alt={instructor.name}
-                        fill
-                        className="object-cover rounded-full"
-                      />
-                    </div>
-                    <h4 className="text-xl font-bold mt-4 text-primary-dark">
-                      {instructor.name}
-                    </h4>
-                    <p className="text-gray-500">{instructor.title}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )
-        )}
-      </div>
-    </div>
-  );
-};
-
-// A map to select the correct component for each section type
-const sectionComponents = {
-  heroSection: HeroSection,
-  textWithImageSection: TextWithImageSection,
-  teamSection: TeamSection,
-};
-
-// The new query to fetch the page builder content
+// This query remains the same
 async function getAboutPage() {
   const query = `*[_type == "aboutPage"][0]{
     title,
@@ -191,6 +22,7 @@ async function getAboutPage() {
   return client.fetch(query);
 }
 
+// This is now a pure Server Component
 export default async function AboutPage() {
   const data = await getAboutPage();
 
@@ -198,44 +30,11 @@ export default async function AboutPage() {
     return (
       <div className="text-center py-24">
         <h1 className="text-2xl font-bold">About Page Not Found</h1>
-        <p>
-          Please make sure the "About Page" document is created and published in
-          the Sanity Studio.
-        </p>
+        <p>Please make sure the "About Page" document is created and published in the Sanity Studio.</p>
       </div>
     );
   }
 
-  return (
-    <div className="bg-white">
-      {/* Map through the pageBuilder array and render the correct component for each section */}
-      {data.pageBuilder?.map((section) => {
-        const SectionComponent = sectionComponents[section._type];
-        if (!SectionComponent) return null;
-
-        // Add a wrapper for spacing between sections
-        return (
-          <div key={section._key} className="container mx-auto px-6 py-16">
-            <SectionComponent section={section} />
-          </div>
-        );
-      })}
-
-      {/* You can still have a static CTA section if you like */}
-      <div className="bg-primary-light py-16 text-center">
-        <h2 className="text-3xl font-bold text-primary-dark">
-          Ready to Join Us?
-        </h2>
-        <p className="text-gray-600 mt-2">
-          Get in touch to learn more about our programs and enrollment.
-        </p>
-        <Link
-          href="/#contact"
-          className="mt-6 inline-block bg-primary text-white font-bold py-3 px-8 rounded-full text-lg cta-button hover:bg-primary-dark"
-        >
-          Get In Touch
-        </Link>
-      </div>
-    </div>
-  );
+  // We pass the fetched data as a prop to our client component
+  return <AboutPageClient pageData={data} />;
 }
