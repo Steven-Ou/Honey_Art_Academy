@@ -75,33 +75,57 @@ const TextWithImageSection = ({ section }) => (
     )}
   </div>
 );
-// Component to render the Team Section
-const TeamSection = ({ section }) => (
-  <div className="text-center">
-    <h2 className="text-4xl font-bold text-primary-dark mb-12">
-      {section.heading}
-    </h2>
-    {/* This flex container will create the dynamic, balanced layout */}
-    <div className="flex flex-wrap justify-center gap-12">
-      {section.instructors?.map((instructor) => (
-        <div key={instructor._id} className="text-center w-40">
-          <div className="relative w-32 h-32 mx-auto rounded-full shadow-lg">
-            <Image
-              src={urlFor(instructor.photo).url()}
-              alt={instructor.name}
-              fill
-              className="object-cover rounded-full"
-            />
-          </div>
-          <h3 className="text-xl font-bold mt-4 text-secondary">
-            {instructor.name}
+
+// Component to render the Team Section with categorized instructors
+const TeamSection = ({ section }) => {
+  // This logic groups instructors by their program titles
+  const groupedInstructors = section.instructors?.reduce((acc, instructor) => {
+    instructor.programs?.forEach((program) => {
+      if (!acc[program.title]) {
+        acc[program.title] = [];
+      }
+      acc[program.title].push(instructor);
+    });
+    return acc;
+  }, {});
+
+  if (!groupedInstructors) return null;
+
+  return (
+    <div className="text-center">
+      <h2 className="text-4xl font-bold text-primary-dark mb-12">
+        {section.heading}
+      </h2>
+      {/* Map over each program category */}
+      {Object.entries(groupedInstructors).map(([programTitle, instructors]) => (
+        <div key={programTitle} className="mb-16">
+          <h3 className="text-3xl font-semibold text-secondary mb-8">
+            {programTitle}
           </h3>
-          <p className="text-gray-500">{instructor.title}</p>
+          {/* This flex container will create the dynamic, balanced layout */}
+          <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-10">
+            {instructors.map((instructor) => (
+              <div key={instructor._id} className="text-center w-40">
+                <div className="relative w-32 h-32 mx-auto rounded-full shadow-lg transition-transform duration-300 hover:scale-105">
+                  <Image
+                    src={urlFor(instructor.photo).url()}
+                    alt={instructor.name}
+                    fill
+                    className="object-cover rounded-full"
+                  />
+                </div>
+                <h4 className="text-xl font-bold mt-4 text-primary-dark">
+                  {instructor.name}
+                </h4>
+                <p className="text-gray-500">{instructor.title}</p>
+              </div>
+            ))}
+          </div>
         </div>
       ))}
     </div>
-  </div>
-);
+  );
+};
 // A map to select the correct component for each section type
 const sectionComponents = {
   heroSection: HeroSection,
