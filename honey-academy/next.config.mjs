@@ -3,6 +3,7 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  productionBrowserSourceMaps: true,
   images: {
     // ADD THIS LINE to enable AVIF support
     formats: ["image/avif", "image/webp"],
