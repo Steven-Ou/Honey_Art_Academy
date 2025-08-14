@@ -5,9 +5,9 @@ export const galleryItem = defineType({
   name: "galleryItem",
   title: "Gallery Item",
   type: "document",
-  icon: DocumentIcon, // This gives it a standard icon
+  icon: DocumentIcon,
   fields: [
-    // ... all your other fields like title, subtitle, content, etc. remain here
+    // ... other fields
     defineField({
       name: "title",
       title: "Title",
@@ -38,10 +38,13 @@ export const galleryItem = defineType({
           type: "block",
           styles: [
             { title: "Normal", value: "normal" },
+            { title: "Center", value: "center" }, // Add this
+            { title: "Right", value: "right" }, // Add this
             { title: "Heading 2", value: "h2" },
             { title: "Heading 3", value: "h3" },
             { title: "Quote", value: "blockquote" },
           ],
+          // ... rest of the block definition
           lists: [{ title: "Bullet", value: "bullet" }],
           marks: {
             decorators: [
@@ -68,7 +71,6 @@ export const galleryItem = defineType({
       type: "string",
     }),
   ],
-  // THIS IS THE NEW PART TO ADD
   preview: {
     select: {
       title: "title",
