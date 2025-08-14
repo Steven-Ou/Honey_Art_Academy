@@ -28,6 +28,7 @@ export const blockContent = defineType({
         decorators: [
           { title: "Strong", value: "strong" },
           { title: "Emphasis", value: "em" },
+          { title: "Underline", value: "underline" }, // <-- ADD THIS LINE
           { title: "Left Align", value: "left", icon: LeftAlignIcon },
           { title: "Center Align", value: "center", icon: CenterAlignIcon },
           { title: "Right Align", value: "right", icon: RightAlignIcon },

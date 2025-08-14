@@ -52,7 +52,7 @@ export default async function ProgramPage({ params }) {
         </div>
         {program.gallery && (
           <div className="mt-12">
-            <h2 className="text-3xl font-bold text-secondary mb-6">
+            <h2 className="text-3xl font-bold text-secondary mb-6 text-center">
               Explore Our Instruments
             </h2>
             <div className="grid grid-cols-2 gap-8">
