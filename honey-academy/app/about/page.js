@@ -75,7 +75,33 @@ const TextWithImageSection = ({ section }) => (
     )}
   </div>
 );
-
+// Component to render the Team Section
+const TeamSection = ({ section }) => (
+  <div className="text-center">
+    <h2 className="text-4xl font-bold text-primary-dark mb-12">
+      {section.heading}
+    </h2>
+    {/* This flex container will create the dynamic, balanced layout */}
+    <div className="flex flex-wrap justify-center gap-12">
+      {section.instructors?.map((instructor) => (
+        <div key={instructor._id} className="text-center w-40">
+          <div className="relative w-32 h-32 mx-auto rounded-full shadow-lg">
+            <Image
+              src={urlFor(instructor.photo).url()}
+              alt={instructor.name}
+              fill
+              className="object-cover rounded-full"
+            />
+          </div>
+          <h3 className="text-xl font-bold mt-4 text-secondary">
+            {instructor.name}
+          </h3>
+          <p className="text-gray-500">{instructor.title}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+);
 // A map to select the correct component for each section type
 const sectionComponents = {
   heroSection: HeroSection,
