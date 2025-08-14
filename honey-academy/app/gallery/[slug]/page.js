@@ -44,13 +44,13 @@ const VideoEmbed = ({ value }) => {
   );
 };
 
-// UPDATED: Components for PortableText to handle alignment
 const ptComponents = {
   types: { videoEmbed: VideoEmbed },
   marks: {
     center: ({ children }) => <div className="text-center">{children}</div>,
     right: ({ children }) => <div className="text-right">{children}</div>,
     left: ({ children }) => <div className="text-left">{children}</div>,
+    underline: ({ children }) => <span className="underline">{children}</span>, // <-- ADD THIS LINE
   },
 };
 
