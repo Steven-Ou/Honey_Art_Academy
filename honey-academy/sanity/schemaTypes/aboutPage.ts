@@ -7,53 +7,42 @@ export const aboutPage = defineType({
   type: "document",
   icon: UserIcon,
   fields: [
-    // ... other fields
-    defineField({ name: "title", title: "Title", type: "string" }),
-    defineField({ name: "heroImage", title: "Hero Image", type: "image" }),
-    defineField({ name: "storyTitle", title: "Story Title", type: "string" }),
-    // UPDATED THIS FIELD
+    defineField({
+      name: "title",
+      title: "Title",
+      type: "string",
+    }),
+    defineField({
+      name: "heroImage",
+      title: "Hero Image",
+      type: "image",
+    }),
+    defineField({
+      name: "storyTitle",
+      title: "Story Title",
+      type: "string",
+    }),
+    // Use the new blockContent type
     defineField({
       name: "storyText",
       title: "Story Text",
-      type: "array",
-      of: [
-        {
-          type: "block",
-          styles: [
-            { title: "Normal", value: "normal" },
-            { title: "Center", value: "center" },
-            { title: "Right", value: "right" },
-            { title: "Heading 2", value: "h2" },
-            { title: "Heading 3", value: "h3" },
-            { title: "Quote", value: "blockquote" },
-          ],
-        },
-      ],
+      type: "blockContent",
     }),
-    defineField({ name: "storyImage", title: "Story Image", type: "image" }),
+    defineField({
+      name: "storyImage",
+      title: "Story Image",
+      type: "image",
+    }),
     defineField({
       name: "philosophyTitle",
       title: "Philosophy Title",
       type: "string",
     }),
-    // UPDATED THIS FIELD
+    // Use the new blockContent type
     defineField({
       name: "philosophyText",
       title: "Philosophy Text",
-      type: "array",
-      of: [
-        {
-          type: "block",
-          styles: [
-            { title: "Normal", value: "normal" },
-            { title: "Center", value: "center" },
-            { title: "Right", value: "right" },
-            { title: "Heading 2", value: "h2" },
-            { title: "Heading 3", value: "h3" },
-            { title: "Quote", value: "blockquote" },
-          ],
-        },
-      ],
+      type: "blockContent",
     }),
     defineField({
       name: "philosophyImage",
@@ -62,9 +51,6 @@ export const aboutPage = defineType({
     }),
   ],
   preview: {
-    select: {
-      title: "title",
-      media: "heroImage",
-    },
+    select: { title: "title", media: "heroImage" },
   },
 });
