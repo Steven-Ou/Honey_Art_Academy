@@ -2,18 +2,14 @@ import React from "react";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import { urlFor } from "@/sanity/lib/image";
-import { client } from "@/sanity/lib/client"; // Make sure client is imported
+import { client } from "@/sanity/lib/client";
 
-// --- Start of New/Updated Components ---
+// --- Start of Component Definitions ---
 
 // This component renders embedded videos from a URL
 const VideoEmbed = ({ value }) => {
-  if (!value?.url) {
-    return null;
-  }
-
-  // Basic URL validation to create an embeddable link
   const getEmbedUrl = (url) => {
+    if (!url) return null;
     try {
       const urlObj = new URL(url);
       if (urlObj.hostname.includes("youtube.com")) {
@@ -24,28 +20,28 @@ const VideoEmbed = ({ value }) => {
         const videoId = urlObj.pathname.split("/").pop();
         return `https://player.vimeo.com/video/${videoId}`;
       }
-    } catch (error) {
-      console.error("Invalid video URL:", error);
+    } catch (e) {
+      console.error("Invalid video URL:", e);
       return null;
     }
-    return url; // Fallback for other URLs, though may not embed correctly
+    return url;
   };
 
-  const embedUrl = getEmbedUrl(value.url);
-
-  if (!embedUrl) {
-    return <p>Invalid video URL provided.</p>;
-  }
+  const embedUrl = getEmbedUrl(value?.url);
+  if (!embedUrl) return <p>Invalid video URL.</p>;
 
   return (
-    <div className="my-6 aspect-w-16 aspect-h-9">
+    <div
+      className="my-6 relative"
+      style={{ paddingBottom: "56.25%", height: 0 }}
+    >
       <iframe
         src={embedUrl}
         title="Embedded video"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
-        className="w-full h-full rounded-lg"
+        className="absolute top-0 left-0 w-full h-full rounded-lg"
       ></iframe>
     </div>
   );
@@ -53,9 +49,7 @@ const VideoEmbed = ({ value }) => {
 
 // This component renders images with captions
 const ImageWithCaption = ({ value }) => {
-  if (!value?.image?.asset) {
-    return null;
-  }
+  if (!value?.image?.asset) return null;
   return (
     <figure className="my-6">
       <Image
@@ -74,7 +68,7 @@ const ImageWithCaption = ({ value }) => {
   );
 };
 
-// Update the ptComponents object to include the new VideoEmbed
+// Component map for Portable Text
 const ptComponents = {
   types: {
     videoEmbed: VideoEmbed,
@@ -88,20 +82,22 @@ const ptComponents = {
   },
 };
 
-// --- No changes to the data fetching or page component logic needed ---
+// --- Page Component and Data Fetching ---
 
 export async function generateStaticParams() {
   const items = await client.fetch(
     `*[_type == "galleryItem"]{ "slug": slug.current }`
   );
-  return items.map((item) => ({
-    slug: item.slug,
-  }));
+  return items
+    .filter((item) => item.slug)
+    .map((item) => ({
+      slug: item.slug,
+    }));
 }
 
 async function getGalleryItem(slug) {
-  const query = `*[_type == "galleryItem" && slug.current == "${slug}"][0]`;
-  const item = await client.fetch(query);
+  const query = `*[_type == "galleryItem" && slug.current == $slug][0]`;
+  const item = await client.fetch(query, { slug });
   return item;
 }
 
@@ -109,7 +105,9 @@ export default async function GalleryItemPage({ params }) {
   const { slug } = params;
   const item = await getGalleryItem(slug);
 
-  if (!item) return <div>Gallery item not found.</div>;
+  if (!item) {
+    return <div>Gallery item not found.</div>;
+  }
 
   return (
     <main className="container mx-auto px-6 py-12 bg-white">
@@ -124,14 +122,16 @@ export default async function GalleryItemPage({ params }) {
           <div className="relative h-96 w-full my-8">
             <Image
               src={urlFor(item.image).url()}
-              alt={item.title}
+              alt={item.title || "Gallery item image"}
               fill
               className="object-cover rounded-lg"
             />
           </div>
         )}
         <div className="prose lg:prose-xl max-w-none">
-          <PortableText value={item.content} components={ptComponents} />
+          {item.content && (
+            <PortableText value={item.content} components={ptComponents} />
+          )}
         </div>
       </div>
     </main>
