@@ -100,7 +100,7 @@ async function getGalleryItem(slug) {
 }
 
 export default async function GalleryItemPage({ params }) {
-  const { slug } = params; // This is fine, the error was misleading
+  const { slug } = params;
   const item = await getGalleryItem(slug);
 
   if (!item) {
