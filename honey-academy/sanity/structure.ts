@@ -1,9 +1,10 @@
-import { CogIcon, UserIcon, ImagesIcon,HomeIcon } from "@sanity/icons"; // Change CameraIcon to ImagesIcon
+import { CogIcon, UserIcon, ImagesIcon, HomeIcon } from "@sanity/icons";
 
 export const structure = (S) =>
   S.list()
     .title("Content")
     .items([
+      // 1. Add the new Homepage singleton here
       S.listItem()
         .title("Homepage")
         .id("homePage")
@@ -18,7 +19,7 @@ export const structure = (S) =>
       S.listItem()
         .title("Facilities Page")
         .id("facilitiesPage")
-        .icon(ImagesIcon) // Use the correct icon here
+        .icon(ImagesIcon)
         .child(
           S.document().schemaType("facilitiesPage").documentId("facilitiesPage")
         ),
@@ -37,6 +38,7 @@ export const structure = (S) =>
             "settings",
             "event",
             "facilitiesPage",
+            "homePage", // 2. Add "homePage" to this list to exclude it
           ].includes(listItem.getId())
       ),
     ]);
