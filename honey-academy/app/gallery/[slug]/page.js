@@ -133,6 +133,16 @@ export default async function GalleryItemPage({ params }) {
             <PortableText value={item.content} components={ptComponents} />
           )}
         </div>
+        {item.contactUrl && (
+          <div className="mt-12 text-center">
+            <Link
+              href={item.contactUrl}
+              className="inline-block bg-primary text-white font-bold py-3 px-8 rounded-full text-lg cta-button hover:bg-primary-dark"
+            >
+              Contact Us For More Info
+            </Link>
+          </div>
+        )}
       </div>
     </main>
   );
