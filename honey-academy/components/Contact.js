@@ -45,13 +45,11 @@ export default function Contact({ settings }) {
     }
   };
 
-  // Construct the map URL using the API key and address
-  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+  // Construct the map URL using the address from Sanity settings
   const address = settings?.address;
-  const mapUrl =
-    apiKey && address
-      ? `www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.200004678282!2d-73.82568462390944!3d40.757625571386804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c261107ad8db27%3A0xc26804a6009778e2!2sHoney%20Academy%20%5BFlushing%20%7C%20Children's%20Dance%2C%20Art%2C%20Music%2C%20After-school%20Program%5D!5e0!3m2!1sen!2sus!4v1755232539935!5m2!1sen!2sus:1 2{apiKey}&q=${encodeURIComponent(address)}`
-      : "";
+  const mapUrl = address
+    ? `https://www.google.com/maps/embed/v1/place?key=$${encodeURIComponent(address)}`
+    : "";
 
   return (
     <section id="contact" className="section-padding bg-primary-light">
@@ -84,7 +82,7 @@ export default function Contact({ settings }) {
               ) : (
                 <div className="flex items-center justify-center h-full bg-gray-100 rounded-lg">
                   <p className="text-gray-500">
-                    Map is not available. Please check configuration.
+                    Address not set in Sanity Studio.
                   </p>
                 </div>
               )}
