@@ -48,7 +48,7 @@ export default function Header({ logo, mainNav }) {
               />
             ) : null}
             {/* The title is now inside the link and styled */}
-            <span className="text-secondary">Honey Art Academy</span>
+            <span className="text-secondary">Honey Academy</span>
           </Link>
         </div>
 
