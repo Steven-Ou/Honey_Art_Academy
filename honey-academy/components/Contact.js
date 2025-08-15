@@ -67,17 +67,12 @@ export default function Contact({ settings }) {
             <div className="bg-white rounded-xl shadow-2xl p-4 h-full">
               {mapUrl ? (
                 <iframe
-                  src={mapUrl}
-                  width="100%"
-                  height="100%"
-                  style={{
-                    border: 0,
-                    minHeight: "450px",
-                    borderRadius: "0.5rem",
-                  }}
-                  allowFullScreen=""
+                  width="600"
+                  height="450"
+                  style="border:0;"
                   loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  src="www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.200004678282!2d-73.82568462390944!3d40.75762557130"
                 ></iframe>
               ) : (
                 <div className="flex items-center justify-center h-full bg-gray-100 rounded-lg">
