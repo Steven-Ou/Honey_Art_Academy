@@ -1,8 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Contact({ settings }) {
-  const [status, setStatus] = useState("idle"); // idle, loading, success, error
+  const [status, setStatus] = useState("idle");
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
@@ -15,27 +15,27 @@ export default function Contact({ settings }) {
 
     if (!accessKey) {
       setStatus("error");
-      setMessage("Web3Forms Access Key is not configured.");
+      setMessage("Contact form is not configured.");
       return;
     }
 
     formData.append("access_key", accessKey);
+    // Add some useful info to the email
+    formData.append("from_name", "Honey Art Academy Contact Form");
+    formData.append("subject", `New Inquiry from ${formData.get("name")}`);
 
     try {
-      const response = await fetch(
-        "http://googleusercontent.com/https_api/web3forms.com/submit",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
 
       const result = await response.json();
 
       if (result.success) {
         setStatus("success");
         setMessage("Thank you! Your message has been sent.");
-        e.target.reset(); // Clear form fields
+        e.target.reset();
       } else {
         setStatus("error");
         setMessage(result.message || "Something went wrong. Please try again.");
@@ -46,25 +46,13 @@ export default function Contact({ settings }) {
     }
   };
 
-  // This correctly constructs the embed URL from the share link.
-  const getEmbedUrl = (url) => {
-    if (!url) return "";
-    // If it's already an embed URL, use it directly
-    if (url.includes("/embed")) return url;
-    // Otherwise, construct the embed URL from a standard Google Maps URL
-    const urlObject = new URL(url);
-    return `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.233333!2d-74.005972!3d40.712778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a1e2b8c3d6d%3A0x1b2f4f8c3f4e2f9d!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus6${urlObject.search}`;
-  };
-
-  const mapUrl = getEmbedUrl(settings?.googleMapsEmbedUrl);
-
   return (
     <section id="contact" className="relative section-padding">
       {/* Google Map Background */}
-      {mapUrl && (
+      {settings?.googleMapsEmbedUrl && (
         <div className="absolute inset-0 z-0">
           <iframe
-            src={mapUrl}
+            src={settings.googleMapsEmbedUrl}
             width="100%"
             height="100%"
             style={{ border: 0 }}
