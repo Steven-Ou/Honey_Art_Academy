@@ -4,25 +4,27 @@ import Programs from "@/components/Programs";
 import Contact from "@/components/Contact";
 import { client } from "@/sanity/lib/client";
 
-// Fetch settings data needed for this page
-async function getSettings() {
-  const query = `*[_type == "settings"][0]{
-    googleMapsEmbedUrl,
-    address
+// Fetch all data needed for the homepage in one query
+async function getHomePageData() {
+  const query = `*[_type == "homePage"][0]{
+    "hero": hero,
+    "settings": *[_type == "settings"][0]{
+      googleMapsEmbedUrl,
+      address
+    }
   }`;
   return client.fetch(query);
 }
 
 export default async function Home() {
-  const settings = await getSettings();
+  const pageData = await getHomePageData();
 
   return (
     <main>
-      <Hero />
+      <Hero hero={pageData?.hero} />
       <About />
       <Programs />
-      {/* Pass the settings data to the Contact component */}
-      <Contact settings={settings} />
+      <Contact settings={pageData?.settings} />
     </main>
   );
 }
