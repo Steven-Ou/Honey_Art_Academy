@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link"; // This was the missing import causing the crash
+import Link from "next/link";
 import { PortableText } from "@portabletext/react";
 import { urlFor } from "@/sanity/lib/image";
 import { client } from "@/sanity/lib/client";
@@ -100,7 +100,7 @@ async function getGalleryItem(slug) {
 }
 
 export default async function GalleryItemPage({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
   const item = await getGalleryItem(slug);
 
   if (!item) {
