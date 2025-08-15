@@ -45,11 +45,6 @@ export default function Contact({ settings }) {
     }
   };
 
-  const address = settings?.address;
-  const mapUrl = address
-    ? `https://www.google.com/maps/embed/v1/place?key=$$q=${encodeURIComponent(address)}`
-    : "";
-
   return (
     <section id="contact" className="section-padding bg-primary-light">
       <div className="container mx-auto px-6">
@@ -64,9 +59,9 @@ export default function Contact({ settings }) {
           {/* Map Section */}
           <div className="h-full">
             <div className="bg-white rounded-xl shadow-2xl p-4 h-full">
-              {mapUrl ? (
+              {settings?.googleMapsEmbedUrl ? (
                 <iframe
-                  src={mapUrl}
+                  src={settings.googleMapsEmbedUrl}
                   width="100%"
                   height="100%"
                   style={{
@@ -81,7 +76,7 @@ export default function Contact({ settings }) {
               ) : (
                 <div className="flex items-center justify-center h-full bg-gray-100 rounded-lg">
                   <p className="text-gray-500">
-                    Address not set in Sanity Studio.
+                    Map URL not set in Sanity Studio.
                   </p>
                 </div>
               )}
