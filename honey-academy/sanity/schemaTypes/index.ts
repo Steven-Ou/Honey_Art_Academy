@@ -32,7 +32,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     event,
     settings,
     imageWithCaption,
-    navLink,re
+    navLink,
     homePage,
     aboutSection,
     facilitiesPage,
