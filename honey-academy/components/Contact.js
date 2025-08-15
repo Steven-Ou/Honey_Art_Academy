@@ -48,7 +48,7 @@ export default function Contact({ settings }) {
   // Construct the map URL using the address from Sanity settings
   const address = settings?.address;
   const mapUrl = address
-    ? `https://www.google.com/maps/embed/v1/place?key=$${encodeURIComponent(address)}`
+    ? `https://www.google.com/maps/embed/v1/place?key=$$q=${encodeURIComponent(address)}` // <-- THE FIX IS HERE
     : "";
 
   return (
