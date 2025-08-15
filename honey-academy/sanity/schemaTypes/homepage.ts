@@ -15,6 +15,11 @@ export const homePage = defineType({
       readOnly: true,
     }),
     defineField({
+      name: "about", // Add this new field
+      title: "About Section",
+      type: "aboutSection",
+    }),
+    defineField({
       name: "hero",
       title: "Hero Section",
       type: "heroSection",
