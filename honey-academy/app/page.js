@@ -7,7 +7,8 @@ import { client } from "@/sanity/lib/client";
 // Fetch settings data needed for this page
 async function getSettings() {
   const query = `*[_type == "settings"][0]{
-    googleMapsEmbedUrl
+    googleMapsEmbedUrl,
+    address
   }`;
   return client.fetch(query);
 }
