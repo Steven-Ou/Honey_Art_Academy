@@ -8,7 +8,7 @@ import { client } from "@/sanity/lib/client";
 async function getHomePageData() {
   const query = `*[_type == "homePage"][0]{
     "hero": hero,
-    "about":about,
+    "about": about,
     "settings": *[_type == "settings"][0]{
       googleMapsEmbedUrl,
       address
@@ -23,7 +23,7 @@ export default async function Home() {
   return (
     <main>
       <Hero hero={pageData?.hero} />
-      <About />
+      <About about={pageData?.about} />
       <Programs />
       <Contact settings={pageData?.settings} />
     </main>
