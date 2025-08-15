@@ -45,10 +45,9 @@ export default function Contact({ settings }) {
     }
   };
 
-  // Construct the map URL using the address from Sanity settings
   const address = settings?.address;
   const mapUrl = address
-    ? `https://www.google.com/maps/embed/v1/place?key=$$q=${encodeURIComponent(address)}` // <-- THE FIX IS HERE
+    ? `https://www.google.com/maps/embed/v1/place?key=$$q=${encodeURIComponent(address)}`
     : "";
 
   return (
@@ -67,12 +66,17 @@ export default function Contact({ settings }) {
             <div className="bg-white rounded-xl shadow-2xl p-4 h-full">
               {mapUrl ? (
                 <iframe
-                  width="600"
-                  height="450"
-                  style="border:0;"
+                  src={mapUrl}
+                  width="100%"
+                  height="100%"
+                  style={{
+                    border: 0,
+                    minHeight: "450px",
+                    borderRadius: "0.5rem",
+                  }}
+                  allowFullScreen=""
                   loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-                  src="www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.200004678282!2d-73.82568462390944!3d40.75762557130"
+                  referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
               ) : (
                 <div className="flex items-center justify-center h-full bg-gray-100 rounded-lg">
