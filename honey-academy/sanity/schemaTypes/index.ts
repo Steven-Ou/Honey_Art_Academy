@@ -15,6 +15,7 @@ import { imageWithCaption } from "./imageWithCaption";
 import { navLink } from "./navLink";
 import { facilitiesPage } from "./facilitiesPage";
 import { homePage } from "./homepage";
+import { aboutSection } from "./aboutSection";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   // Add the new types to this array
@@ -32,6 +33,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     settings,
     imageWithCaption,
     navLink,
+    aboutSection,
     homePage,
     facilitiesPage,
   ],
