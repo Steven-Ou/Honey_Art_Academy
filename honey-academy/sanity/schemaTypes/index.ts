@@ -33,8 +33,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     settings,
     imageWithCaption,
     navLink,
-    aboutSection,
     homePage,
+    aboutSection,
     facilitiesPage,
   ],
 };
