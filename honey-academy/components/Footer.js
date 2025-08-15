@@ -1,6 +1,6 @@
 import React from "react";
-import Image from "next/image"; // Import the Image component
-import { urlFor } from "@/sanity/lib/image"; // Import the urlFor helper
+import Image from "next/image";
+import { urlFor } from "@/sanity/lib/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faYoutube,
@@ -14,7 +14,6 @@ import {
   faCamera,
 } from "@fortawesome/free-solid-svg-icons";
 
-// Icon mapping for social links
 const iconMap = {
   youtube: faYoutube,
   instagram: faInstagram,
@@ -23,7 +22,7 @@ const iconMap = {
 };
 
 export default function Footer({
-  logo, // Accept the new logo prop
+  logo,
   socialLinks,
   copyrightText,
   address,
@@ -34,7 +33,6 @@ export default function Footer({
     <footer className="bg-primary-dark text-white">
       <div className="container mx-auto px-6 py-8">
         <div className="grid md:grid-cols-3 gap-8 text-center md:text-left">
-          {/* Column 1: Academy Info with Logo */}
           <div>
             <div className="flex items-center justify-center md:justify-start gap-3">
               {logo && logo.asset && (
@@ -53,7 +51,6 @@ export default function Footer({
             </p>
           </div>
 
-          {/* Column 2: Contact Us */}
           <div>
             <h3 className="text-xl font-semibold mb-3">Contact Us</h3>
             <ul className="space-y-2 text-primary-light">
@@ -82,14 +79,12 @@ export default function Footer({
             </ul>
           </div>
 
-          {/* Column 3: Follow Us */}
           <div>
             <h3 className="text-xl font-semibold mb-3">Follow Us</h3>
             <div className="flex space-x-4 justify-center md:justify-start">
               {socialLinks?.map((link) => {
                 const icon = iconMap[link.platform.toLowerCase()];
                 if (!icon) return null;
-
                 return (
                   <a
                     key={link.platform}
@@ -106,9 +101,23 @@ export default function Footer({
           </div>
         </div>
 
-        {/* Copyright section */}
         <div className="text-center text-primary-light mt-8 border-t border-gray-700 pt-4">
           <p>{copyrightText}</p>
+        </div>
+
+        {/* Signature Section */}
+        <div className="text-center text-gray-500 text-sm mt-4">
+          <p>
+            Made by{" "}
+            <a
+              href="https://github.com/Steven-Ou"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-white transition-colors"
+            >
+              Steven Ou
+            </a>
+          </p>
         </div>
       </div>
     </footer>
