@@ -1,18 +1,34 @@
 "use client";
 import React, { useState } from "react";
 
-export default function Contact() {
+export default function Contact({ settings }) {
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
-    // In a real app, you would send the form data to a server here.
   };
 
   return (
-    <section id="contact" className="section-padding">
-      <div className="container mx-auto px-6">
+    <section id="contact" className="relative section-padding">
+      {/* Google Map Background */}
+      {settings?.googleMapsEmbedUrl && (
+        <div className="absolute inset-0 z-0">
+          <iframe
+            src={settings.googleMapsEmbedUrl}
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+          <div className="absolute inset-0 bg-primary-light/80"></div>
+        </div>
+      )}
+
+      {/* Form Content */}
+      <div className="relative z-10 container mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-primary-dark">Get In Touch</h2>
           <p className="text-lg mt-4 text-gray-600">
