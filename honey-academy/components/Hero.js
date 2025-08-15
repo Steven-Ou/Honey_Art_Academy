@@ -1,18 +1,35 @@
 import React from "react";
+import Image from "next/image";
+import { urlFor } from "@/sanity/lib/image";
 
-export default function Hero() {
+export default function Hero({ hero }) {
+  const { heading, subheading, backgroundImage } = hero || {};
+
   return (
-    <section className="relative hero-bg text-white">
+    <section className="relative text-white h-[70vh]">
+      {backgroundImage ? (
+        <Image
+          src={urlFor(backgroundImage).url()}
+          alt={heading || "Hero background"}
+          fill
+          className="object-cover"
+          priority
+        />
+      ) : (
+        <div className="absolute inset-0 bg-gray-700"></div>
+      )}
+
       <div className="absolute inset-0 bg-black/60"></div>
-      <div className="relative container mx-auto px-6 py-32 md:py-48 text-center">
+
+      <div className="relative container mx-auto px-6 py-32 md:py-48 text-center h-full flex flex-col justify-center items-center">
         <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-4 text-white drop-shadow-lg">
-          Nurturing Creative Souls
+          {heading || "Nurturing Creative Souls"}
         </h1>
-        <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto text-white/90 drop-shadow-md">
-          At Honey Art Academy, we provide a stimulating environment where
-          dance, art, music, and education flourish. Discover the perfect
-          program for your child and watch them grow.
-        </p>
+        {subheading && (
+          <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto text-white/90 drop-shadow-md">
+            {subheading}
+          </p>
+        )}
         <div className="flex justify-center gap-4 flex-wrap">
           <a
             href="#programs"
