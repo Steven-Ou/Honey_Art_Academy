@@ -11,12 +11,9 @@ export const settings = defineType({
     defineField({
       name: "mainNav",
       title: "Main Navigation",
-      description: "Add and reorder links for the main site header.",
       type: "array",
       of: [{ type: "navLink" }],
     }),
-
-    // START of new fields to add
     defineField({
       name: "address",
       title: "Address",
@@ -32,8 +29,14 @@ export const settings = defineType({
       title: "Email Address",
       type: "string",
     }),
-    // END of new fields to add
-
+    // Add this new field for the map URL
+    defineField({
+      name: "googleMapsEmbedUrl",
+      title: "Google Maps Embed URL",
+      type: "url",
+      description:
+        'Go to Google Maps, find the location, click "Share", then "Embed a map", and copy the src URL from the iframe code.',
+    }),
     defineField({
       name: "socialLinks",
       title: "Footer Social Media Links",
@@ -45,7 +48,7 @@ export const settings = defineType({
             {
               name: "platform",
               type: "string",
-              title: "Platform (e.g., Facebook, Instagram)",
+              title: "Platform (e.g., Facebook)",
             },
             { name: "url", type: "url", title: "URL" },
           ],
