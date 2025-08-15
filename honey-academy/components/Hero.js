@@ -13,7 +13,7 @@ export default function Hero({ hero }) {
           src={urlFor(backgroundImage).url()}
           alt={heading || "Hero background"}
           fill
-          className="object-cover z-0" // Set to the bottom layer
+          className="object-cover z-0" // Layer 1: Bottom
           priority
         />
       ) : (
