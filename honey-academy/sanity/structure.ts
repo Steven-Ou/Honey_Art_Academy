@@ -1,9 +1,14 @@
-import { CogIcon, UserIcon, ImagesIcon } from "@sanity/icons"; // Change CameraIcon to ImagesIcon
+import { CogIcon, UserIcon, ImagesIcon,HomeIcon } from "@sanity/icons"; // Change CameraIcon to ImagesIcon
 
 export const structure = (S) =>
   S.list()
     .title("Content")
     .items([
+      S.listItem()
+        .title("Homepage")
+        .id("homePage")
+        .icon(HomeIcon)
+        .child(S.document().schemaType("homePage").documentId("homePage")),
       S.listItem()
         .title("Site Settings")
         .id("settings")
