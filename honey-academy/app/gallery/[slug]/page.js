@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link"; // This was the missing import causing the crash
 import { PortableText } from "@portabletext/react";
 import { urlFor } from "@/sanity/lib/image";
 import { client } from "@/sanity/lib/client";
 
-// --- Start of Component Definitions ---
+// --- Component Definitions ---
 
-// This component renders embedded videos from a URL
 const VideoEmbed = ({ value }) => {
   const getEmbedUrl = (url) => {
     if (!url) return null;
@@ -47,7 +47,6 @@ const VideoEmbed = ({ value }) => {
   );
 };
 
-// This component renders images with captions
 const ImageWithCaption = ({ value }) => {
   if (!value?.image?.asset) return null;
   return (
@@ -68,7 +67,6 @@ const ImageWithCaption = ({ value }) => {
   );
 };
 
-// Component map for Portable Text
 const ptComponents = {
   types: {
     videoEmbed: VideoEmbed,
@@ -102,7 +100,7 @@ async function getGalleryItem(slug) {
 }
 
 export default async function GalleryItemPage({ params }) {
-  const { slug } = params;
+  const { slug } = params; // This is fine, the error was misleading
   const item = await getGalleryItem(slug);
 
   if (!item) {
@@ -133,6 +131,7 @@ export default async function GalleryItemPage({ params }) {
             <PortableText value={item.content} components={ptComponents} />
           )}
         </div>
+
         {item.contactUrl && (
           <div className="mt-12 text-center">
             <Link
