@@ -6,25 +6,23 @@ export default function Hero({ hero }) {
   const { heading, subheading, backgroundImage } = hero || {};
 
   return (
-    <section className="relative text-white h-[70vh]">
-      {/* Background Image */}
-      {backgroundImage ? (
-        <Image
-          src={urlFor(backgroundImage).url()}
-          alt={heading || "Hero background"}
-          fill
-          className="object-cover z-0" // Layer 1: Bottom
-          priority
-        />
-      ) : (
-        <div className="absolute inset-0 bg-gray-700 z-0"></div>
-      )}
-
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/60 z-10"></div>
+    <section className="relative text-white h-[70vh] w-full">
+      {/* Background Image & Overlay */}
+      <div className="absolute inset-0 z-0">
+        {backgroundImage && (
+          <Image
+            src={urlFor(backgroundImage).url()}
+            alt={heading || "Hero background"}
+            fill
+            className="object-cover"
+            priority
+          />
+        )}
+        <div className="absolute inset-0 bg-black/60"></div>
+      </div>
 
       {/* Text Content */}
-      <div className="relative z-20 container mx-auto px-6 h-full flex flex-col justify-center items-center text-center">
+      <div className="relative z-10 container mx-auto px-6 h-full flex flex-col justify-center items-center text-center">
         <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-4 text-white drop-shadow-lg">
           {heading || "Nurturing Creative Souls"}
         </h1>
