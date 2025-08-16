@@ -23,6 +23,7 @@ export const homePage = defineType({
       of: [
         { type: "heroSection" },
         { type: "aboutSection" },
+        { type: "programsSection" },
         // You can add other section types here in the future
       ],
     }),
