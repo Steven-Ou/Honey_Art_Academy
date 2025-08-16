@@ -4,7 +4,6 @@ import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 
-// UPDATE ProgramCard to accept and display the subtitle
 const ProgramCard = ({ title, subtitle, description, image, slug }) => (
   <Link href={`/programs/${slug.current}`}>
     <div className="program-card bg-white rounded-lg shadow-lg overflow-hidden h-full">
@@ -18,7 +17,6 @@ const ProgramCard = ({ title, subtitle, description, image, slug }) => (
       </div>
       <div className="p-6">
         <h3 className="text-2xl font-bold mb-1 text-secondary">{title}</h3>
-        {/* ADD THIS LINE to display the subtitle */}
         {subtitle && <p className="text-md text-gray-500 mb-2">{subtitle}</p>}
         <p className="text-gray-600 mb-4">{description}</p>
         <div className="font-bold text-primary hover:text-primary-dark">
@@ -29,9 +27,11 @@ const ProgramCard = ({ title, subtitle, description, image, slug }) => (
   </Link>
 );
 
-export default async function Programs() {
-  // UPDATE the query to include the new 'subtitle' field
-  const programData = await client.fetch(`*[_type == "program"]{
+// Note: The main component is now receiving props
+export default async function Programs({ programsData }) {
+  const { title, subtitle } = programsData || {};
+
+  const programCards = await client.fetch(`*[_type == "program"]{
     _id,
     title,
     subtitle,
@@ -44,18 +44,21 @@ export default async function Programs() {
     <section id="programs" className="section-padding">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-primary-dark">Our Programs</h2>
-          <p className="text-lg mt-4 text-gray-600 max-w-2xl mx-auto">
-            From fine arts to performing arts, we offer a diverse range of
-            programs to ignite your child's passion.
-          </p>
+          <h2 className="text-4xl font-bold text-primary-dark">
+            {title || "Our Programs"}
+          </h2>
+          {subtitle && (
+            <p className="text-lg mt-4 text-gray-600 max-w-2xl mx-auto">
+              {subtitle}
+            </p>
+          )}
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-2  gap-8">
-          {programData.map((prog) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {programCards.map((prog) => (
             <ProgramCard
               key={prog._id}
               title={prog.title}
-              subtitle={prog.subtitle} // Pass the subtitle prop
+              subtitle={prog.subtitle}
               description={prog.description}
               image={prog.image}
               slug={prog.slug}
