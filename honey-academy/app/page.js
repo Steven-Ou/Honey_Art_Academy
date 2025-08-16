@@ -8,6 +8,7 @@ import { client } from "@/sanity/lib/client";
 const sectionComponents = {
   heroSection: Hero,
   aboutSection: About,
+  programsSection: Programs,
 };
 
 // Fetch all data needed for the homepage
@@ -15,7 +16,7 @@ async function getHomePageData() {
   const query = `*[_type == "homePage"][0]{
     pageBuilder[]{
       ..., 
-      // Ensure nested data like images and stats are fetched
+      // Ensure nested data for the about section is fetched
       _type == 'aboutSection' => {
         images[],
         stats[]
@@ -31,26 +32,28 @@ async function getHomePageData() {
 
 export default async function Home() {
   const pageData = await getHomePageData();
+  const sections = pageData?.pageBuilder || [];
 
   return (
     <main>
       {/* Dynamically render sections from the page builder */}
-      {pageData?.pageBuilder?.map((section) => {
+      {sections.map((section) => {
         const SectionComponent = sectionComponents[section._type];
         if (!SectionComponent) {
+          console.warn(`No component found for section type: ${section._type}`);
           return null;
         }
-        // Pass the correct prop based on the section type
-        if (section._type === "heroSection") {
-          return <SectionComponent key={section._key} hero={section} />;
-        }
-        if (section._type === "aboutSection") {
-          return <SectionComponent key={section._key} about={section} />;
-        }
-        return null;
+
+        // Pass props based on section type
+        const props = {};
+        if (section._type === "heroSection") props.hero = section;
+        if (section._type === "aboutSection") props.about = section;
+        if (section._type === "programsSection") props.programsData = section;
+
+        return <SectionComponent key={section._key} {...props} />;
       })}
 
-      <Programs />
+      {/* Contact section remains at the bottom for now */}
       <Contact settings={pageData?.settings} />
     </main>
   );
