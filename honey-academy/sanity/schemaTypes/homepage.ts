@@ -14,15 +14,17 @@ export const homePage = defineType({
       initialValue: "Homepage",
       readOnly: true,
     }),
+    // This is the new page builder field
     defineField({
-      name: "about", // Add this new field
-      title: "About Section",
-      type: "aboutSection",
-    }),
-    defineField({
-      name: "hero",
-      title: "Hero Section",
-      type: "heroSection",
+      name: "pageBuilder",
+      title: "Page Builder",
+      type: "array",
+      description: "Add, edit, and reorder the sections on your homepage.",
+      of: [
+        { type: "heroSection" },
+        { type: "aboutSection" },
+        // You can add other section types here in the future
+      ],
     }),
   ],
   preview: {
