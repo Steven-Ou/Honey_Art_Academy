@@ -32,11 +32,8 @@ export default async function Home() {
     <main>
       {sections.map((section) => {
         const SectionComponent = sectionComponents[section._type];
-        if (!SectionComponent) {
-          return null;
-        }
+        if (!SectionComponent) return null;
 
-        // Prepare props for each component (without the key)
         const props = {};
         if (section._type === "heroSection") props.hero = section;
         if (section._type === "aboutSection") props.about = section;
@@ -46,7 +43,6 @@ export default async function Home() {
           props.settings = pageData.settings;
         }
 
-        // Pass the key directly and spread the rest of the props
         return <SectionComponent key={section._key} {...props} />;
       })}
     </main>
