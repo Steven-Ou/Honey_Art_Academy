@@ -32,7 +32,12 @@ export default async function Programs({ programsData }) {
   const { title, subtitle } = programsData || {};
 
   const programCards = await client.fetch(`*[_type == "program"]{
-    _id, title, subtitle, description, slug, image
+    _id, 
+    title, 
+    subtitle, 
+    description, 
+    slug, 
+    image
   }`);
 
   return (
