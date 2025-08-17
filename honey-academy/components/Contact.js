@@ -1,3 +1,4 @@
+// in honey-academy/components/Contact.js
 "use client";
 import React, { useState } from "react";
 
@@ -48,8 +49,11 @@ export default function Contact({ contactData, settings }) {
   };
 
   const address = settings?.address;
+  // FIX: Correct the Google Maps URL
   const mapUrl = address
-    ? `https://www.google.com/maps/embed/v1/place?key=$$q=${encodeURIComponent(address)}`
+    ? `https://maps.google.com/maps?q=${encodeURIComponent(
+        address
+      )}&output=embed`
     : "";
 
   return (
