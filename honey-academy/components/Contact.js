@@ -1,9 +1,11 @@
 "use client";
 import React, { useState } from "react";
 
-export default function Contact({ settings }) {
+export default function Contact({ contactData, settings }) {
   const [status, setStatus] = useState("idle");
   const [message, setMessage] = useState("");
+
+  const { title, subtitle } = contactData || {};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,23 +47,29 @@ export default function Contact({ settings }) {
     }
   };
 
+  const address = settings?.address;
+  const mapUrl = address
+    ? `https://www.google.com/maps/embed/v1/place?key=$$q=${encodeURIComponent(address)}`
+    : "";
+
   return (
     <section id="contact" className="section-padding bg-primary-light">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-primary-dark">Get In Touch</h2>
+          <h2 className="text-4xl font-bold text-primary-dark">
+            {title || "Get In Touch"}
+          </h2>
           <p className="text-lg mt-4 text-gray-600">
-            Have questions? We'd love to hear from you.
+            {subtitle || "Have questions? We'd love to hear from you."}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 items-start">
-          {/* Map Section */}
           <div className="h-full">
             <div className="bg-white rounded-xl shadow-2xl p-4 h-full">
-              {settings?.googleMapsEmbedUrl ? (
+              {mapUrl ? (
                 <iframe
-                  src={settings.googleMapsEmbedUrl}
+                  src={mapUrl}
                   width="100%"
                   height="100%"
                   style={{
@@ -76,14 +84,13 @@ export default function Contact({ settings }) {
               ) : (
                 <div className="flex items-center justify-center h-full bg-gray-100 rounded-lg">
                   <p className="text-gray-500">
-                    Map URL not set in Sanity Studio.
+                    Address not set in Sanity Studio.
                   </p>
                 </div>
               )}
             </div>
           </div>
 
-          {/* Form Section */}
           <div className="bg-white rounded-xl shadow-2xl p-8 lg:p-12">
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -131,7 +138,6 @@ export default function Contact({ settings }) {
               </div>
             </form>
 
-            {/* Submission status messages */}
             {status === "success" && (
               <div className="text-center mt-4 text-green-600">{message}</div>
             )}
