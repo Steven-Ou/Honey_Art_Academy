@@ -4,7 +4,6 @@ import Programs from "@/components/Programs";
 import Contact from "@/components/Contact";
 import { client } from "@/sanity/lib/client";
 
-// Map Sanity section types to your React components
 const sectionComponents = {
   heroSection: Hero,
   aboutSection: About,
@@ -12,14 +11,15 @@ const sectionComponents = {
   contactSection: Contact,
 };
 
-// Fetch the entire homepage structure in one go
+// Fetch all data for the page in a single, efficient query
 async function getHomePageData() {
   const query = `*[_type == "homePage"][0]{
     pageBuilder[]{
       ..., 
       _type == 'aboutSection' => { images[], stats[] }
     },
-    "settings": *[_type == "settings"][0]{ googleMapsEmbedUrl, address }
+    "settings": *[_type == "settings"][0]{ googleMapsEmbedUrl, address },
+    "programCards": *[_type == "program"]{ _id, title, subtitle, description, slug, image }
   }`;
   return client.fetch(query);
 }
@@ -37,10 +37,14 @@ export default async function Home() {
         const props = {};
         if (section._type === "heroSection") props.hero = section;
         if (section._type === "aboutSection") props.about = section;
-        if (section._type === "programsSection") props.programsData = section;
         if (section._type === "contactSection") {
           props.contactData = section;
           props.settings = pageData.settings;
+        }
+        // Pass both the section data and the program cards to the Programs component
+        if (section._type === "programsSection") {
+          props.programsData = section;
+          props.programCards = pageData.programCards;
         }
 
         return <SectionComponent key={section._key} {...props} />;
