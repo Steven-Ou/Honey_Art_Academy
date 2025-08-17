@@ -17,6 +17,7 @@ import { facilitiesPage } from "./facilitiesPage";
 import { homePage } from "./homepage";
 import { aboutSection } from "./aboutSection";
 import { programsSection } from "./programsSection";
+import { contactSection } from "./contactSection";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   // Add the new types to this array
@@ -37,6 +38,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     homePage,
     programsSection,
     aboutSection,
+    contactSection,
     facilitiesPage,
   ],
 };
