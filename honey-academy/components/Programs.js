@@ -4,7 +4,10 @@ import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image";
 
 const ProgramCard = ({ title, subtitle, description, image, slug }) => (
-  <Link href={`/programs/${slug.current}`}>
+  <Link
+    href={`/programs/${slug.current}`}
+    className="w-full md:w-[45%] lg:w-[30%]"
+  >
     <div className="program-card bg-white rounded-lg shadow-lg overflow-hidden h-full">
       <div className="relative w-full h-56 bg-primary-light">
         <Image
