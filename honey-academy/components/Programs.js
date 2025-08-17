@@ -32,12 +32,7 @@ export default async function Programs({ programsData }) {
   const { title, subtitle } = programsData || {};
 
   const programCards = await client.fetch(`*[_type == "program"]{
-    _id,
-    title,
-    subtitle,
-    description,
-    slug,
-    image
+    _id, title, subtitle, description, slug, image
   }`);
 
   return (
@@ -55,14 +50,7 @@ export default async function Programs({ programsData }) {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {programCards.map((prog) => (
-            <ProgramCard
-              key={prog._id}
-              title={prog.title}
-              subtitle={prog.subtitle}
-              description={prog.description}
-              image={prog.image}
-              slug={prog.slug}
-            />
+            <ProgramCard key={prog._id} {...prog} />
           ))}
         </div>
       </div>
