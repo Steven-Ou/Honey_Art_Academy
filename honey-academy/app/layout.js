@@ -8,11 +8,20 @@ export const metadata = {
   description: "Nurturing Creative Souls",
 };
 
-// Fetch all settings data needed for the layout (Header/Footer)
+// This query is now corrected to fetch 'mainNav' and build URLs correctly
 async function getLayoutData() {
   const query = `*[_type == "settings"][0]{
     // Data for Header
-    menuItems[]{ _key, label, url },
+    "menuItems": mainNav[]{
+      _key,
+      "label": linkText,
+      "url": select(
+        linkType == 'internal' => internalLink->slug.current,
+        linkType == 'anchor' => '#' + anchorLink,
+        linkType == 'external' => externalUrl,
+        '/'
+      )
+    },
     // Data for Footer
     address,
     email,
