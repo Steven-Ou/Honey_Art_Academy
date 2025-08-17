@@ -4,19 +4,19 @@ import Programs from "@/components/Programs";
 import Contact from "@/components/Contact";
 import { client } from "@/sanity/lib/client";
 
-// A map to link Sanity section types to React components
+// Map Sanity section types to your React components
 const sectionComponents = {
   heroSection: Hero,
   aboutSection: About,
   programsSection: Programs,
+  contactSection: Contact,
 };
 
-// Fetch all data needed for the homepage
+// Fetch the entire homepage structure in one go
 async function getHomePageData() {
   const query = `*[_type == "homePage"][0]{
     pageBuilder[]{
       ..., 
-      // Ensure nested data for the about section is fetched
       _type == 'aboutSection' => {
         images[],
         stats[]
@@ -36,25 +36,25 @@ export default async function Home() {
 
   return (
     <main>
-      {/* Dynamically render sections from the page builder */}
+      {/* Render each section in the order defined in Sanity */}
       {sections.map((section) => {
         const SectionComponent = sectionComponents[section._type];
         if (!SectionComponent) {
-          console.warn(`No component found for section type: ${section._type}`);
           return null;
         }
 
-        // Pass props based on section type
-        const props = {};
+        // Pass the correct data as props to each component
+        const props = { key: section._key };
         if (section._type === "heroSection") props.hero = section;
         if (section._type === "aboutSection") props.about = section;
         if (section._type === "programsSection") props.programsData = section;
+        if (section._type === "contactSection") {
+          props.contactData = section;
+          props.settings = pageData.settings;
+        }
 
-        return <SectionComponent key={section._key} {...props} />;
+        return <SectionComponent {...props} />;
       })}
-
-      {/* Contact section remains at the bottom for now */}
-      <Contact settings={pageData?.settings} />
     </main>
   );
 }
