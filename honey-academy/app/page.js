@@ -17,15 +17,9 @@ async function getHomePageData() {
   const query = `*[_type == "homePage"][0]{
     pageBuilder[]{
       ..., 
-      _type == 'aboutSection' => {
-        images[],
-        stats[]
-      }
+      _type == 'aboutSection' => { images[], stats[] }
     },
-    "settings": *[_type == "settings"][0]{
-      googleMapsEmbedUrl,
-      address
-    }
+    "settings": *[_type == "settings"][0]{ googleMapsEmbedUrl, address }
   }`;
   return client.fetch(query);
 }
@@ -36,15 +30,14 @@ export default async function Home() {
 
   return (
     <main>
-      {/* Render each section in the order defined in Sanity */}
       {sections.map((section) => {
         const SectionComponent = sectionComponents[section._type];
         if (!SectionComponent) {
           return null;
         }
 
-        // Pass the correct data as props to each component
-        const props = { key: section._key };
+        // Prepare props for each component (without the key)
+        const props = {};
         if (section._type === "heroSection") props.hero = section;
         if (section._type === "aboutSection") props.about = section;
         if (section._type === "programsSection") props.programsData = section;
@@ -53,7 +46,8 @@ export default async function Home() {
           props.settings = pageData.settings;
         }
 
-        return <SectionComponent {...props} />;
+        // Pass the key directly and spread the rest of the props
+        return <SectionComponent key={section._key} {...props} />;
       })}
     </main>
   );

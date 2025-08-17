@@ -25,7 +25,6 @@ export const homePage = defineType({
         { type: "aboutSection" },
         { type: "programsSection" },
         { type: "contactSection" },
-        // You can add other section types here in the future
       ],
     }),
   ],
