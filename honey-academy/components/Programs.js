@@ -27,16 +27,15 @@ const ProgramCard = ({ title, subtitle, description, image, slug }) => (
   </Link>
 );
 
-// Note: The main component is now receiving props
 export default async function Programs({ programsData }) {
   const { title, subtitle } = programsData || {};
 
   const programCards = await client.fetch(`*[_type == "program"]{
-    _id, 
-    title, 
-    subtitle, 
-    description, 
-    slug, 
+    _id,
+    title,
+    subtitle,
+    description,
+    slug,
     image
   }`);
 
@@ -55,7 +54,14 @@ export default async function Programs({ programsData }) {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {programCards.map((prog) => (
-            <ProgramCard key={prog._id} {...prog} />
+            <ProgramCard
+              key={prog._id}
+              title={prog.title}
+              subtitle={prog.subtitle}
+              description={prog.description}
+              image={prog.image}
+              slug={prog.slug}
+            />
           ))}
         </div>
       </div>
