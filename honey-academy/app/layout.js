@@ -8,18 +8,21 @@ export const metadata = {
   description: "Nurturing Creative Souls",
 };
 
-// This query is now corrected to fetch 'mainNav' and build URLs correctly
+// This query is now updated to handle pages without slugs
 async function getLayoutData() {
   const query = `*[_type == "settings"][0]{
     // Data for Header
     "menuItems": mainNav[]{
       _key,
       "label": linkText,
+      // This 'select' statement now correctly builds the URL for each link type
       "url": select(
-        linkType == 'internal' => internalLink->slug.current,
+        linkType == 'internal' && internalLink->_type == 'aboutPage' => '/about',
+        linkType == 'internal' && internalLink->_type == 'facilitiesPage' => '/facilities',
+        linkType == 'internal' && defined(internalLink->slug.current) => '/' + internalLink->slug.current,
         linkType == 'anchor' => '#' + anchorLink,
         linkType == 'external' => externalUrl,
-        '/'
+        '/' // A fallback URL if none of the conditions are met
       )
     },
     // Data for Footer
