@@ -15,11 +15,11 @@ const sectionComponents = {
 async function getHomePageData() {
   const query = `*[_type == "homePage"][0]{
     pageBuilder[]{
-      ..., 
+      ...,
       _type == 'aboutSection' => { images[], stats[] }
     },
     "settings": *[_type == "settings"][0]{ googleMapsEmbedUrl, address },
-    "programCards": *[_type == "program"]{ _id, title, subtitle, description, slug, image }
+    "programCards": *[_type == "program" && featured == true]{ _id, title, subtitle, description, slug, image }
   }`;
   return client.fetch(query);
 }
