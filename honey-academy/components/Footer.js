@@ -1,122 +1,67 @@
 import React from "react";
-import Image from "next/image";
-import { urlFor } from "@/sanity/lib/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faYoutube,
-  faInstagram,
-  faFacebook,
-} from "@fortawesome/free-brands-svg-icons";
-import {
-  faMapMarkerAlt,
-  faPhone,
-  faEnvelope,
-  faCamera,
-} from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
-const iconMap = {
-  youtube: faYoutube,
-  instagram: faInstagram,
-  facebook: faFacebook,
-  studio: faCamera,
-};
+// This is no longer an async component
+export default function Footer({ data }) {
+  const { address, email, phone, socials, footerLinks } = data || {};
 
-export default function Footer({
-  logo,
-  socialLinks,
-  copyrightText,
-  address,
-  phone,
-  email,
-}) {
   return (
     <footer className="bg-primary-dark text-white">
-      <div className="container mx-auto px-6 py-8">
-        <div className="grid md:grid-cols-3 gap-8 text-center md:text-left">
+      <div className="container mx-auto px-6 py-12">
+        <div className="grid md:grid-cols-3 gap-8">
           <div>
-            <div className="flex items-center justify-center md:justify-start gap-3">
-              {logo && logo.asset && (
-                <Image
-                  src={urlFor(logo).url()}
-                  alt="Honey Art Academy Logo"
-                  width={40}
-                  height={40}
-                  className="h-10 w-auto"
-                />
-              )}
-              <h2 className="text-2xl font-bold">Honey Art Academy</h2>
-            </div>
-            <p className="max-w-sm mt-2 text-primary-light">
-              Nurturing creativity and passion through the arts.
+            <h3 className="text-xl font-bold mb-4">Honey Art Academy</h3>
+            <p className="text-gray-300">{address}</p>
+            <p className="mt-2 text-gray-300">
+              Email:{" "}
+              <a href={`mailto:${email}`} className="hover:underline">
+                {email}
+              </a>
+            </p>
+            <p className="mt-2 text-gray-300">
+              Phone:{" "}
+              <a href={`tel:${phone}`} className="hover:underline">
+                {phone}
+              </a>
             </p>
           </div>
-
           <div>
-            <h3 className="text-xl font-semibold mb-3">Contact Us</h3>
-            <ul className="space-y-2 text-primary-light">
-              {address && (
-                <li className="flex items-center justify-center md:justify-start">
-                  <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-3 w-4" />
-                  <span>{address}</span>
+            <h3 className="text-xl font-bold mb-4">Quick Links</h3>
+            <ul className="space-y-2">
+              {footerLinks?.map((link) => (
+                <li key={link._key}>
+                  <Link href={link.url}>
+                    <div className="text-gray-300 hover:text-white transition-colors">
+                      {link.label}
+                    </div>
+                  </Link>
                 </li>
-              )}
-              {phone && (
-                <li className="flex items-center justify-center md:justify-start">
-                  <FontAwesomeIcon icon={faPhone} className="mr-3 w-4" />
-                  <a href={`tel:${phone}`} className="hover:text-white">
-                    {phone}
-                  </a>
-                </li>
-              )}
-              {email && (
-                <li className="flex items-center justify-center md:justify-start">
-                  <FontAwesomeIcon icon={faEnvelope} className="mr-3 w-4" />
-                  <a href={`mailto:${email}`} className="hover:text-white">
-                    {email}
-                  </a>
-                </li>
-              )}
+              ))}
             </ul>
           </div>
-
           <div>
-            <h3 className="text-xl font-semibold mb-3">Follow Us</h3>
-            <div className="flex space-x-4 justify-center md:justify-start">
-              {socialLinks?.map((link) => {
-                const icon = iconMap[link.platform.toLowerCase()];
-                if (!icon) return null;
-                return (
-                  <a
-                    key={link.platform}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary-light hover:text-white transition-colors text-2xl"
-                  >
-                    <FontAwesomeIcon icon={icon} />
-                  </a>
-                );
-              })}
+            <h3 className="text-xl font-bold mb-4">Follow Us</h3>
+            <div className="flex space-x-4">
+              {socials?.map((social) => (
+                <a
+                  key={social._key}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-white"
+                >
+                  <i
+                    className={`fab fa-${social.platform.toLowerCase()} text-2xl`}
+                  ></i>
+                </a>
+              ))}
             </div>
           </div>
         </div>
-
-        <div className="text-center text-primary-light mt-8 border-t border-gray-700 pt-4">
-          <p>{copyrightText}</p>
-        </div>
-
-        {/* Signature Section */}
-        <div className="text-center text-gray-500 text-sm mt-4">
+        <div className="mt-8 border-t border-gray-700 pt-6 text-center text-gray-400">
           <p>
-            Made by{" "}
-            <a
-              href="https://github.com/Steven-Ou"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline hover:text-white transition-colors"
-            >
-              Steven Ou
-            </a>
+            &copy; {new Date().getFullYear()} Honey Art Academy. All Rights
+            Reserved.
           </p>
         </div>
       </div>
