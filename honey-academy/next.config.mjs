@@ -4,7 +4,6 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
-    // We are removing the formats array to use Next.js defaults
     remotePatterns: [
       {
         protocol: "https",
