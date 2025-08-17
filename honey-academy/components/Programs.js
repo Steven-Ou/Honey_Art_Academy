@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 
 const ProgramCard = ({ title, subtitle, description, image, slug }) => (
@@ -27,17 +26,9 @@ const ProgramCard = ({ title, subtitle, description, image, slug }) => (
   </Link>
 );
 
-export default async function Programs({ programsData }) {
+// This is no longer an async component
+export default function Programs({ programsData, programCards }) {
   const { title, subtitle } = programsData || {};
-
-  const programCards = await client.fetch(`*[_type == "program"]{
-    _id,
-    title,
-    subtitle,
-    description,
-    slug,
-    image
-  }`);
 
   return (
     <section id="programs" className="section-padding">
@@ -53,7 +44,8 @@ export default async function Programs({ programsData }) {
           )}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {programCards.map((prog) => (
+          {/* Use the programCards passed in via props */}
+          {programCards?.map((prog) => (
             <ProgramCard
               key={prog._id}
               title={prog.title}
