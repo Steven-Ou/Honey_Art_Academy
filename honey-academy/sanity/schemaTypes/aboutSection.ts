@@ -36,11 +36,21 @@ export const aboutSection = defineType({
           fields: [
             defineField({ name: "number", title: "Number", type: "string" }),
             defineField({ name: "label", title: "Label", type: "string" }),
+            // THIS IS THE UPDATED FIELD
             defineField({
               name: "icon",
-              title: "Font Awesome Icon",
+              title: "Icon",
               type: "string",
-              description: 'Example: "fas fa-users"',
+              description: "Select an icon for this stat card.",
+              options: {
+                list: [
+                  { title: "Teacher", value: "fas fa-chalkboard-teacher" },
+                  { title: "Student", value: "fas fa-user-graduate" },
+                  { title: "Building/Campus", value: "fas fa-building" },
+                  { title: "Happy Face", value: "fas fa-smile" },
+                ],
+                layout: "dropdown",
+              },
             }),
           ],
           preview: {
