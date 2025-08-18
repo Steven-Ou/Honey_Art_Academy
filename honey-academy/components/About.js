@@ -2,22 +2,26 @@ import React from "react";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// Import the necessary icons
 import {
   faUserGraduate,
   faChalkboardTeacher,
   faSmile,
+  faBuilding, // <-- Add this import
 } from "@fortawesome/free-solid-svg-icons";
 
 // Helper to map icon names from Sanity to FontAwesome icons
+// The keys should exactly match what you enter in the Sanity Studio
 const iconMap = {
-  "fa-user-graduate": faUserGraduate,
-  "fa-chalkboard-teacher": faChalkboardTeacher,
-  "fa-smile": faSmile,
-  // Add other icons as needed
+  "fas fa-chalkboard-teacher": faChalkboardTeacher,
+  "fas fa-user-graduate": faUserGraduate,
+  "fas fa-building": faBuilding, // <-- Add icon for campus/building
+  "fas fa-smile": faSmile, // Keep as a fallback or for "Happy Students"
 };
 
 const StatCard = ({ stat }) => {
-  const icon = iconMap[stat.icon] || faSmile; // Fallback icon
+  // Use the string from Sanity to look up the icon, with faSmile as a fallback
+  const icon = iconMap[stat.icon] || faSmile;
   return (
     <div className="bg-primary-light p-6 rounded-lg text-center shadow-md">
       <FontAwesomeIcon
