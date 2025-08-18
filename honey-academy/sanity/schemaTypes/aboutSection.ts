@@ -47,8 +47,9 @@ export const aboutSection = defineType({
                   //People & Users
                   { title: "Teacher", value: "fas fa-chalkboard-teacher" },
                   { title: "Student", value: "fas fa-user-graduate" },
-                  { title: "Building/Campus", value: "fas fa-building" },
+                  
                   { title: "Happy Face", value: "fas fa-smile" },
+                  { title: "Building/Campus", value: "fas fa-building" },
                 ],
                 layout: "dropdown",
               },
