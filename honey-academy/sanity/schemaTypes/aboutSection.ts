@@ -44,6 +44,7 @@ export const aboutSection = defineType({
               description: "Select an icon for this stat card.",
               options: {
                 list: [
+                  //People & Users
                   { title: "Teacher", value: "fas fa-chalkboard-teacher" },
                   { title: "Student", value: "fas fa-user-graduate" },
                   { title: "Building/Campus", value: "fas fa-building" },
