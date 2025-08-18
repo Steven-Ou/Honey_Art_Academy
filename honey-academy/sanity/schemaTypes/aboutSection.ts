@@ -50,6 +50,8 @@ export const aboutSection = defineType({
                   { title: "Users", value: "fas fa-user" },
                   { title: "Happy Face", value: "fas fa-smile" },
                   { title: "Child", value: "fas fa-child" },
+
+                  //Place &Things
                   { title: "Building/Campus", value: "fas fa-building" },
                 ],
                 layout: "dropdown",
