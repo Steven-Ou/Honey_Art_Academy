@@ -66,7 +66,7 @@ export const aboutSection = defineType({
                   { title: "Heart", value: "fas fa-heart" },
                   { title: "Star", value: "fas fa-star" },
                   { title: "Lightbulb (Idea)", value: "fas fa-lightbulb" },
-                  
+                  { title: "Rocket (Growth)", value: "fas fa-rocket" },
                 ],
                 layout: "dropdown",
               },
