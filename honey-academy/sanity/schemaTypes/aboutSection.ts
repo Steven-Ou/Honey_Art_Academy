@@ -62,6 +62,8 @@ export const aboutSection = defineType({
                   { title: "Certificate", value: "fas fa-certificate" },
                   { title: "Palette", value: "fas fa-palette" },
 
+                  //Concepts & Actions
+                  
                 ],
                 layout: "dropdown",
               },
