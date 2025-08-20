@@ -55,6 +55,7 @@ export const aboutSection = defineType({
                   { title: "Building/Campus", value: "fas fa-building" },
                   { title: "Award", value: "fas fa-award" },
                   { title: "Book", value: "fas fa-book-open" },
+                  { title: "Music Note", value: "fas fa-music" },
 
                 ],
                 layout: "dropdown",
