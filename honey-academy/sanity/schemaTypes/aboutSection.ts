@@ -60,6 +60,7 @@ export const aboutSection = defineType({
                   { title: "Theater Masks", value: "fas fa-theater-masks" },
                   { title: "Trophy", value: "fas fa-trophy" },
                   { title: "Certificate", value: "fas fa-certificate" },
+                  { title: "Palette", value: "fas fa-palette" },
 
                 ],
                 layout: "dropdown",
