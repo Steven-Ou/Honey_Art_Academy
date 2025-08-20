@@ -58,6 +58,7 @@ export const aboutSection = defineType({
                   { title: "Music Note", value: "fas fa-music" },
                   { title: "Paintbrush", value: "fas fa-paint-brush" },
                   { title: "Theater Masks", value: "fas fa-theater-masks" },
+                  { title: "Trophy", value: "fas fa-trophy" },
 
                 ],
                 layout: "dropdown",
