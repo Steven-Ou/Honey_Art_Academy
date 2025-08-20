@@ -63,7 +63,7 @@ export const aboutSection = defineType({
                   { title: "Palette", value: "fas fa-palette" },
 
                   //Concepts & Actions
-                  
+                  { title: "Heart", value: "fas fa-heart" },
                 ],
                 layout: "dropdown",
               },
