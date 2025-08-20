@@ -53,6 +53,8 @@ export const aboutSection = defineType({
 
                   //Place &Things
                   { title: "Building/Campus", value: "fas fa-building" },
+                  { title: "Award", value: "fas fa-award" },
+
                 ],
                 layout: "dropdown",
               },
