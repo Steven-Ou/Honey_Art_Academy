@@ -7,7 +7,24 @@ import {
   faUserGraduate,
   faChalkboardTeacher,
   faSmile,
-  faBuilding, // <-- Add this import
+  faBuilding,
+  faUsers,
+  faChild,
+  faAward,
+  faBookOpen,
+  faMusic,
+  faPaintBrush,
+  faTheaterMasks,
+  faTrophy,
+  faCertificate,
+  faPalette,
+  faHeart,
+  faStar,
+  faLightbulb,
+  faRocket,
+  faCalendarAlt,
+  faMedal,
+  faHandshake,
 } from "@fortawesome/free-solid-svg-icons";
 
 // Helper to map icon names from Sanity to FontAwesome icons
