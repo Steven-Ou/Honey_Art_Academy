@@ -46,6 +46,7 @@ const iconMap = {
   "fas fa-theater-masks": faTheaterMasks,
   "fas fa-trophy": faTrophy,
   "fas fa-certificate": faCertificate,
+  "fas fa-palette": faPalette,
 };
 
 const StatCard = ({ stat }) => {
