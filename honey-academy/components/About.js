@@ -39,7 +39,7 @@ const iconMap = {
 
   //Place & Things
   "fas fa-building": faBuilding,
-  
+  "fas fa-award": faAward,
 };
 
 const StatCard = ({ stat }) => {
