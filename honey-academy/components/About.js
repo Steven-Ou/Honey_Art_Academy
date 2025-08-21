@@ -36,6 +36,10 @@ const iconMap = {
   "fas fa-smile": faSmile,
   "fas fa-users": faUsers,
   "fas fa-child": faChild,
+
+  //Place & Things
+  "fas fa-building": faBuilding,
+  
 };
 
 const StatCard = ({ stat }) => {
