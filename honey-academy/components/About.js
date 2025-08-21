@@ -43,6 +43,7 @@ const iconMap = {
   "fas fa-book-open": faBookOpen,
   "fas fa-music": faMusic,
   "fas fa-paint-brush": faPaintBrush,
+  "fas fa-theater-masks": faTheaterMasks,
 };
 
 const StatCard = ({ stat }) => {
