@@ -42,6 +42,7 @@ const iconMap = {
   "fas fa-award": faAward,
   "fas fa-book-open": faBookOpen,
   "fas fa-music": faMusic,
+  "fas fa-paint-brush": faPaintBrush,
 };
 
 const StatCard = ({ stat }) => {
