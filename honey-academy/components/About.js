@@ -41,6 +41,7 @@ const iconMap = {
   "fas fa-building": faBuilding,
   "fas fa-award": faAward,
   "fas fa-book-open": faBookOpen,
+  "fas fa-music": faMusic,
 };
 
 const StatCard = ({ stat }) => {
