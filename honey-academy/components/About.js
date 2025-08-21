@@ -30,10 +30,12 @@ import {
 // Helper to map icon names from Sanity to FontAwesome icons
 // The keys should exactly match what you enter in the Sanity Studio
 const iconMap = {
+  // People & Users
   "fas fa-chalkboard-teacher": faChalkboardTeacher,
   "fas fa-user-graduate": faUserGraduate,
-  "fas fa-building": faBuilding, // <-- Add icon for campus/building
-  "fas fa-smile": faSmile, // Keep as a fallback or for "Happy Students"
+  "fas fa-smile": faSmile,
+  "fas fa-users": faUsers,
+  "fas fa-child": faChild,
 };
 
 const StatCard = ({ stat }) => {
