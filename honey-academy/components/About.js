@@ -45,6 +45,7 @@ const iconMap = {
   "fas fa-paint-brush": faPaintBrush,
   "fas fa-theater-masks": faTheaterMasks,
   "fas fa-trophy": faTrophy,
+  "fas fa-certificate": faCertificate,
 };
 
 const StatCard = ({ stat }) => {
