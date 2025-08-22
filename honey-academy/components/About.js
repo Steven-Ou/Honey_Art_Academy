@@ -53,6 +53,7 @@ const iconMap = {
   "fas fa-star": faStar,
   "fas fa-lightbulb": faLightbulb,
   "fas fa-rocket": faRocket,
+  "fas fa-calendar-alt": faCalendarAlt,
 };
 
 const StatCard = ({ stat }) => {
