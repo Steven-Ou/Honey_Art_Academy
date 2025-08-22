@@ -49,8 +49,9 @@ const iconMap = {
   "fas fa-palette": faPalette,
 
   //Concepts & Actions
-    "fas fa-heart": faHeart,
-
+  "fas fa-heart": faHeart,
+  "fas fa-star": faStar,
+  
 };
 
 const StatCard = ({ stat }) => {
