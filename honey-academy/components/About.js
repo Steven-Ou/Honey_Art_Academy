@@ -49,6 +49,8 @@ const iconMap = {
   "fas fa-palette": faPalette,
 
   //Concepts & Actions
+    "fas fa-heart": faHeart,
+
 };
 
 const StatCard = ({ stat }) => {
