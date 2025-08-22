@@ -47,6 +47,8 @@ const iconMap = {
   "fas fa-trophy": faTrophy,
   "fas fa-certificate": faCertificate,
   "fas fa-palette": faPalette,
+
+  //Concepts & Actions
 };
 
 const StatCard = ({ stat }) => {
