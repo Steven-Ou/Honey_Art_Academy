@@ -51,7 +51,7 @@ const iconMap = {
   //Concepts & Actions
   "fas fa-heart": faHeart,
   "fas fa-star": faStar,
-  
+  "fas fa-lightbulb": faLightbulb,
 };
 
 const StatCard = ({ stat }) => {
