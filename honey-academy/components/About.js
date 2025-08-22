@@ -52,6 +52,7 @@ const iconMap = {
   "fas fa-heart": faHeart,
   "fas fa-star": faStar,
   "fas fa-lightbulb": faLightbulb,
+  "fas fa-rocket": faRocket,
 };
 
 const StatCard = ({ stat }) => {
