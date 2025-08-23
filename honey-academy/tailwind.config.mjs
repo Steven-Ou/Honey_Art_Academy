@@ -13,7 +13,7 @@ const config = {
       colors: {
         brandRed: "#8B2C21",
         primary: {
-          light: "#FFFBEB",
+          light: "#A93D31",
           DEFAULT: "#FBBF24",
           dark: "#D97706",
         },
