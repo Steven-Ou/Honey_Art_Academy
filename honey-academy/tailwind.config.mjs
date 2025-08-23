@@ -23,6 +23,7 @@ const config = {
         },
         background: {
           DEFAULT: "#111827",
+          light:"#1F2937",
         },
         secondary: "#1F2937",
         accent: "#3B82F6",
