@@ -17,6 +17,9 @@ const config = {
           DEFAULT: "#8B2C21",
           dark: "#6D241A",
         },
+        text:{
+          DEFAULT:""
+        }
         secondary: "#1F2937",
         accent: "#3B82F6",
       },
