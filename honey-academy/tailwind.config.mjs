@@ -20,7 +20,7 @@ const config = {
         text:{
           DEFAULT:"#E5E7EB",
           light:'#9CA3AF'
-        }
+        },
         secondary: "#1F2937",
         accent: "#3B82F6",
       },
