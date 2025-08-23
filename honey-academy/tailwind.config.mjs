@@ -14,7 +14,7 @@ const config = {
         brandRed: "#8B2C21",
         primary: {
           light: "#A93D31",
-          DEFAULT: "#FBBF24",
+          DEFAULT: "#8B2C21",
           dark: "#D97706",
         },
         secondary: "#1F2937",
