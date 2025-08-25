@@ -22,10 +22,13 @@ export function ThemeProvider({ children }) {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
 
-  return(
-    <ThemeContext.Provider value={{theme, toggleTheme}}>
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
 }
 
+export function useTheme() {
+  return useContext(ThemeContext);
+}
