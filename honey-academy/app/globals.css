@@ -12,9 +12,9 @@ body {
   color: #1f2937; /* text-DEFAULT */
 }
 
-.dark body{
+.dark body {
   background-color: #111827;
-  color: #E5E7EB;
+  color: #e5e7eb;
 }
 .hero-bg {
   background-image: url("https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop");
@@ -42,7 +42,9 @@ body {
 }
 
 .program-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 .program-card:hover {
   transform: translateY(-8px);
