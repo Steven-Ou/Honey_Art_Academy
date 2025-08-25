@@ -17,7 +17,7 @@ export default function ThemeToggleButton() {
         {theme === 'light'?(
             <FontAwesomeIcon icon ={faMoon}/>
         ):(
-            <FontAwesomeIcon icon/>
+            <FontAwesomeIcon icon = {faSun}/>
         )}
     </button>
   );
