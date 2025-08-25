@@ -7,5 +7,6 @@ import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 
 export default function ThemeToggleButton() {
   const { theme, toggleTheme } = useTheme();
-  
+
+  return <button onClick={toggleTheme} className="p"></button>;
 }
