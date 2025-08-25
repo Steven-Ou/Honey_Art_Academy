@@ -70,7 +70,7 @@ export default function Contact({ contactData, settings }) {
 
         <div className="grid md:grid-cols-2 gap-12 items-start">
           <div className="h-full">
-            <div className="bg-white rounded-xl shadow-2xl p-4 h-full">
+            <div className="bg-background-light rounded-xl shadow-2xl p-4 h-full">
               {mapUrl ? (
                 <iframe
                   src={mapUrl}
