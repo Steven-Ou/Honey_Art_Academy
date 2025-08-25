@@ -11,6 +11,7 @@ const config = {
     extend: {
       fontFamily: {
         sans: ["Geist Sans", "sans-serif"],
+        mono: ["Geist Mono", "monospace"],
       },
       colors: {
         brandRed: "#8B2C21",
