@@ -95,7 +95,7 @@ export default function Contact({ contactData, settings }) {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-2xl p-8 lg:p-12">
+          <div className="bg-background-light rounded-xl shadow-2xl p-8 lg:p-12">
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <input
