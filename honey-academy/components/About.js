@@ -94,7 +94,7 @@ export default function About({ about }) {
 
           {/* Text Content Column */}
           <div>
-            <h2 className="text-4xl font-bold text-primary-dark mb-4">
+            <h2 className="text-4xl font-bold text-primary mb-4">
               {title}
             </h2>
             <p className="text-gray-600 leading-relaxed mb-8">{content}</p>
