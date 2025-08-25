@@ -62,7 +62,7 @@ const StatCard = ({ stat }) => {
   // Use the string from Sanity to look up the icon, with faSmile as a fallback
   const icon = iconMap[stat.icon] || faSmile;
   return (
-    <div className="bg-primary-light p-6 rounded-lg text-center shadow-md">
+    <div className="bg-background p-6 rounded-lg text-center shadow-md">
       <FontAwesomeIcon
         icon={icon}
         className="text-4xl text-primary-dark mb-3"
