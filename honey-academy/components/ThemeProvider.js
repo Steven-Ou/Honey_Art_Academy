@@ -10,5 +10,9 @@ export function ThemeProvider({ children }) {
     useEffect(()=>{
         const storedTheme = localStorage.getItem('theme') || 'light';
         setTheme(storedTheme);
+    },[]);
+
+    useEffect(()=>{
+        
     })
 }
