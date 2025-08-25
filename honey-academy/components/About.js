@@ -68,7 +68,7 @@ const StatCard = ({ stat }) => {
         className="text-4xl text-primary-dark mb-3"
       />
       <div className="text-3xl font-bold text-text">{stat.number}</div>
-      <div className="text-gray-500">{stat.label}</div>
+      <div className="text-text-light">{stat.label}</div>
     </div>
   );
 };
