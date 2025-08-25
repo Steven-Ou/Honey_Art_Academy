@@ -19,7 +19,7 @@ const ProgramCard = ({ title, subtitle, description, image, slug }) => (
       </div>
       <div className="p-6">
         <h3 className="text-2xl font-bold mb-1 text-primary">{title}</h3>
-        {subtitle && <p className="text-md text-gray-500 mb-2">{subtitle}</p>}
+        {subtitle && <p className="text-md text-text-light mb-2">{subtitle}</p>}
         <p className="text-gray-600 mb-4">{description}</p>
         <div className="font-bold text-primary hover:text-primary-dark">
           Learn More <i className="fas fa-arrow-right ml-1"></i>
