@@ -34,6 +34,7 @@ const config = {
           text: "#E5E7EB",
           text_light: "#9CA3AF",
           primary: "#8B2C21",
+          primary_light: "#A93D31",
         },
       },
       typography: ({ theme }) => ({
