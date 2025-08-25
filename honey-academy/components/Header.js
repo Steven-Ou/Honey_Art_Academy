@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-
+import ThemeToggleButton from "./ThemeToggleButton";
 // This is no longer an async component
 export default function Header({ data }) {
   const { menuItems } = data || {};
