@@ -28,6 +28,9 @@ const config = {
         },
         secondary: "#1F2937",
         accent: "#3B82F6",
+        dark:{
+          
+        }
       },
       typography: ({ theme }) => ({
         DEFAULT: {
