@@ -10,7 +10,7 @@ const config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
+        sans: ["Geist Sans", "sans-serif"],
       },
       colors: {
         brandRed: "#8B2C21",
