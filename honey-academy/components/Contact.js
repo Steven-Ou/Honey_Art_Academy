@@ -57,7 +57,7 @@ export default function Contact({ contactData, settings }) {
     : "";
 
   return (
-    <section id="contact" className="section-padding bg-primary-light">
+    <section id="contact" className="section-padding bg-background">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-primary-dark">
