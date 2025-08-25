@@ -63,7 +63,7 @@ export default function Contact({ contactData, settings }) {
           <h2 className="text-4xl font-bold text-primary-dark">
             {title || "Get In Touch"}
           </h2>
-          <p className="text-lg mt-4 text-gray-600">
+          <p className="text-lg mt-4 text-text-light">
             {subtitle || "Have questions? We'd love to hear from you."}
           </p>
         </div>
