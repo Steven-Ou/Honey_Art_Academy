@@ -41,7 +41,7 @@ export default function Programs({ programsData, programCards }) {
             {title || "Our Programs"}
           </h2>
           {subtitle && (
-            <p className="text-lg mt-4 text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg mt-4 text-text-light max-w-2xl mx-auto">
               {subtitle}
             </p>
           )}
