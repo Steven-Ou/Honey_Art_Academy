@@ -14,11 +14,11 @@ export default function ThemeToggleButton() {
       className="p-2 rounded-full bg-gray-200:bg-gray-700 text-gray-800 dark:text-gray-200"
       aria-label="Toggle theme"
     >
-        {theme === 'light'?(
-            <FontAwesomeIcon icon ={faMoon}/>
-        ):(
-            <FontAwesomeIcon icon = {faSun}/>
-        )}
+      {theme === "light" ? (
+        <FontAwesomeIcon icon={faMoon} />
+      ) : (
+        <FontAwesomeIcon icon={faSun} />
+      )}
     </button>
   );
 }
