@@ -32,6 +32,7 @@ const config = {
           background: "#111827",
           surface: "#1F2937",
           text: "#E5E7EB",
+          text_light: "#9CA3AF",
         },
       },
       typography: ({ theme }) => ({
