@@ -24,6 +24,7 @@ export default function Header({ data }) {
               Contact Us
             </div>
           </Link>
+          <ThemeToggleButton/>
         </nav>
         <div className="md:hidden">
           <button className="text-gray-600 hover:text-primary">
