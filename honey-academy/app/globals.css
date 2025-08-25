@@ -7,15 +7,18 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Light theme (default) */
 body {
-  background-color: #fffbeb; /* background-DEFAULT */
-  color: #1f2937; /* text-DEFAULT */
+  background-color: #fffbeb; /* primary-light */
+  color: #1f2937; /* secondary */
 }
 
+/* Dark theme styles */
 .dark body {
   background-color: #111827;
   color: #e5e7eb;
 }
+
 .hero-bg {
   background-image: url("https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop");
   background-size: cover;
