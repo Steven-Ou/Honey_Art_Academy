@@ -8,8 +8,8 @@ html {
 }
 
 body {
-  background-color: #111827; /* primary-light */
-  color: #E5E7EB; /* secondary */
+  background-color: #111827; /* background-DEFAULT */
+  color: #E5E7EB; /* text-DEFAULT */
 }
 
 .hero-bg {
