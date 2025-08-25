@@ -2,18 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Add these new styles */
 html {
   scroll-behavior: smooth;
 }
 
-/* Light theme (default) */
 body {
-  background-color: #fffbeb; /* primary-light */
-  color: #1f2937; /* secondary */
+  background-color: #fffbeb;
+  color: #1f2937;
 }
 
-/* Dark theme styles */
 .dark body {
   background-color: #111827;
   color: #e5e7eb;
