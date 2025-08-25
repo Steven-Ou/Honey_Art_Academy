@@ -2,7 +2,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { client } from "@/sanity/lib/client";
-
+import { ThemeProvider } from "@/components/ThemeProvider";
 export const metadata = {
   title: "Honey Art Academy",
   description: "Nurturing Creative Souls",
@@ -50,9 +50,11 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Header data={headerData} />
-        <main>{children}</main>
-        <Footer data={footerData} />
+        <ThemeProvider>
+          <Header data={headerData} />
+          <main>{children}</main>
+          <Footer data={footerData} />
+        </ThemeProvider>
       </body>
     </html>
   );
