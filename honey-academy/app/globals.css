@@ -12,6 +12,10 @@ body {
   color: #1f2937; /* text-DEFAULT */
 }
 
+.dark body{
+  background-color: #111827;
+  
+}
 .hero-bg {
   background-image: url("https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop");
   background-size: cover;
