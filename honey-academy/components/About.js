@@ -97,7 +97,7 @@ export default function About({ about }) {
             <h2 className="text-4xl font-bold text-primary mb-4">
               {title}
             </h2>
-            <p className="text-gray-600 leading-relaxed mb-8">{content}</p>
+            <p className="text-text-light leading-relaxed mb-8">{content}</p>
 
             {/* Stat Cards */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
