@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 const config = {
-  darkMode:'class',
+  darkMode: "class",
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -24,14 +24,15 @@ const config = {
         },
         background: {
           DEFAULT: "#111827",
-          light:"#1F2937",
+          light: "#1F2937",
         },
         secondary: "#1F2937",
         accent: "#3B82F6",
-        dark:{
-          background:'#111827',
-          surface:'#1F2937',
-        }
+        dark: {
+          background: "#111827",
+          surface: "#1F2937",
+          text: "#E5E7EB",
+        },
       },
       typography: ({ theme }) => ({
         DEFAULT: {
