@@ -8,7 +8,7 @@ const ProgramCard = ({ title, subtitle, description, image, slug }) => (
     href={`/programs/${slug.current}`}
     className="w-full md:w-[45%] lg:w-[30%]"
   >
-    <div className="program-card bg-white rounded-lg shadow-lg overflow-hidden h-full">
+    <div className="program-card bg-background-light rounded-lg shadow-lg overflow-hidden h-full">
       <div className="relative w-full h-56 bg-primary-light">
         <Image
           src={image ? urlFor(image).url() : "/images.png"}
