@@ -1,24 +1,23 @@
 import React from "react";
 import Link from "next/link";
 
-// This is no longer an async component
 export default function Footer({ data }) {
   const { address, email, phone, socials, footerLinks } = data || {};
 
   return (
-    <footer className="bg-primary-dark text-white">
+    <footer className="bg-primary-dark dark:bg-dark-background text-white dark:text-dark-text">
       <div className="container mx-auto px-6 py-12">
         <div className="grid md:grid-cols-3 gap-8">
           <div>
             <h3 className="text-xl font-bold mb-4">Honey Art Academy</h3>
-            <p className="text-gray-300">{address}</p>
-            <p className="mt-2 text-gray-300">
+            <p className="text-gray-300 dark:text-dark-text_light">{address}</p>
+            <p className="mt-2 text-gray-300 dark:text-dark-text_light">
               Email:{" "}
               <a href={`mailto:${email}`} className="hover:underline">
                 {email}
               </a>
             </p>
-            <p className="mt-2 text-gray-300">
+            <p className="mt-2 text-gray-300 dark:text-dark-text_light">
               Phone:{" "}
               <a href={`tel:${phone}`} className="hover:underline">
                 {phone}
@@ -31,7 +30,7 @@ export default function Footer({ data }) {
               {footerLinks?.map((link) => (
                 <li key={link._key}>
                   <Link href={link.url}>
-                    <div className="text-gray-300 hover:text-white transition-colors">
+                    <div className="text-gray-300 dark:text-dark-text_light hover:text-white transition-colors">
                       {link.label}
                     </div>
                   </Link>
@@ -48,7 +47,7 @@ export default function Footer({ data }) {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-300 hover:text-white"
+                  className="text-gray-300 dark:text-dark-text_light hover:text-white"
                 >
                   <i
                     className={`fab fa-${social.platform.toLowerCase()} text-2xl`}
@@ -58,7 +57,7 @@ export default function Footer({ data }) {
             </div>
           </div>
         </div>
-        <div className="mt-8 border-t border-gray-700 pt-6 text-center text-gray-400">
+        <div className="mt-8 border-t border-gray-700 pt-6 text-center text-gray-400 dark:text-dark-text_light">
           <p>
             &copy; {new Date().getFullYear()} Honey Art Academy. All Rights
             Reserved.
