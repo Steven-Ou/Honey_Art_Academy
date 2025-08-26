@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link"; // Import the Link component
 import { urlFor } from "@/sanity/lib/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// Import the necessary icons
 import {
   faUserGraduate,
   faChalkboardTeacher,
@@ -27,17 +27,12 @@ import {
   faHandshake,
 } from "@fortawesome/free-solid-svg-icons";
 
-// Helper to map icon names from Sanity to FontAwesome icons
-// The keys should exactly match what you enter in the Sanity Studio
 const iconMap = {
-  // People & Users
   "fas fa-chalkboard-teacher": faChalkboardTeacher,
   "fas fa-user-graduate": faUserGraduate,
   "fas fa-smile": faSmile,
   "fas fa-users": faUsers,
   "fas fa-child": faChild,
-
-  //Place & Things
   "fas fa-building": faBuilding,
   "fas fa-award": faAward,
   "fas fa-book-open": faBookOpen,
@@ -47,8 +42,6 @@ const iconMap = {
   "fas fa-trophy": faTrophy,
   "fas fa-certificate": faCertificate,
   "fas fa-palette": faPalette,
-
-  //Concepts & Actions
   "fas fa-heart": faHeart,
   "fas fa-star": faStar,
   "fas fa-lightbulb": faLightbulb,
@@ -59,16 +52,19 @@ const iconMap = {
 };
 
 const StatCard = ({ stat }) => {
-  // Use the string from Sanity to look up the icon, with faSmile as a fallback
   const icon = iconMap[stat.icon] || faSmile;
   return (
-    <div className="bg-background p-6 rounded-lg text-center shadow-md">
+    <div className="bg-background-light dark:bg-dark-surface p-6 rounded-lg text-center shadow-md">
       <FontAwesomeIcon
         icon={icon}
-        className="text-4xl text-primary-dark mb-3"
+        className="text-4xl text-primary-dark dark:text-dark-primary-light mb-3"
       />
-      <div className="text-3xl font-bold text-text">{stat.number}</div>
-      <div className="text-text-light">{stat.label}</div>
+      <div className="text-3xl font-bold text-text dark:text-dark-text">
+        {stat.number}
+      </div>
+      <div className="text-text-light dark:text-dark-text_light">
+        {stat.label}
+      </div>
     </div>
   );
 };
@@ -77,10 +73,12 @@ export default function About({ about }) {
   const { title, content, images, stats } = about || {};
 
   return (
-    <section id="about" className="section-padding bg-white">
+    <section
+      id="about"
+      className="section-padding bg-white dark:bg-dark-background"
+    >
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Image Slideshow Column */}
           <div className="relative h-96">
             {images && images.length > 0 && (
               <Image
@@ -91,20 +89,26 @@ export default function About({ about }) {
               />
             )}
           </div>
-
-          {/* Text Content Column */}
           <div>
-            <h2 className="text-4xl font-bold text-primary mb-4">
+            <h2 className="text-4xl font-bold text-primary dark:text-dark-primary mb-4">
               {title}
             </h2>
-            <p className="text-text-light leading-relaxed mb-8">{content}</p>
+            <p className="text-text-light dark:text-dark-text_light leading-relaxed mb-8">
+              {content}
+            </p>
 
-            {/* Stat Cards */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8">
               {stats?.map((stat) => (
                 <StatCard key={stat._key} stat={stat} />
               ))}
             </div>
+
+            {/* "Learn More" Button */}
+            <Link href="/about">
+              <div className="inline-block bg-primary text-white font-bold py-3 px-8 rounded-full cta-button hover:bg-primary-dark">
+                Learn More About Us
+              </div>
+            </Link>
           </div>
         </div>
       </div>
