@@ -12,6 +12,10 @@ export const useScrollAnimation = (options) => {
         setIsVisible(true);
         observer.unobserve(entry.target);
       }
-    });
+    }, options);
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
   });
 };
