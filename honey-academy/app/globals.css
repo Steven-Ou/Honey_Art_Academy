@@ -64,3 +64,10 @@ body {
 .dark .prose {
   color: #e5e7eb; /* Corresponds to your dark.text color */
 }
+.dark .prose h1,
+.dark .prose h2,
+.dark .prose h3,
+.dark .prose h4,
+.dark .prose strong {
+  color: #e5e7eb; /* Make headings and bold text light too */
+}
