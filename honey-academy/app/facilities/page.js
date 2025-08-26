@@ -27,34 +27,44 @@ export default async function FacilitiesPage() {
   }
 
   return (
-    <main className="container mx-auto px-6 py-12 bg-white">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-primary-dark">{data.title}</h1>
+    <div className="bg-white dark:bg-dark-background">
+      <div className="relative h-80">
+        <Image
+          src={urlFor(page.mainImage).url()}
+          alt={page.title}
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+          <h1 className="text-5xl font-extrabold text-white text-center">
+            {page.title}
+          </h1>
+        </div>
       </div>
 
-      {/* Masonry-style grid for the images */}
-      <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
-        {data.gallery?.map((item) => (
-          <div key={item._key} className="break-inside-avoid">
-            <figure className="bg-gray-50 p-4 rounded-lg shadow-md">
-              <div className="relative w-full">
-                <Image
-                  src={urlFor(item.image).url()}
-                  alt={item.caption || "Facility image"}
-                  width={500}
-                  height={500}
-                  className="w-full h-auto rounded-md"
-                />
-              </div>
-              {item.caption && (
-                <figcaption className="text-center text-sm text-gray-600 mt-3 italic">
-                  {item.caption}
-                </figcaption>
-              )}
-            </figure>
+      <div className="container mx-auto px-6 py-16">
+        <div className="max-w-4xl mx-auto">
+          <div className="prose lg:prose-xl max-w-none dark:prose-invert mb-12">
+            <PortableText value={page.body} />
           </div>
-        ))}
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {page.gallery?.map((image) => (
+            <div
+              key={image._key}
+              className="relative h-64 rounded-lg shadow-lg overflow-hidden"
+            >
+              <Image
+                src={urlFor(image).url()}
+                alt="Facility image"
+                fill
+                className="object-cover"
+              />
+            </div>
+          ))}
+        </div>
       </div>
-    </main>
+    </div>
   );
 }
