@@ -8,8 +8,8 @@ const ProgramCard = ({ title, subtitle, description, image, slug }) => (
     href={`/programs/${slug.current}`}
     className="w-full md:w-[45%] lg:w-[30%]"
   >
-    <div className="program-card bg-background-light rounded-lg shadow-lg overflow-hidden h-full">
-      <div className="relative w-full h-56 bg-primary-light">
+    <div className="program-card bg-background-light dark:bg-dark-surface rounded-lg shadow-lg overflow-hidden h-full">
+      <div className="relative w-full h-56 bg-primary-light dark:bg-dark-primary-light">
         <Image
           src={image ? urlFor(image).url() : "/images.png"}
           alt={title}
@@ -18,10 +18,18 @@ const ProgramCard = ({ title, subtitle, description, image, slug }) => (
         />
       </div>
       <div className="p-6">
-        <h3 className="text-2xl font-bold mb-1 text-primary">{title}</h3>
-        {subtitle && <p className="text-md text-text-light mb-2">{subtitle}</p>}
-        <p className="text-text-light mb-4">{description}</p>
-        <div className="font-bold text-primary hover:text-primary-dark">
+        <h3 className="text-2xl font-bold mb-1 text-primary dark:text-dark-primary">
+          {title}
+        </h3>
+        {subtitle && (
+          <p className="text-md text-text-light dark:text-dark-text_light mb-2">
+            {subtitle}
+          </p>
+        )}
+        <p className="text-text-light dark:text-dark-text_light mb-4">
+          {description}
+        </p>
+        <div className="font-bold text-primary dark:text-dark-primary hover:text-primary-dark">
           Learn More <i className="fas fa-arrow-right ml-1"></i>
         </div>
       </div>
@@ -29,25 +37,23 @@ const ProgramCard = ({ title, subtitle, description, image, slug }) => (
   </Link>
 );
 
-// This is no longer an async component
 export default function Programs({ programsData, programCards }) {
   const { title, subtitle } = programsData || {};
 
   return (
-    <section id="programs" className="section-padding">
+    <section id="programs" className="section-padding dark:bg-dark-background">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-primary-dark">
+          <h2 className="text-4xl font-bold text-primary-dark dark:text-dark-primary">
             {title || "Our Programs"}
           </h2>
           {subtitle && (
-            <p className="text-lg mt-4 text-text-light max-w-2xl mx-auto">
+            <p className="text-lg mt-4 text-text-light dark:text-dark-text_light max-w-2xl mx-auto">
               {subtitle}
             </p>
           )}
         </div>
         <div className="flex flex-wrap justify-center items-stretch gap-8">
-          {/* Use the programCards passed in via props */}
           {programCards?.map((prog) => (
             <ProgramCard
               key={prog._id}
