@@ -6,7 +6,9 @@ export const useScrollAnimation = (options) => {
   const ref = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(()=>{
-    
-  })
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry])=>{
+        
+    })
+  });
 };
