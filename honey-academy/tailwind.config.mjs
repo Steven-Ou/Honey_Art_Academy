@@ -36,7 +36,7 @@ const config = {
           surface: "#1F2937",
           text: "#E5E7EB",
           text_light: "#9CA3AF",
-          primary: "#8B2C21",
+          primary: "#E57373",
           primary_light: "#A93D31",
         },
       },
