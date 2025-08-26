@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PortableText } from "@portabletext/react";
 import { urlFor } from "@/sanity/lib/image";
-
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 // --- Reusable Components (with Dark Mode classes) ---
 
 const ptComponents = {

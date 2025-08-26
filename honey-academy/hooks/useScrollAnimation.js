@@ -17,10 +17,10 @@ export const useScrollAnimation = (options) => {
     if (ref.current) {
       observer.observe(ref.current);
     }
-    return()=>{
-        if(ref.current){
-            observer.unobserve(ref.current);
-        }
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
     };
-  },[ref,isVisible]);
+  }, [ref, isVisible]);
 };
