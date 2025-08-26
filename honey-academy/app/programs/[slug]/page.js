@@ -39,14 +39,18 @@ export default async function ProgramPage({ params }) {
   if (!program) return <div>Program not found.</div>;
 
   return (
-    <main className="container mx-auto px-6 py-12 bg-white">
+    // ✅ Applied dark mode background to the main container
+    <main className="container mx-auto px-6 py-12 bg-white dark:bg-dark-background">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-extrabold text-primary-dark">
+        {/* ✅ Applied dark mode text color */}
+        <h1 className="text-4xl font-extrabold text-primary-dark dark:text-dark-primary">
           {program.title}
         </h1>
-        {/* ADD THIS LINE to display the subtitle */}
         {program.subtitle && (
-          <p className="text-xl text-gray-500 mt-2">{program.subtitle}</p>
+          // ✅ Applied dark mode text color
+          <p className="text-xl text-gray-500 dark:text-dark-text_light mt-2">
+            {program.subtitle}
+          </p>
         )}
         {program.image && (
           <div className="relative h-96 w-full my-8">
@@ -58,19 +62,22 @@ export default async function ProgramPage({ params }) {
             />
           </div>
         )}
-        <div className="prose lg:prose-xl max-w-none">
+        {/* ✅ Added dark:prose-invert to style the CMS content automatically */}
+        <div className="prose lg:prose-xl max-w-none dark:prose-invert">
           <PortableText value={program.body} components={ptComponents} />
         </div>
 
         {program.gallery && (
           <div className="mt-12">
-            <h2 className="text-3xl font-bold text-secondary mb-6">
+            {/* ✅ Applied dark mode text color */}
+            <h2 className="text-3xl font-bold text-secondary dark:text-dark-primary mb-6">
               Explore Our Instruments
             </h2>
             <div className="grid grid-cols-2 gap-8">
               {program.gallery?.filter(Boolean).map((item) => (
                 <Link key={item._id} href={`/gallery/${item.slug.current}`}>
-                  <div className="group block bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+                  {/* ✅ Applied dark mode background to the card */}
+                  <div className="group block bg-white dark:bg-dark-surface rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
                     <div className="relative h-48 w-full">
                       <Image
                         src={urlFor(item.image).url()}
@@ -80,7 +87,8 @@ export default async function ProgramPage({ params }) {
                       />
                     </div>
                     <div className="p-4">
-                      <h3 className="text-lg font-bold text-primary-dark group-hover:text-primary transition-colors">
+                      {/* ✅ Applied dark mode text color */}
+                      <h3 className="text-lg font-bold text-primary-dark dark:text-dark-primary group-hover:text-primary transition-colors">
                         {item.title}
                       </h3>
                     </div>
