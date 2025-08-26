@@ -1,6 +1,8 @@
-import React from "react";
+"use client"; // This is required to use hooks like useState and useEffect
+
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link"; // Import the Link component
+import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -71,6 +73,18 @@ const StatCard = ({ stat }) => {
 
 export default function About({ about }) {
   const { title, content, images, stats } = about || {};
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // This useEffect hook will run a timer to change the image
+  useEffect(() => {
+    if (images && images.length > 1) {
+      const timer = setInterval(() => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+      }, 4000); // Change image every 4 seconds
+
+      return () => clearInterval(timer); // Cleanup the timer
+    }
+  }, [images]);
 
   return (
     <section
@@ -79,16 +93,21 @@ export default function About({ about }) {
     >
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12 items-center">
+          {/* Image Slideshow Column */}
           <div className="relative h-96">
             {images && images.length > 0 && (
               <Image
-                src={urlFor(images[0]).url()}
+                // Use the currentImageIndex to select which image to show
+                src={urlFor(images[currentImageIndex]).url()}
                 alt={title || "About Honey Art Academy"}
                 fill
-                className="object-cover rounded-lg shadow-xl"
+                className="object-cover rounded-lg shadow-xl transition-opacity duration-1000"
+                key={currentImageIndex} // Add key to re-trigger animations
               />
             )}
           </div>
+
+          {/* Text Content Column */}
           <div>
             <h2 className="text-4xl font-bold text-primary dark:text-dark-primary mb-4">
               {title}
@@ -103,7 +122,6 @@ export default function About({ about }) {
               ))}
             </div>
 
-            {/* "Learn More" Button */}
             <Link href="/about">
               <div className="inline-block bg-primary text-white font-bold py-3 px-8 rounded-full cta-button hover:bg-primary-dark">
                 Learn More About Us
