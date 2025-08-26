@@ -7,10 +7,11 @@ export const useScrollAnimation = (options) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(([entry])=>{
-      if(entry.isIntersecting){
-        
-      }  
-    })
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+        observer.unobserve(entry.target);
+      }
+    });
   });
 };
