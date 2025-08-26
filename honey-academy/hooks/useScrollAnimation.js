@@ -8,7 +8,9 @@ export const useScrollAnimation = (options) => {
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry])=>{
+      if(entry.isIntersecting){
         
+      }  
     })
   });
 };
