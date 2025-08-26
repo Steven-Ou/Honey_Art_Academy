@@ -60,3 +60,7 @@ body {
   transform: translateY(-8px);
   box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.15);
 }
+
+.dark .prose {
+  color: #e5e7eb; /* Corresponds to your dark.text color */
+}
