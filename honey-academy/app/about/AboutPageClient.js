@@ -6,7 +6,8 @@ import Link from "next/link";
 import { PortableText } from "@portabletext/react";
 import { urlFor } from "@/sanity/lib/image";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-// --- Reusable Components (with Dark Mode classes) ---
+
+// --- Reusable Components (with Animations and Dark Mode) ---
 
 const ptComponents = {
   marks: {
@@ -36,47 +37,62 @@ const HeroSection = ({ section }) => (
   </div>
 );
 
-const TextWithImageSection = ({ section }) => (
-  <div
-    className={`grid md:grid-cols-2 gap-12 items-center ${section.imagePlacement === "left" ? "md:grid-flow-row-dense" : ""}`}
-  >
-    <div className={section.imagePlacement === "left" ? "md:col-start-2" : ""}>
-      <h2 className="text-4xl font-bold text-primary-dark dark:text-dark-primary mb-4">
-        {section.title}
-      </h2>
-      {section.tagline && (
-        <p className="text-lg text-gray-500 dark:text-dark-text_light mb-4 font-semibold">
-          {section.tagline}
-        </p>
-      )}
-      {/* The prose-invert class handles dark mode for PortableText content */}
-      <div className="prose lg:prose-xl dark:prose-invert">
-        <PortableText value={section.content} components={ptComponents} />
-      </div>
-    </div>
-    {section.image?.image && (
+const TextWithImageSection = ({ section }) => {
+  // 1. Use the scroll animation hook
+  const [ref, isVisible] = useScrollAnimation({ threshold: 0.1 });
+
+  return (
+    // 2. Attach the ref and apply animation classes
+    <div
+      ref={ref}
+      className={`grid md:grid-cols-2 gap-12 items-center transition-opacity duration-1000 ${
+        isVisible ? "animate-in fade-in" : "opacity-0"
+      } ${section.imagePlacement === "left" ? "md:grid-flow-row-dense" : ""}`}
+    >
       <div
-        className={`relative ${section.imagePlacement === "left" ? "md:col-start-1" : ""}`}
+        className={section.imagePlacement === "left" ? "md:col-start-2" : ""}
       >
-        <div className="relative h-96 w-full rounded-lg shadow-xl">
-          <Image
-            src={urlFor(section.image.image).url()}
-            alt={section.image.caption || section.title || "Section image"}
-            fill
-            className="object-cover rounded-lg"
-          />
-        </div>
-        {section.image.caption && (
-          <p className="text-center text-sm text-gray-500 dark:text-dark-text_light mt-2">
-            {section.image.caption}
+        <h2 className="text-4xl font-bold text-primary-dark dark:text-dark-primary mb-4">
+          {section.title}
+        </h2>
+        {section.tagline && (
+          <p className="text-lg text-gray-500 dark:text-dark-text_light mb-4 font-semibold">
+            {section.tagline}
           </p>
         )}
+        <div className="prose lg:prose-xl dark:prose-invert">
+          <PortableText value={section.content} components={ptComponents} />
+        </div>
       </div>
-    )}
-  </div>
-);
+      {section.image?.image && (
+        <div
+          className={`relative ${
+            section.imagePlacement === "left" ? "md:col-start-1" : ""
+          }`}
+        >
+          <div className="relative h-96 w-full rounded-lg shadow-xl">
+            <Image
+              src={urlFor(section.image.image).url()}
+              alt={section.image.caption || section.title || "Section image"}
+              fill
+              className="object-cover rounded-lg"
+            />
+          </div>
+          {section.image.caption && (
+            <p className="text-center text-sm text-gray-500 dark:text-dark-text_light mt-2">
+              {section.image.caption}
+            </p>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
 
 const TeamSection = ({ section }) => {
+  // 1. Use the scroll animation hook
+  const [ref, isVisible] = useScrollAnimation({ threshold: 0.1 });
+
   const groupedInstructors = section.instructors?.reduce((acc, instructor) => {
     instructor.programs?.forEach((program) => {
       if (!acc[program.title]) {
@@ -96,7 +112,13 @@ const TeamSection = ({ section }) => {
   const activeInstructors = groupedInstructors[activeTab] || [];
 
   return (
-    <div className="text-center">
+    // 2. Attach the ref and apply animation classes
+    <div
+      ref={ref}
+      className={`text-center transition-opacity duration-1000 ${
+        isVisible ? "animate-in fade-in" : "opacity-0"
+      }`}
+    >
       <h2 className="text-4xl font-bold text-primary-dark dark:text-dark-primary mb-8">
         {section.heading}
       </h2>
@@ -150,14 +172,15 @@ const sectionComponents = {
 };
 
 export default function AboutPageClient({ pageData }) {
+  // Use the animation hook for the final CTA section
+  const [ctaRef, isCtaVisible] = useScrollAnimation({ threshold: 0.1 });
+
   return (
-    // Main background color for the page
     <div className="bg-white dark:bg-dark-background">
       {pageData.pageBuilder?.map((section, index) => {
         const SectionComponent = sectionComponents[section._type];
         if (!SectionComponent) return null;
 
-        // The first section (Hero) doesn't need padding
         if (index === 0) {
           return <SectionComponent key={section._key} section={section} />;
         }
@@ -168,8 +191,13 @@ export default function AboutPageClient({ pageData }) {
           </div>
         );
       })}
-      {/* Call to Action section */}
-      <div className="bg-primary-light dark:bg-dark-surface py-16 text-center">
+      {/* Call to Action section with animation */}
+      <div
+        ref={ctaRef}
+        className={`bg-primary-light dark:bg-dark-surface py-16 text-center transition-opacity duration-1000 ${
+          isCtaVisible ? "animate-in fade-in" : "opacity-0"
+        }`}
+      >
         <h2 className="text-3xl font-bold text-primary-dark dark:text-dark-primary">
           Ready to Join Us?
         </h2>
