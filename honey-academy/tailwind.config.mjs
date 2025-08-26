@@ -33,7 +33,7 @@ const config = {
         accent: "#3B82F6",
         dark: {
           background: "#111827",
-          surface: "#1F2937",
+          surface: "#1F222A",
           text: "#E5E7EB",
           text_light: "#9CA3AF",
           primary: "#E57373",
