@@ -109,7 +109,7 @@ const TeamSection = ({ section }) => {
             className={`px-6 py-2 rounded-full font-semibold transition-colors duration-300 ${
               activeTab === programTitle
                 ? "bg-primary text-white shadow-md"
-                : "bg-gray-200 dark:bg-dark-surface text-gray-700 dark:text-dark-text hover:bg-gray-300 dark:hover:bg-secondary"
+                : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-dark-surface dark:text-dark-text dark:hover:bg-secondary"
             }`}
           >
             {programTitle}
