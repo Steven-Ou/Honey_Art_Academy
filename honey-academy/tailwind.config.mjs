@@ -15,6 +15,7 @@ const config = {
       },
       colors: {
         brandRed: "#8B2C21",
+        brandRed_light: "#E57373",
         primary: {
           light: "#A93D31",
           DEFAULT: "#8B2C21",
