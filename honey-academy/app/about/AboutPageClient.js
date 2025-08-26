@@ -6,7 +6,7 @@ import Link from "next/link";
 import { PortableText } from "@portabletext/react";
 import { urlFor } from "@/sanity/lib/image";
 
-// --- Reusable Components (No changes here) ---
+// --- Reusable Components (with Dark Mode classes) ---
 
 const ptComponents = {
   marks: {
@@ -41,33 +41,33 @@ const TextWithImageSection = ({ section }) => (
     className={`grid md:grid-cols-2 gap-12 items-center ${section.imagePlacement === "left" ? "md:grid-flow-row-dense" : ""}`}
   >
     <div className={section.imagePlacement === "left" ? "md:col-start-2" : ""}>
-      <h2 className="text-4xl font-bold text-primary-dark mb-4">
+      <h2 className="text-4xl font-bold text-primary-dark dark:text-dark-primary mb-4">
         {section.title}
       </h2>
       {section.tagline && (
-        <p className="text-lg text-gray-500 mb-4 font-semibold">
+        <p className="text-lg text-gray-500 dark:text-dark-text_light mb-4 font-semibold">
           {section.tagline}
         </p>
       )}
-      <div className="prose lg:prose-xl">
+      {/* The prose-invert class handles dark mode for PortableText content */}
+      <div className="prose lg:prose-xl dark:prose-invert">
         <PortableText value={section.content} components={ptComponents} />
       </div>
     </div>
-    {/* This now correctly checks for the nested image object */}
     {section.image?.image && (
       <div
         className={`relative ${section.imagePlacement === "left" ? "md:col-start-1" : ""}`}
       >
         <div className="relative h-96 w-full rounded-lg shadow-xl">
           <Image
-            src={urlFor(section.image.image).url()} // Notice the change: section.image.image
+            src={urlFor(section.image.image).url()}
             alt={section.image.caption || section.title || "Section image"}
             fill
             className="object-cover rounded-lg"
           />
         </div>
         {section.image.caption && (
-          <p className="text-center text-sm text-gray-500 mt-2">
+          <p className="text-center text-sm text-gray-500 dark:text-dark-text_light mt-2">
             {section.image.caption}
           </p>
         )}
@@ -76,7 +76,6 @@ const TextWithImageSection = ({ section }) => (
   </div>
 );
 
-// --- UPDATED TeamSection Component ---
 const TeamSection = ({ section }) => {
   const groupedInstructors = section.instructors?.reduce((acc, instructor) => {
     instructor.programs?.forEach((program) => {
@@ -94,18 +93,14 @@ const TeamSection = ({ section }) => {
 
   if (!groupedInstructors) return null;
 
-  const slugify = (text) => text.toLowerCase().replace(/\s+/g, "-");
-
-  // Get the list of instructors for the currently active tab
   const activeInstructors = groupedInstructors[activeTab] || [];
 
   return (
     <div className="text-center">
-      <h2 className="text-4xl font-bold text-primary-dark mb-8">
+      <h2 className="text-4xl font-bold text-primary-dark dark:text-dark-primary mb-8">
         {section.heading}
       </h2>
 
-      {/* This is the clickable navigation row */}
       <div className="flex flex-wrap justify-center gap-4 mb-12">
         {Object.keys(groupedInstructors).map((programTitle) => (
           <button
@@ -114,7 +109,7 @@ const TeamSection = ({ section }) => {
             className={`px-6 py-2 rounded-full font-semibold transition-colors duration-300 ${
               activeTab === programTitle
                 ? "bg-primary text-white shadow-md"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                : "bg-gray-200 dark:bg-dark-surface text-gray-700 dark:text-dark-text hover:bg-gray-300 dark:hover:bg-secondary"
             }`}
           >
             {programTitle}
@@ -122,7 +117,6 @@ const TeamSection = ({ section }) => {
         ))}
       </div>
 
-      {/* This part renders ONLY the teachers for the active category */}
       <div id="instructors-grid" className="mt-8">
         <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-10">
           {activeInstructors.map((instructor) => (
@@ -135,10 +129,12 @@ const TeamSection = ({ section }) => {
                   className="object-cover rounded-full"
                 />
               </div>
-              <h4 className="text-xl font-bold mt-4 text-primary-dark">
+              <h4 className="text-xl font-bold mt-4 text-primary-dark dark:text-dark-primary">
                 {instructor.name}
               </h4>
-              <p className="text-gray-500">{instructor.title}</p>
+              <p className="text-gray-500 dark:text-dark-text_light">
+                {instructor.title}
+              </p>
             </div>
           ))}
         </div>
@@ -146,8 +142,6 @@ const TeamSection = ({ section }) => {
     </div>
   );
 };
-
-// --- No changes below this line ---
 
 const sectionComponents = {
   heroSection: HeroSection,
@@ -157,21 +151,29 @@ const sectionComponents = {
 
 export default function AboutPageClient({ pageData }) {
   return (
-    <div className="bg-white">
-      {pageData.pageBuilder?.map((section) => {
+    // Main background color for the page
+    <div className="bg-white dark:bg-dark-background">
+      {pageData.pageBuilder?.map((section, index) => {
         const SectionComponent = sectionComponents[section._type];
         if (!SectionComponent) return null;
+
+        // The first section (Hero) doesn't need padding
+        if (index === 0) {
+          return <SectionComponent key={section._key} section={section} />;
+        }
+
         return (
           <div key={section._key} className="container mx-auto px-6 py-16">
             <SectionComponent section={section} />
           </div>
         );
       })}
-      <div className="bg-primary-light py-16 text-center">
-        <h2 className="text-3xl font-bold text-primary-dark">
+      {/* Call to Action section */}
+      <div className="bg-primary-light dark:bg-dark-surface py-16 text-center">
+        <h2 className="text-3xl font-bold text-primary-dark dark:text-dark-primary">
           Ready to Join Us?
         </h2>
-        <p className="text-gray-600 mt-2">
+        <p className="text-gray-600 dark:text-dark-text_light mt-2">
           Get in touch to learn more about our programs and enrollment.
         </p>
         <Link
