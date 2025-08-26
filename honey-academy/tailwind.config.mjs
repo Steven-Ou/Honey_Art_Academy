@@ -43,7 +43,7 @@ const config = {
         DEFAULT: {
           css: {
             color: theme("colors.gray.800"), // Change the default text color
-            '[class~="dark] &': {
+            '[class~="dark"] &': {
               color: theme("colors.dark.text"),
             },
           },
