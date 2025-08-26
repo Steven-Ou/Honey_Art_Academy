@@ -177,7 +177,8 @@ export default function AboutPageClient({ pageData }) {
 
   return (
     <div className="bg-white dark:bg-dark-background">
-      {pageData.pageBuilder?.map((section, index) => {
+      {/* ✅ FIX: Added a fallback to an empty array to prevent crash */}
+      {(pageData?.pageBuilder || []).map((section, index) => {
         const SectionComponent = sectionComponents[section._type];
         if (!SectionComponent) return null;
 
