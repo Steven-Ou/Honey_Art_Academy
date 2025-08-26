@@ -1,11 +1,37 @@
 "use client"; // This is the crucial directive
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { PortableText } from "@portabletext/react";
 import { urlFor } from "@/sanity/lib/image";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+
+const useScrollAnimation = (options) => {
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+        observer.unobserve(entry.target);
+      }
+    }, options);
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        observer.unobserve(ref.current);
+      }
+    };
+  }, [ref, options]);
+
+  return [ref, isVisible];
+};
 
 // --- Reusable Components (with Animations and Dark Mode) ---
 
@@ -38,11 +64,9 @@ const HeroSection = ({ section }) => (
 );
 
 const TextWithImageSection = ({ section }) => {
-  // 1. Use the scroll animation hook
   const [ref, isVisible] = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    // 2. Attach the ref and apply animation classes
     <div
       ref={ref}
       className={`grid md:grid-cols-2 gap-12 items-center transition-opacity duration-1000 ${
@@ -90,7 +114,6 @@ const TextWithImageSection = ({ section }) => {
 };
 
 const TeamSection = ({ section }) => {
-  // 1. Use the scroll animation hook
   const [ref, isVisible] = useScrollAnimation({ threshold: 0.1 });
 
   const groupedInstructors = section.instructors?.reduce((acc, instructor) => {
@@ -112,7 +135,6 @@ const TeamSection = ({ section }) => {
   const activeInstructors = groupedInstructors[activeTab] || [];
 
   return (
-    // 2. Attach the ref and apply animation classes
     <div
       ref={ref}
       className={`text-center transition-opacity duration-1000 ${
@@ -172,12 +194,10 @@ const sectionComponents = {
 };
 
 export default function AboutPageClient({ pageData }) {
-  // Use the animation hook for the final CTA section
   const [ctaRef, isCtaVisible] = useScrollAnimation({ threshold: 0.1 });
 
   return (
     <div className="bg-white dark:bg-dark-background">
-      {/* ✅ FIX: Added a fallback to an empty array to prevent crash */}
       {(pageData?.pageBuilder || []).map((section, index) => {
         const SectionComponent = sectionComponents[section._type];
         if (!SectionComponent) return null;
@@ -192,7 +212,6 @@ export default function AboutPageClient({ pageData }) {
           </div>
         );
       })}
-      {/* Call to Action section with animation */}
       <div
         ref={ctaRef}
         className={`bg-primary-light dark:bg-dark-surface py-16 text-center transition-opacity duration-1000 ${
