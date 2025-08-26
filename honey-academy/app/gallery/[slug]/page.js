@@ -108,40 +108,33 @@ export default async function GalleryItemPage({ params }) {
   }
 
   return (
-    <main className="container mx-auto px-6 py-12 bg-white">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-extrabold text-primary-dark">
-          {item.title}
-        </h1>
-        {item.subtitle && (
-          <p className="text-xl text-gray-500 mt-2">{item.subtitle}</p>
-        )}
-        {item.image && (
-          <div className="relative h-96 w-full my-8">
-            <Image
-              src={urlFor(item.image).url()}
-              alt={item.title || "Gallery item image"}
-              fill
-              className="object-cover rounded-lg"
-            />
-          </div>
-        )}
-        <div className="prose lg:prose-xl max-w-none">
-          {item.content && (
-            <PortableText value={item.content} components={ptComponents} />
+    <main className="bg-white dark:bg-dark-background">
+      <div className="container mx-auto px-6 py-16">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-5xl font-extrabold text-primary-dark dark:text-dark-primary mb-4">
+            {item.title}
+          </h1>
+          {item.image && (
+            <div className="relative h-96 w-full my-8 rounded-lg shadow-lg overflow-hidden">
+              <Image
+                src={urlFor(item.image).url()}
+                alt={item.title}
+                fill
+                className="object-cover"
+              />
+            </div>
           )}
-        </div>
-
-        {item.contactUrl && (
-          <div className="mt-12 text-center">
-            <Link
-              href={item.contactUrl}
-              className="inline-block bg-primary text-white font-bold py-3 px-8 rounded-full text-lg cta-button hover:bg-primary-dark"
-            >
-              Contact Us For More Info
+          <div className="prose lg:prose-xl max-w-none dark:prose-invert">
+            <PortableText value={item.description} />
+          </div>
+          <div className="text-center mt-12">
+            <Link href="/#programs">
+              <div className="inline-block bg-primary text-white font-bold py-3 px-8 rounded-full cta-button hover:bg-primary-dark">
+                Back to Programs
+              </div>
             </Link>
           </div>
-        )}
+        </div>
       </div>
     </main>
   );
