@@ -2,7 +2,7 @@
 
 <div align="center">
   <img src="honey-academy/public/cover.png" alt="Honey Art Academy Logo" width="150"/>
-  <img src="honey-academy/public/inside.png" alt="Honey Art Academy Logo" width="150"/>
+  <img src="honey-academy/public/inner.png" alt="Honey Art Academy Logo" width="150"/>
 </div>
 
 <div align="center">
