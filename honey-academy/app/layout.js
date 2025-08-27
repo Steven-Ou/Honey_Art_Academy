@@ -9,23 +9,27 @@ export const metadata = {
   description: "Nurturing creativity and passion through the arts.",
 };
 
-// This query now fetches everything needed for the Header and Footer,
-// including the logo and site title.
 async function getLayoutData() {
   const query = `*[_type == "settings"][0]{
-    // Data for Header & Footer
     siteTitle,
     logo,
-    
-    // Data for Header menu
-    "menuItems": menu.items,
-
-    // Data for Footer
+    "menuItems": menu.items[]{
+      _key,
+      "label": linkText,
+      "url": select(
+        linkType == 'internal' && internalLink->_type == 'aboutPage' => '/about',
+        linkType == 'internal' && internalLink->_type == 'facilitiesPage' => '/facilities',
+        linkType == 'internal' && defined(internalLink->slug.current) => '/' + internalLink->slug.current,
+        linkType == 'anchor' => '#' + anchorLink,
+        linkType == 'external' => externalUrl,
+        '/'
+      )
+    },
     address,
     email,
     phone,
     "socials": socialLinks[]{ _key, platform, url },
-    "footerLinks": footer.links
+    "footerLinks": footer.links[]{ _key, label, url }
   }`;
   return client.fetch(query);
 }
