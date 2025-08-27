@@ -6,14 +6,14 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata = {
   title: "Honey Art Academy",
-  description: "Nurturing creativity and passion through the arts.",
+  description: "Nurturing Creative Souls",
 };
 
 async function getLayoutData() {
   const query = `*[_type == "settings"][0]{
     siteTitle,
     logo,
-    "menuItems": menu.items[]{
+    "menuItems": mainNav[]{
       _key,
       "label": linkText,
       "url": select(
@@ -22,20 +22,19 @@ async function getLayoutData() {
         linkType == 'internal' && defined(internalLink->slug.current) => '/' + internalLink->slug.current,
         linkType == 'anchor' => '#' + anchorLink,
         linkType == 'external' => externalUrl,
-        '/'
+        '/' // Fallback URL
       )
     },
     address,
     email,
     phone,
     "socials": socialLinks[]{ _key, platform, url },
-    "footerLinks": footer.links[]{ _key, label, url }
+    "footerLinks": footerLinks[]{ _key, label, url }
   }`;
   return client.fetch(query);
 }
 
 export default async function RootLayout({ children }) {
-  // Fetch all settings data once
   const layoutData = await getLayoutData();
 
   return (
