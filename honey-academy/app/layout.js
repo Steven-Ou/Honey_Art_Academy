@@ -13,7 +13,7 @@ async function getLayoutData() {
   const query = `*[_type == "settings"][0]{
     siteTitle,
     logo,
-    "menuItems": mainNav[]{
+    "menuItems": menu.items[]{
       _key,
       "label": linkText,
       "url": select(
