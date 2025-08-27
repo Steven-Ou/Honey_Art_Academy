@@ -1,9 +1,11 @@
 # Honey Art Academy
 
-<div align="center">
-  <img src="honey-academy/public/cover.png" alt="Honey Art Academy Logo" width="150"/>
-  <img src="honey-academy/public/inner.png" alt="Honey Art Academy Logo" width="150"/>
-</div>
+<table>
+  <tr>
+    <td valign="top"><img src="honey-academy/public/cover.png" alt="Honey Art Academy Homepage" width="400"/></td>
+    <td valign="top"><img src="honey-academy/public/inner.png" alt="Honey Art Academy Gallery" width="400"/></td>
+  </tr>
+</table>
 
 <div align="center">
 
@@ -24,7 +26,6 @@ This project is a modern, responsive website for the **Honey Art Academy**, desi
 - **Dynamic Content Management**: Powered by Sanity.io, allowing administrators to easily update programs, gallery items, events, and instructor information without touching any code.
 - **Detailed Program Pages**: Each art program has its own dedicated page with comprehensive details, schedules, and instructor information.
 - **Artwork Gallery**: A beautiful gallery to showcase student artwork, with individual pages for each piece providing more detail.
-- **Informative Pages**: Dedicated sections for "About Us", "Facilities", and "Contact" provide users with all the necessary information about the academy.
 - **Dark/Light Mode**: A theme toggler for a comfortable viewing experience in any lighting condition.
 - **Responsive Design**: Fully responsive layout ensures a seamless experience on desktops, tablets, and mobile devices.
 
@@ -65,19 +66,12 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ### Running the Development Server
 
-First, run the development server:
+To run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
 Open http://localhost:3000 with your browser to see the result.
-
-You can start editing the page by modifying app/page.js. The page auto-updates as you edit the file.
 
 License
 This project is licensed under the MIT License - see the LICENSE file for details.
+```
