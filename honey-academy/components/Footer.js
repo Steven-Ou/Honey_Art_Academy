@@ -2,6 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { urlFor } from "@/sanity/lib/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMapMarkerAlt,
@@ -13,7 +15,7 @@ import { faYoutube, faInstagram } from "@fortawesome/free-brands-svg-icons";
 // This component receives settings data from a parent layout or page
 export default function Footer({ data }) {
   // Use optional chaining to safely access nested properties
-  const { address, email, phone, socials } = data || {};
+  const { address, email, phone, socials, logo, siteTitle } = data || {};
 
   // A map to associate social platform names from Sanity with FontAwesome icons
   const socialIconMap = {
@@ -29,7 +31,18 @@ export default function Footer({ data }) {
         <div className="grid md:grid-cols-3 gap-8 text-center md:text-left">
           {/* Column 1: Academy Info & Tagline */}
           <div className="flex flex-col items-center md:items-start">
-            <h3 className="text-xl font-bold mb-2">Honey Art Academy</h3>
+            {logo && siteTitle && (
+              <Link href="/" className="flex items-center space-x-2 mb-2">
+                <Image
+                  src={urlFor(logo).url()}
+                  alt={`${siteTitle} Logo`}
+                  width={40}
+                  height={40}
+                  className="h-10 w-10"
+                />
+                <span className="text-xl font-bold">{siteTitle}</span>
+              </Link>
+            )}
             <p className="text-gray-300 dark:text-dark-text_light max-w-xs">
               Nurturing creativity and passion through the arts.
             </p>
