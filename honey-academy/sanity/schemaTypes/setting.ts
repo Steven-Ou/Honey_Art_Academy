@@ -9,8 +9,9 @@ export const settings = defineType({
   fields: [
     defineField({
       name:"siteTitle",
-      title:
-      type:
+      title:"Site Title",
+      type:"string",
+      validation:(rule)=>rule.required(),
     }),
     defineField({
       name: "logo",
