@@ -4,9 +4,16 @@ import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 
 async function getFacilitiesPage() {
+  // This query fetches the title and the full image data for the gallery
   const query = `*[_type == "facilitiesPage"][0]{
     title,
-    gallery[]
+    gallery[]{
+      _key,
+      caption,
+      image {
+        asset->
+      }
+    }
   }`;
   return client.fetch(query);
 }
@@ -28,39 +35,33 @@ export default async function FacilitiesPage() {
 
   return (
     <div className="bg-white dark:bg-dark-background">
-      <div className="relative h-80">
-        <Image
-          src={urlFor(page.mainImage).url()}
-          alt={page.title}
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-          <h1 className="text-5xl font-extrabold text-white text-center">
-            {page.title}
+      {/* Simple Hero Section using the page title */}
+      <div className="bg-gray-100 dark:bg-dark-surface py-24">
+        <div className="container mx-auto px-6 text-center">
+          <h1 className="text-5xl font-extrabold text-primary-dark dark:text-dark-primary">
+            {data.title}
           </h1>
         </div>
       </div>
 
+      {/* Gallery Section */}
       <div className="container mx-auto px-6 py-16">
-        <div className="max-w-4xl mx-auto">
-          <div className="prose lg:prose-xl max-w-none dark:prose-invert mb-12">
-            <PortableText value={page.body} />
-          </div>
-        </div>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {page.gallery?.map((image) => (
-            <div
-              key={image._key}
-              className="relative h-64 rounded-lg shadow-lg overflow-hidden"
-            >
-              <Image
-                src={urlFor(image).url()}
-                alt="Facility image"
-                fill
-                className="object-cover"
-              />
+          {data.gallery?.map((item) => (
+            <div key={item._key}>
+              <div className="relative h-80 w-full rounded-lg shadow-lg overflow-hidden">
+                <Image
+                  src={urlFor(item.image).url()}
+                  alt={item.caption || "Facility image"}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              {item.caption && (
+                <p className="text-center text-sm text-gray-500 dark:text-dark-text_light mt-2">
+                  {item.caption}
+                </p>
+              )}
             </div>
           ))}
         </div>
