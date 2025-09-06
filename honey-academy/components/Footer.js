@@ -9,8 +9,14 @@ import {
   faMapMarkerAlt,
   faPhone,
   faEnvelope,
+  faGlobe, // Import a generic icon
 } from "@fortawesome/free-solid-svg-icons";
-import { faYoutube, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import {
+  faYoutube,
+  faInstagram,
+  faFacebook,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
 
 export default function Footer({ data }) {
   const { address, email, phone, socials, logo, siteTitle, copyrightText } =
@@ -19,6 +25,8 @@ export default function Footer({ data }) {
   const socialIconMap = {
     youtube: faYoutube,
     instagram: faInstagram,
+    facebook: faFacebook,
+    twitter: faTwitter,
   };
 
   return (
@@ -93,8 +101,10 @@ export default function Footer({ data }) {
             <h3 className="text-xl font-bold mb-4">Follow Us</h3>
             <div className="flex justify-center md:justify-start space-x-4">
               {socials?.map((social) => {
-                const icon = socialIconMap[social.platform.toLowerCase()];
-                if (!icon) return null;
+                // 2. Use the specific icon if it exists, otherwise fall back to the generic faGlobe icon
+                const icon =
+                  socialIconMap[social.platform.toLowerCase()] || faGlobe;
+
                 return (
                   <a
                     key={social._key}
