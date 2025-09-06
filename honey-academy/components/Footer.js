@@ -31,7 +31,7 @@ export default function Footer({ data }) {
               <Link href="/" className="flex items-center space-x-2 mb-2">
                 {logo && (
                   <Image
-                    src={urlFor(logo).url()}
+                    src={urlFor(logo).width(80).height(80).quality(95).url()}
                     alt={`${siteTitle || "Honey Art Academy"} Logo`}
                     width={40}
                     height={40}
