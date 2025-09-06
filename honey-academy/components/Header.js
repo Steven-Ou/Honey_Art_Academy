@@ -13,19 +13,25 @@ export default function Header({ data }) {
   return (
     <header className="bg-white dark:bg-dark-surface shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-        {logo && siteTitle && (
+        {logo || siteTitle ? (
           <Link href="/" className="flex items-center space-x-2">
-            <Image
-              src={urlFor(logo).url()}
-              alt={`${siteTitle} Logo`}
-              width={40}
-              height={40}
-              className="h-10 w-10"
-            />
-            <span className="text-xl font-bold text-primary dark:text-dark-primary">
-              {siteTitle}
-            </span>
+            {logo && (
+              <Image
+                src={urlFor(logo).url()}
+                alt={`${siteTitle || "Honey Art Academy"} Logo`}
+                width={40}
+                height={40}
+                className="h-10 w-10"
+              />
+            )}
+            {siteTitle && (
+              <span className="text-xl font-bold text-primary dark:text-dark-primary">
+                {siteTitle}
+              </span>
+            )}
           </Link>
+        ) : (
+          <div />
         )}
 
         {/* Desktop Menu */}
