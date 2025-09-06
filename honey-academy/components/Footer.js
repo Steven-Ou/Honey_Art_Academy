@@ -12,35 +12,35 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faYoutube, faInstagram } from "@fortawesome/free-brands-svg-icons";
 
-// This component receives settings data from a parent layout or page
 export default function Footer({ data }) {
-  // Use optional chaining to safely access nested properties
-  const { address, email, phone, socials, logo, siteTitle ,copyrightText} = data || {};
+  const { address, email, phone, socials, logo, siteTitle, copyrightText } =
+    data || {};
 
-  // A map to associate social platform names from Sanity with FontAwesome icons
   const socialIconMap = {
     youtube: faYoutube,
     instagram: faInstagram,
-    // Add other platforms here as needed (e.g., facebook: faFacebook)
   };
 
   return (
-    // This respects your request to not change the background colors
     <footer className="bg-primary-dark dark:bg-dark-background text-white dark:text-dark-text">
       <div className="container mx-auto px-6 py-12">
         <div className="grid md:grid-cols-3 gap-8 text-center md:text-left">
           {/* Column 1: Academy Info & Tagline */}
           <div className="flex flex-col items-center md:items-start">
-            {logo && siteTitle && (
+            {(logo || siteTitle) && (
               <Link href="/" className="flex items-center space-x-2 mb-2">
-                <Image
-                  src={urlFor(logo).url()}
-                  alt={`${siteTitle} Logo`}
-                  width={40}
-                  height={40}
-                  className="h-10 w-10"
-                />
-                <span className="text-xl font-bold">{siteTitle}</span>
+                {logo && (
+                  <Image
+                    src={urlFor(logo).url()}
+                    alt={`${siteTitle || "Honey Art Academy"} Logo`}
+                    width={40}
+                    height={40}
+                    className="h-10 w-10"
+                  />
+                )}
+                {siteTitle && (
+                  <span className="text-xl font-bold">{siteTitle}</span>
+                )}
               </Link>
             )}
             <p className="text-gray-300 dark:text-dark-text_light max-w-xs">
@@ -115,8 +115,8 @@ export default function Footer({ data }) {
         {/* Bottom Bar */}
         <div className="mt-12 border-t border-gray-700 dark:border-gray-600 pt-6 text-center text-gray-400 dark:text-dark-text_light">
           <p>
-            &copy; {new Date().getFullYear()} Honey Art Academy. All Rights
-            Reserved.
+            {copyrightText ||
+              `© ${new Date().getFullYear()} Honey Art Academy. All Rights Reserved.`}
           </p>
           <p className="text-sm mt-2 opacity-75">
             Made by{" "}
