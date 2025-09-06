@@ -15,7 +15,7 @@ import { faYoutube, faInstagram } from "@fortawesome/free-brands-svg-icons";
 // This component receives settings data from a parent layout or page
 export default function Footer({ data }) {
   // Use optional chaining to safely access nested properties
-  const { address, email, phone, socials, logo, siteTitle } = data || {};
+  const { address, email, phone, socials, logo, siteTitle ,copyrightText} = data || {};
 
   // A map to associate social platform names from Sanity with FontAwesome icons
   const socialIconMap = {

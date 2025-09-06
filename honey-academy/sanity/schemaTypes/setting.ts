@@ -39,7 +39,6 @@ export const settings = defineType({
       title: "Email Address",
       type: "string",
     }),
-    // Add this new field for the map URL
     defineField({
       name: "googleMapsEmbedUrl",
       title: "Google Maps Embed URL",

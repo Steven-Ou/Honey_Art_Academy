@@ -29,7 +29,7 @@ async function getLayoutData() {
     email,
     phone,
     "socials": socialLinks[]{ _key, platform, url },
-    "footerLinks": footerLinks[]{ _key, label, url }
+    copyrightText
   }`;
   return client.fetch(query);
 }
