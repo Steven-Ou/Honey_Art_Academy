@@ -7,7 +7,16 @@ export const settings = defineType({
   type: "document",
   icon: CogIcon,
   fields: [
-    defineField({ name: "logo", title: "Logo", type: "image" }),
+    defineField({
+      name:"siteTitle",
+      title:
+      type:
+    }),
+    defineField({
+      name: "logo",
+      title: "Logo",
+      type: "image",
+    }),
     defineField({
       name: "mainNav",
       title: "Main Navigation",
