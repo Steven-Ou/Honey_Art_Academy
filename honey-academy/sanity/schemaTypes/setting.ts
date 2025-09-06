@@ -8,10 +8,10 @@ export const settings = defineType({
   icon: CogIcon,
   fields: [
     defineField({
-      name:"siteTitle",
-      title:"Site Title",
-      type:"string",
-      validation:(rule)=>rule.required(),
+      name: "siteTitle",
+      title: "Site Title",
+      type: "string",
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "logo",
